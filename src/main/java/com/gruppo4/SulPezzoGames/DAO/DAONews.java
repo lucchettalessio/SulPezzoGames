@@ -52,7 +52,7 @@ public class DAONews implements IDAO {
     public Map<Integer, Entity> read() {
         //lakjfkdajlfkdjaslkfjlasdkj
         //stessa riga
-        //ciaocicaoi
+        //ciaocicaoi00000000000000000
     }
 
     @Override
