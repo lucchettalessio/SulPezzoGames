@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import org.springframework.beans.factory.annotation.Value;
+// import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,10 +13,11 @@ public class Database {
 	private final String password = "root";
 	private final String timezone = "?useSSL=false&serverTimezone=UTC";
 	private final String path = "jdbc:mysql://localhost:3306/";
+    private String nomeDb = "sulpezzogames";
     
     private Connection connection;
 
-    public Database(@Value("${nome.db}") String nomeDb){
+    public Database(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(path + nomeDb + timezone, username, password);

@@ -10,43 +10,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gruppo4.SulPezzoGames.Entities.Entity;
-import com.gruppo4.SulPezzoGames.Entities.News;
+import com.gruppo4.SulPezzoGames.Entities.Recensione;
 
 @Service
-public class DAONews implements IDAO {
+public class DAORecensione implements IDAO {
 
     @Autowired
     private Database database;
 
-    
-
     @Override
     public void create(Entity e) {
-        String query = "INSERT INTO News (titolo,categoria,immagine,data,testo,autore) VALUES ('?','?','?','?','?','?')";
-        News n = null;
+        String query = "INSERT INTO Recensioni (titolo,data,punteggio,immagine,testo,autore,videogioco) VALUES ('?','?','?','?','?','?','?')";
+        Recensione n = null;
         PreparedStatement ps = null;
 
         try{
-            n = (News)e;
+            n = (Recensione)e;
             ps = database.getConnection().prepareStatement(query);
             ps.setString(1, n.getTitolo());
-            ps.setString(2, n.getCategoria());
-            ps.setString(3, n.getImmagine());
-            ps.setString(4, n.getData());
+            ps.setString(2, n.getData());
+            ps.setString(3, n.getPunteggio()+"");
+            ps.setString(4, n.getImmagine());
             ps.setString(5, n.getTesto());
             ps.setString(6, n.getAutore() + "");
+            ps.setString(7, n.getVideogioco() + "");
 
             ps.executeUpdate();
 
         } catch (SQLException exc) {
 
-            System.out.println("Errore nel create di DAONews." + exc.getMessage());
+            System.out.println("Errore nel create di DAORecensione." + exc.getMessage());
         }
         finally{
             try {
                 ps.close();
             } catch (Exception ex) {
-                System.out.println("Errore nella chiusura di PreparedStatement nel create di DAONews.");
+                System.out.println("Errore nella chiusura di PreparedStatement nel create di DAORecensione.");
             }
         }
 
@@ -54,11 +53,11 @@ public class DAONews implements IDAO {
 
     @Override
     public Map<Integer, Entity> read() {
-        String query = "select * from news";
+        String query = "select * from Recensioni";
         Map<Integer, Entity> ris = new HashMap<>();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        News n = null;
+        Recensione n = null;
 
         try {
             ps = database.getConnection().prepareStatement(query);
@@ -66,26 +65,27 @@ public class DAONews implements IDAO {
 
             while(rs.next()){
                 n.setId(Integer.parseInt(rs.getString(1)));
-                n.setTitolo(rs.getString(2));
-                n.setCategoria(rs.getString(3));
-                n.setImmagine(rs.getString(4));
-                n.setData(rs.getString(5));
-                n.setTesto(rs.getString(6));
-                n.setAutore(rs.getInt(7));
+                ps.setString(2, n.getTitolo());
+                ps.setString(3, n.getData());
+                ps.setString(4, n.getPunteggio()+"");
+                ps.setString(5, n.getImmagine());
+                ps.setString(6, n.getTesto());
+                ps.setString(7, n.getAutore() + "");
+                ps.setString(8, n.getVideogioco() + "");
 
                 ris.put(n.getId(), (Entity)n);
 
             }
 
         } catch (SQLException exc) {
-            System.out.println("Errore nella read di DAONews. " + exc.getMessage());
+            System.out.println("Errore nella read di DAORecensione. " + exc.getMessage());
         }
         finally{
             try {
                 ps.close();
                 rs.close();
             } catch (SQLException ex) {
-                System.out.println("Errore nella chiusura del ps o rs in read di DAONews" + ex.getMessage());
+                System.out.println("Errore nella chiusura del ps o rs in read di DAORecensione" + ex.getMessage());
             }
         }
 
@@ -96,29 +96,30 @@ public class DAONews implements IDAO {
     @Override
     public void update(Entity e) {
 
-        String query = "UPDATE news SET (titolo,categoria,immagine,data,testo,autore) VALUES ('?','?','?','?','?','?') WHERE id = '?'";
+        String query = "UPDATE Recensioni SET (titolo,data,punteggio,immagine,testo,autore,videogioco) VALUES ('?','?','?','?','?','?','?') WHERE id = '?'";
         PreparedStatement ps = null;
-        News n = null;
+        Recensione n = null;
 
         try {
-            n = (News)e;
+            n = (Recensione)e;
             ps = database.getConnection().prepareStatement(query);
             ps.setString(1, n.getTitolo());
-            ps.setString(2, n.getCategoria());
-            ps.setString(3, n.getImmagine());
-            ps.setString(4, n.getData());
+            ps.setString(2, n.getData());
+            ps.setString(3, n.getPunteggio()+"");
+            ps.setString(4, n.getImmagine());
             ps.setString(5, n.getTesto());
-            ps.setInt(6, n.getAutore());
+            ps.setString(6, n.getAutore() + "");
+            ps.setString(7, n.getVideogioco() + "");
             ps.executeUpdate();
 
         } catch (SQLException exc) {
-            System.out.println("Errore nell'update in DAONews." + exc.getMessage());
+            System.out.println("Errore nell'update in DAORecensione." + exc.getMessage());
         }
         finally{
             try {
                 ps.close();
             } catch (SQLException ex) {
-                System.out.println("Errore nella chiusura del ps nell'update di DAONews." + ex.getMessage());
+                System.out.println("Errore nella chiusura del ps nell'update di DAORecensione." + ex.getMessage());
             }
         }
 
@@ -126,7 +127,7 @@ public class DAONews implements IDAO {
 
     @Override
     public void delete(int id) {
-        String query = "DELETE FROM news WHERE id = '?'";
+        String query = "DELETE FROM Recensioni WHERE id = '?'";
         PreparedStatement ps = null;
 
         try {
@@ -136,17 +137,18 @@ public class DAONews implements IDAO {
             ps.executeUpdate();
 
         } catch (SQLException exc) {
-            System.out.println("Errore nella delete di DAONews." + exc.getMessage());
+            System.out.println("Errore nella delete di DAORecensione." + exc.getMessage());
 
         }
         finally{
             try {
                 ps.close();
             } catch (SQLException ex) {
-                System.out.println("Errore nella chiusura del ps in delete di DAONews." + ex.getMessage());
+                System.out.println("Errore nella chiusura del ps in delete di DAORecensione." + ex.getMessage());
             }
         }
 
     }
     
 }
+
