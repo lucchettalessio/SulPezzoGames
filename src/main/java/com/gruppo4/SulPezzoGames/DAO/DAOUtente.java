@@ -65,7 +65,6 @@ public class DAOUtente implements IDAO{
         Map<Integer,Entity> ris = new HashMap<Integer,Entity>();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Utente u = null;
 
         try {
             ps = database.getConnection().prepareStatement(query);
@@ -83,8 +82,9 @@ public class DAOUtente implements IDAO{
                 params.put("cognome", rs.getString(6));
                 params.put("tipo_utente", rs.getString(7));
 
-                u = context.getBean(Utente.class, params);
+                Utente u = context.getBean(Utente.class, params);
  
+                ris.put(u.getId(), u);
             }
 
         } catch (SQLException exc) {

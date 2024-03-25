@@ -61,7 +61,6 @@ public class DAORecensione implements IDAO {
         Map<Integer, Entity> ris = new HashMap<>();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Recensione n = null;
 
         try {
             ps = database.getConnection().prepareStatement(query);
@@ -78,7 +77,9 @@ public class DAORecensione implements IDAO {
                 params.put("cognome", rs.getString(6));
                 params.put("tipo_utente", rs.getString(7));
 
-                n = context.getBean(Recensione.class, params);
+                Recensione r = context.getBean(Recensione.class, params);
+
+                ris.put(r.getId(), r);
             }
 
         } catch (SQLException exc) {

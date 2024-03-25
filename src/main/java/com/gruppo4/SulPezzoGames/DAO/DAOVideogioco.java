@@ -60,7 +60,6 @@ public class DAOVideogioco implements IDAO {
         Map<Integer, Entity> ris = new HashMap<>();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Videogioco v = null;
 
         try {
             ps = database.getConnection().prepareStatement(query);
@@ -76,8 +75,9 @@ public class DAOVideogioco implements IDAO {
                 params.put("produzione", rs.getString(5));
                 params.put("immagine", rs.getString(6));
 
-                v = context.getBean(Videogioco.class, params);
- 
+                Videogioco v = context.getBean(Videogioco.class, params);
+
+                ris.put(v.getId(), v); 
             }
 
         } catch (SQLException exc) {

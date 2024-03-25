@@ -61,7 +61,6 @@ public class DAONews implements IDAO {
         Map<Integer, Entity> ris = new HashMap<>();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        News n = null;
 
         try {
             ps = database.getConnection().prepareStatement(query);
@@ -78,8 +77,9 @@ public class DAONews implements IDAO {
                 params.put("testo", rs.getString(6));
                 params.put("autore", rs.getString(7)+"");
 
-                n = context.getBean(News.class, params);
- 
+                News n = context.getBean(News.class, params);
+                
+                ris.put(n.getId(), n);
             }
 
         } catch (SQLException exc) {
