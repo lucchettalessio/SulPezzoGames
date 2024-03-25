@@ -6,11 +6,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
 
 import com.gruppo4.SulPezzoGames.DAO.DAOVideogioco;
 import com.gruppo4.SulPezzoGames.Entities.Entity;
 import com.gruppo4.SulPezzoGames.Entities.Videogioco;
 
+@Service
 public class VideogiocoService {
     
     @Autowired

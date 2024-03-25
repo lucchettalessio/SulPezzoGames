@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.gruppo4.SulPezzoGames.Entities.Entity;
@@ -17,6 +18,9 @@ public class DAOUtente implements IDAO{
 
     @Autowired
     private Database database;
+
+    @Autowired
+    private ApplicationContext context;
 
     @Override
     public void create(Entity e) {
@@ -152,6 +156,52 @@ public class DAOUtente implements IDAO{
         }
 
     }
+
+    public Utente readFromId(int id)
+    {
+
+        String query="select * from utenti where id = ?";
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        Utente u=null;
+
+        try
+        {
+           ps = database.getConnection().prepareStatement(query);
+            ps.setInt(1, id);
+            
+            rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", rs.getInt(1)+"");
+                params.put("email", rs.getString(2));
+                params.put("username", rs.getString(3));
+                params.put("password", rs.getString(4));
+                params.put("nome", rs.getString(5));
+                params.put("cognome", rs.getString(6));
+                params.put("tipo_utente", rs.getString(7));
+
+                u = context.getBean(Utente.class, params);
+ 
+            }
+    }
+
+    catch(SQLException exc){
+        System.out.println("Errore nella select in SnackDAO");
+    }
+    finally{
+        try{
+            ps.close();
+            rs.close();
+        }
+        catch(Exception exc){
+            System.out.println("Errore chiusura PreparedStatement");
+        }
+    }
+    return u;
+}
 
     
 
