@@ -7,10 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.gruppo4.SulPezzoGames.Entities.Entity;
 import com.gruppo4.SulPezzoGames.Entities.News;
+// import com.gruppo4.SulPezzoGames.Entities.Utente;
 
 @Service
 public class DAONews implements IDAO {
@@ -18,7 +20,8 @@ public class DAONews implements IDAO {
     @Autowired
     private Database database;
 
-    
+    @Autowired
+    private ApplicationContext context;
 
     @Override
     public void create(Entity e) {
@@ -64,17 +67,19 @@ public class DAONews implements IDAO {
             ps = database.getConnection().prepareStatement(query);
             rs = ps.executeQuery();
 
-            while(rs.next()){
-                n.setId(Integer.parseInt(rs.getString(1)));
-                n.setTitolo(rs.getString(2));
-                n.setCategoria(rs.getString(3));
-                n.setImmagine(rs.getString(4));
-                n.setData(rs.getString(5));
-                n.setTesto(rs.getString(6));
-                n.setAutore(rs.getInt(7));
+            while(rs.next())
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", rs.getInt(1)+"");
+                params.put("titolo", rs.getString(2));
+                params.put("categoria", rs.getString(3));
+                params.put("immagine", rs.getString(4));
+                params.put("data", rs.getString(5));
+                params.put("testo", rs.getString(6));
+                params.put("autore", rs.getString(7)+"");
 
-                ris.put(n.getId(), (Entity)n);
-
+                n = context.getBean(News.class, params);
+ 
             }
 
         } catch (SQLException exc) {

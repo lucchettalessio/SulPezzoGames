@@ -7,9 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.gruppo4.SulPezzoGames.Entities.Entity;
+// import com.gruppo4.SulPezzoGames.Entities.Utente;
 import com.gruppo4.SulPezzoGames.Entities.Videogioco;
 
 @Service
@@ -17,6 +19,9 @@ public class DAOVideogioco implements IDAO {
 
     @Autowired
     private Database database;
+
+    @Autowired
+    private ApplicationContext context;
 
     @Override
     public void create(Entity e) {
@@ -55,22 +60,24 @@ public class DAOVideogioco implements IDAO {
         Map<Integer, Entity> ris = new HashMap<>();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Videogioco n = null;
+        Videogioco v = null;
 
         try {
             ps = database.getConnection().prepareStatement(query);
             rs = ps.executeQuery();
 
-            while(rs.next()){
-                n.setId(Integer.parseInt(rs.getString(1)));
-                ps.setString(2, n.getTitolo());
-                ps.setString(3, n.getData());
-                ps.setString(4, n.getGenere());
-                ps.setString(5, n.getProduzione());
-                ps.setString(6, n.getImmagine());
+            while(rs.next())
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", rs.getInt(1)+"");
+                params.put("titolo", rs.getString(2));
+                params.put("data", rs.getString(3));
+                params.put("genere", rs.getString(4));
+                params.put("produzione", rs.getString(5));
+                params.put("immagine", rs.getString(6));
 
-                ris.put(n.getId(), (Entity)n);
-
+                v = context.getBean(Videogioco.class, params);
+ 
             }
 
         } catch (SQLException exc) {
