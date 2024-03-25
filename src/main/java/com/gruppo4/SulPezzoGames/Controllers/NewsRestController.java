@@ -24,7 +24,7 @@ public class NewsRestController {
     private NewsService newsService;
 
     @PostMapping("/add")
-    public void addNews(@RequestBody Map<String,String> body){
+    public void addNews(@RequestBody News body){
         newsService.createNews(body);
     }
 
@@ -34,7 +34,7 @@ public class NewsRestController {
     }
 
     @PostMapping("/update")
-    public void updateNews(@RequestBody Map<String,String> body){
+    public void updateNews(@RequestBody News body){
         newsService.updateNews(body);
     }
 

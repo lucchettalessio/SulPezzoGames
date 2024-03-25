@@ -21,9 +21,8 @@ public class VideogiocoService {
     @Autowired
     private DAOVideogioco DAOVideogioco;
 
-    public void createVideogioco(Map<String,String> m){
-        Videogioco n = context.getBean(Videogioco.class,m);
-        DAOVideogioco.create(n);
+    public void createVideogioco(Videogioco v){
+        DAOVideogioco.create(v);
     }
 
     public List<Videogioco> findAllVideogiochi(){
@@ -38,9 +37,8 @@ public class VideogiocoService {
         return ris;        
     }
 
-    public void updateVideogioco(Map<String,String> m){
-        Videogioco n = context.getBean(Videogioco.class,m);
-        DAOVideogioco.update(n);
+    public void updateVideogioco(Videogioco v){
+        DAOVideogioco.update(v);
     }
 
     public void deleteVideogioco(int id){

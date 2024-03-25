@@ -21,8 +21,7 @@ public class NewsService {
     @Autowired
     private DAONews DAONews;
 
-    public void createNews(Map<String,String> m){
-        News n = context.getBean(News.class,m);
+    public void createNews(News n){
         DAONews.create(n);
     }
 
@@ -38,8 +37,7 @@ public class NewsService {
         return ris;        
     }
 
-    public void updateNews(Map<String,String> m){
-        News n = context.getBean(News.class,m);
+    public void updateNews(News n){
         DAONews.update(n);
     }
 

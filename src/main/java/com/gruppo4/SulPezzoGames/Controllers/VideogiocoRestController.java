@@ -24,7 +24,7 @@ public class VideogiocoRestController {
     private VideogiocoService videogiocoService;
 
     @PostMapping("/add")
-    public void addVideogioco(@RequestBody Map<String,String> body){
+    public void addVideogioco(@RequestBody Videogioco body){
         videogiocoService.createVideogioco(body);
     }
 
@@ -34,7 +34,7 @@ public class VideogiocoRestController {
     }
 
     @PostMapping("/update")
-    public void updateVideogioco(@RequestBody Map<String,String> body){
+    public void updateVideogioco(@RequestBody Videogioco body){
         videogiocoService.updateVideogioco(body);
     }
 

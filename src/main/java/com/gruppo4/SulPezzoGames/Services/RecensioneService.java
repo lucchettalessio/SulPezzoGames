@@ -21,9 +21,8 @@ public class RecensioneService {
     @Autowired
     private DAORecensione DAORecensione;
 
-    public void createRecensione(Map<String,String> m){
-        Recensione n = context.getBean(Recensione.class,m);
-        DAORecensione.create(n);
+    public void createRecensione(Recensione r){
+        DAORecensione.create(r);
     }
 
     public List<Recensione> findAllRecensioni(){
@@ -38,9 +37,8 @@ public class RecensioneService {
         return ris;        
     }
 
-    public void updateRecensione(Map<String,String> m){
-        Recensione n = context.getBean(Recensione.class,m);
-        DAORecensione.update(n);
+    public void updateRecensione(Recensione r){
+        DAORecensione.update(r);
     }
 
     public void deleteRecensione(int id){

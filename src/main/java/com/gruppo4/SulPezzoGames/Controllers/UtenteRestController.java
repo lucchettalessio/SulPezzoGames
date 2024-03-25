@@ -24,7 +24,7 @@ public class UtenteRestController {
     private UtenteService utenteService;
 
     @PostMapping("/add")
-    public void addUtente(@RequestBody Map<String,String> body){
+    public void addUtente(@RequestBody Utente body){
         utenteService.createUtente(body);
     }
 
@@ -34,7 +34,7 @@ public class UtenteRestController {
     }
 
     @PostMapping("/update")
-    public void updateUtente(@RequestBody Map<String,String> body){
+    public void updateUtente(@RequestBody Utente body){
         utenteService.updateUtente(body);
     }
 

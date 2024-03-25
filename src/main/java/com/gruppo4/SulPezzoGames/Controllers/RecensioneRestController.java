@@ -24,7 +24,7 @@ public class RecensioneRestController {
     private RecensioneService recensioneService;
 
     @PostMapping("/add")
-    public void addRecensione(@RequestBody Map<String,String> body){
+    public void addRecensione(@RequestBody Recensione body){
         recensioneService.createRecensione(body);
     }
 
@@ -34,7 +34,7 @@ public class RecensioneRestController {
     }
 
     @PostMapping("/update")
-    public void updateRecensione(@RequestBody Map<String,String> body){
+    public void updateRecensione(@RequestBody Recensione body){
         recensioneService.updateRecensione(body);
     }
 

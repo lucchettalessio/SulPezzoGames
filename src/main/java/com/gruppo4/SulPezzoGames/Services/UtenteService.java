@@ -21,9 +21,8 @@ public class UtenteService {
     @Autowired
     private DAOUtente DAOUtente;
 
-    public void createUtente(Map<String,String> m){
-        Utente n = context.getBean(Utente.class,m);
-        DAOUtente.create(n);
+    public void createUtente(Utente u){
+        DAOUtente.create(u);
     }
 
     public List<Utente> findAllUtenti(){
@@ -38,9 +37,8 @@ public class UtenteService {
         return ris;        
     }
 
-    public void updateUtente(Map<String,String> m){
-        Utente n = context.getBean(Utente.class,m);
-        DAOUtente.update(n);
+    public void updateUtente(Utente u){
+        DAOUtente.update(u);
     }
 
     public void deleteUtente(int id){

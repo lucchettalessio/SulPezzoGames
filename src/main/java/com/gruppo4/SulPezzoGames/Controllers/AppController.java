@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 //Le richieste POST invece vengono solitamente effetuate per passare dei dati al backend e questi datyi vengono passati tramite un pacchetto della richiesta detto payload o body
 @Controller
 public class AppController {
+    
 
     @GetMapping("/api/login")
     public String home(){
