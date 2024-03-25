@@ -22,17 +22,16 @@ public class LoginRestController {
     private LoginService loginService;
     
     @PostMapping("/login")
-    public String signin(@RequestBody Map<String,String> body){
+    public LoginStatus signin(@RequestBody Map<String,String> body){
         Utente u = loginService.findUtente(body.get("username"), body.get("password"));
         LoginStatus ls = new LoginStatus();
         //utente / admin / autore
         ls.setToken(u.getTipo_utente(), true, u.getId());
 
-        if(u.getTipo_utente().equalsIgnoreCase("admin"))
-            return "redirect:/areaAdmin";
+        // if(u.getTipo_utente().equalsIgnoreCase("admin"))
+        //     return "redirect:/areaAdmin";
         
-        // return ls;
-        return "Homepage.html";
+        return ls;
     }
 
     @GetMapping("/checklogin")
