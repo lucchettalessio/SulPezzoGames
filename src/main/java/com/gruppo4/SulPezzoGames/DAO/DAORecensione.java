@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.gruppo4.SulPezzoGames.Entities.Entity;
@@ -14,6 +15,9 @@ import com.gruppo4.SulPezzoGames.Entities.Recensione;
 
 @Service
 public class DAORecensione implements IDAO {
+
+    @Autowired
+    private ApplicationContext context;
 
     @Autowired
     private Database database;
@@ -63,18 +67,18 @@ public class DAORecensione implements IDAO {
             ps = database.getConnection().prepareStatement(query);
             rs = ps.executeQuery();
 
-            while(rs.next()){
-                n.setId(Integer.parseInt(rs.getString(1)));
-                ps.setString(2, n.getTitolo());
-                ps.setString(3, n.getData());
-                ps.setString(4, n.getPunteggio()+"");
-                ps.setString(5, n.getImmagine());
-                ps.setString(6, n.getTesto());
-                ps.setString(7, n.getAutore() + "");
-                ps.setString(8, n.getVideogioco() + "");
+            while(rs.next())
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", rs.getInt(1)+"");
+                params.put("email", rs.getString(2));
+                params.put("username", rs.getString(3));
+                params.put("password", rs.getString(4));
+                params.put("nome", rs.getString(5));
+                params.put("cognome", rs.getString(6));
+                params.put("tipo_utente", rs.getString(7));
 
-                ris.put(n.getId(), (Entity)n);
-
+                n = context.getBean(Recensione.class, params);
             }
 
         } catch (SQLException exc) {

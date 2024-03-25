@@ -3,6 +3,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "SulPezzoGamesApplication",
+      "request": "launch",
+      "mainClass": "com.gruppo4.SulPezzoGames.SulPezzoGamesApplication",
+      "projectName": "SulPezzoGames"
+    },
+    {
       "name": "ng serve",
       "type": "chrome",
       "request": "launch",

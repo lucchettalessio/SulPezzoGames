@@ -72,16 +72,19 @@ public class DAOUtente implements IDAO{
 
             rs = ps.executeQuery();
 
-            while(rs.next()){
-                u.setId(rs.getInt(1));
-                u.setEmail(rs.getString(2));
-                u.setUsername(rs.getString(3));
-                u.setPassword(rs.getString(4));
-                u.setNome(rs.getString(5));
-                u.setCognome(rs.getString(6));
-                u.setTipo_utente(rs.getString(7));
+            while(rs.next())
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", rs.getInt(1)+"");
+                params.put("email", rs.getString(2));
+                params.put("username", rs.getString(3));
+                params.put("password", rs.getString(4));
+                params.put("nome", rs.getString(5));
+                params.put("cognome", rs.getString(6));
+                params.put("tipo_utente", rs.getString(7));
 
-                ris.put(u.getId(), (Entity)u);
+                u = context.getBean(Utente.class, params);
+ 
             }
 
         } catch (SQLException exc) {
