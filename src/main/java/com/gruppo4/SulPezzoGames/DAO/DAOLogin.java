@@ -5,9 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.gruppo4.SulPezzoGames.Entities.Utente;
 
+@Service
 public class DAOLogin {
 
     @Autowired

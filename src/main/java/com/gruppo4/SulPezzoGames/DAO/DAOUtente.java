@@ -189,7 +189,7 @@ public class DAOUtente implements IDAO{
     }
 
     catch(SQLException exc){
-        System.out.println("Errore nella select in SnackDAO");
+        System.out.println("Errore in readFromId in DAOUtente");
     }
     finally{
         try{
@@ -197,7 +197,7 @@ public class DAOUtente implements IDAO{
             rs.close();
         }
         catch(Exception exc){
-            System.out.println("Errore chiusura PreparedStatement");
+            System.out.println("Errore chiusura PreparedStatement in readFromId");
         }
     }
     return u;
