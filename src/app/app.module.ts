@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { LoginformComponent } from './loginform/loginform.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { UtenteloggatoComponent } from './utenteloggato/utenteloggato.component';
+import { ListavideogiochiComponent } from './listavideogiochi/listavideogiochi.component';
+import { ListarecensioniComponent } from './listarecensioni/listarecensioni.component';
+import { ListanotizieComponent } from './listanotizie/listanotizie.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginformComponent,
     HomepageComponent,
-    UtenteloggatoComponent
+    UtenteloggatoComponent,
+    ListavideogiochiComponent,
+    ListarecensioniComponent,
+    ListanotizieComponent
   ],
   imports: [
     BrowserModule,
