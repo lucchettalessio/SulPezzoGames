@@ -4,11 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginformComponent } from './loginform/loginform.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { UtenteloggatoComponent } from './utenteloggato/utenteloggato.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginformComponent
+    LoginformComponent,
+    HomepageComponent,
+    UtenteloggatoComponent
   ],
   imports: [
     BrowserModule,
