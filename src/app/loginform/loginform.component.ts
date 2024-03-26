@@ -29,9 +29,10 @@ export class LoginformComponent {
       
       sessionStorage.setItem("token", loginStatus.token)
 
-        if(loginStatus.tipo_utente != null)
+        if(loginStatus.tipo_utente != null){
           this.router.navigate(['/homepage'])
-
+          console.log("ciao");
+        }
         else{
           alert("ERRORE LOGIN");
           this.formLogin.patchValue(
