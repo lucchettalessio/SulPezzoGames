@@ -44,4 +44,8 @@ public class UtenteService {
     public void deleteUtente(int id){
         DAOUtente.delete(id);
     }
+
+    public Utente findUtenteFromId(int id){
+        return DAOUtente.readFromId(id);
+    }
 }
