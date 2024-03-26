@@ -15,24 +15,21 @@ import com.gruppo4.SulPezzoGames.Entities.Utente;
 import com.gruppo4.SulPezzoGames.Services.LoginService;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("/api")
 public class LoginRestController {
 
     @Autowired
     private LoginService loginService;
     
     @PostMapping("/login")
-    public String signin(@RequestBody Map<String,String> body){
+    public LoginStatus signin(@RequestBody Map<String,String> body){
         Utente u = loginService.findUtente(body.get("username"), body.get("password"));
         LoginStatus ls = new LoginStatus();
         //utente / admin / autore
         ls.setToken(u.getTipo_utente(), true, u.getId());
-
-        if(u.getTipo_utente().equalsIgnoreCase("admin"))
-            return "redirect:/areaAdmin";
         
-        // return ls;
-        return "Homepage.html";
+        return ls;
+        // return "Homepage.html";
     }
 
     @GetMapping("/checklogin")
