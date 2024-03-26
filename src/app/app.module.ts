@@ -9,6 +9,9 @@ import { ListavideogiochiComponent } from './listavideogiochi/listavideogiochi.c
 import { ListarecensioniComponent } from './listarecensioni/listarecensioni.component';
 import { ListanotizieComponent } from './listanotizie/listanotizie.component';
 
+import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { ListanotizieComponent } from './listanotizie/listanotizie.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
