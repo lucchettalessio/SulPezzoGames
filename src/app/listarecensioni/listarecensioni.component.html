@@ -1,1 +1,24 @@
-<p>listarecensioni works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Recensioni</h1>
+    <section>
+        <div *ngIf="recensioni.length > 0">
+            <ul>
+              <li *ngFor="let r of recensioni">
+                <h2>{{ r.titolo }}</h2>
+            </li>
+            </ul>
+        </div>
+          <div *ngIf="recensioni.length === 0">
+            <p>Nessuna notizia disponibile al momento.</p>
+        </div>
+    </section>
+
+</body>
+</html>
