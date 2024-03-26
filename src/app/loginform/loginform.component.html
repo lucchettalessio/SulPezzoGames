@@ -35,7 +35,7 @@
 </head>
 <body>
 
-    <form action="/login" method="post">
+    <form>
         <table>
             <tr>
                 <td>Username:</td>
@@ -46,7 +46,7 @@
                 <td><input type="password" name="password" required></td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" value="Login"></td>
+                <td colspan="2"><input type="submit" value="Login" (click)="submitForm()"></td>
             </tr>
         </table>
     </form>
