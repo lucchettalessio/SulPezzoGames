@@ -1,0 +1,58 @@
+.generale{
+    background-color: #010129;
+    color: #fff;
+}
+
+
+
+
+nav {
+    background-color: #000000; /* Sfondo grigio scuro */
+    padding: 10px; /* Aggiunge spazio intorno al contenuto */
+    text-align: right; /* Allinea il testo a destra */
+    margin: 0px;
+}
+
+nav a {
+    color: #fff; /* Colore del testo bianco */
+    text-decoration: none; /* Rimuove la sottolineatura */
+    margin: 0 10px; /* Aggiunge margine orizzontale ai link */
+}
+
+nav a:hover {
+    color: #007bff; /* Cambia colore durante l'hover */
+}
+
+/*schermo gameboy*/
+.contenitore {
+
+    height: 600px;
+    width: 900px;
+    
+    overflow-x: auto; /* Aggiunge uno scroll orizzontale se necessario */
+    background-color: #ffffff; /* Sfondo arancione */
+    font-size: 20px; /* Dimensione del testo */
+    text-align: center; /* Allinea il testo al centro */
+    border-radius: 20px; /* Bordo arrotondato */
+    padding: 20px; /* Aggiunge spazio interno */
+}
+
+.centered {
+    color:#000000;
+    width: 800px; /* Larghezza del div */
+    height: 80%; /* Altezza del div */
+    background-color: #f0f0f0; /* Colore di sfondo del div */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px; /* Bordo arrotondato */
+}
+
+.latoD {
+    display: flex; /* Utilizza il layout flessibile */
+    align-items: center; /* Allinea i figli lungo l'asse trasversale al centro */
+    max-width: 20%; /* Larghezza al 80% del contenitore genitore */
+    margin: auto; /* Centra orizzontalmente */
+    float: right;
+}
