@@ -11,6 +11,8 @@ import { LoginStatus } from 'src/app/models/LoginStatus';
 })
 export class LoginformComponent {
   formLogin: FormGroup;
+  formRegister: FormGroup;
+  isLogin?=true;
 
   constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router){
     this.http = http;
@@ -18,7 +20,16 @@ export class LoginformComponent {
       username: "",
       password: ""
     })
+    this.formRegister = formBuilder.group({
+      email:"",
+      usernameR:"",
+      passwordR:"",
+      nome:"",
+      cognome:"",
+      tipo_utente:""
+    })
   }
+
 
   submitForm(){
     const formValues = this.formLogin.value;
@@ -27,7 +38,6 @@ export class LoginformComponent {
     this.http.post("http://localhost:8080/api/login", body, {'headers' : headers}).subscribe(risposta => {
       var loginStatus : LoginStatus = risposta as LoginStatus;
       
-      console.log(risposta)
       sessionStorage.setItem("token", loginStatus.token)
 
         if(loginStatus.tipo_utente != null){
@@ -42,9 +52,34 @@ export class LoginformComponent {
             }
           )
       }
-
     })
+  }
+
+  submitRegistration(){
+    const formValues = this.formRegister.value;
+    const headers = {'Content-Type' : 'application/json'}
+    const body = JSON.stringify(formValues);
+    this.http.post("http://localhost:8080/api/register", body, { 'headers': headers }).subscribe(() => {
+
+      console.log("Registrazione effettuata");
+
+      sessionStorage.setItem("registrationSuccess", "true");
+      this.router.navigate(['/loginpage']);
+      this.toggleRegister();
+
+  }, (error) => {
+      console.error("Errore registrazione:", error);
+      alert("Si è verificato un errore durante la registrazione.");
+  });
+}
+
+  toggleRegister(){
+    if(this.isLogin == false)
+      this.isLogin=true;
+    else
+      this.isLogin=false;
   }
 
 
 }
+

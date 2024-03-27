@@ -25,7 +25,7 @@ public class DAONews implements IDAO {
 
     @Override
     public void create(Entity e) {
-        String query = "INSERT INTO News (titolo,categoria,immagine,data,testo,autore) VALUES ('?','?','?','?','?','?')";
+        String query = "INSERT INTO News (titolo,categoria,immagine,data,testo,autore) VALUES (?,?,?,?,?,?)";
         News n = null;
         PreparedStatement ps = null;
 
@@ -101,7 +101,7 @@ public class DAONews implements IDAO {
     @Override
     public void update(Entity e) {
 
-        String query = "UPDATE news SET (titolo,categoria,immagine,data,testo,autore) VALUES ('?','?','?','?','?','?') WHERE id = '?'";
+        String query = "UPDATE news SET (titolo,categoria,immagine,data,testo,autore) VALUES (?,?,?,?,?,?) WHERE id = ?";
         PreparedStatement ps = null;
         News n = null;
 
@@ -131,7 +131,7 @@ public class DAONews implements IDAO {
 
     @Override
     public void delete(int id) {
-        String query = "DELETE FROM news WHERE id = '?'";
+        String query = "DELETE FROM news WHERE id = ?";
         PreparedStatement ps = null;
 
         try {

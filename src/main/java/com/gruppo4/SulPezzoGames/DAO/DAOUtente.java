@@ -24,7 +24,7 @@ public class DAOUtente implements IDAO{
 
     @Override
     public void create(Entity e) {
-        String query = "INSERT INTO utenti (email,username,password,nome,cognome,tipo_utente) VALUES '?','?','?','?','?','?'";
+        String query = "INSERT INTO utenti (email,username,password,nome,cognome,tipo_utente) VALUES (?,?,?,?,?,?)";
         PreparedStatement ps = null;
         Utente u = null;
 
@@ -53,8 +53,6 @@ public class DAOUtente implements IDAO{
             }
 
         }
-        
-
 
     }
 
@@ -107,7 +105,7 @@ public class DAOUtente implements IDAO{
     @Override
     public void update(Entity e) {
 
-        String query = "UPDATE utenti SET (email,username,password,nome,cognome,tipo_utente) VALUES ('?','?','?','?','?','?') WHERE id = '?'";
+        String query = "UPDATE utenti SET (email,username,password,nome,cognome,tipo_utente) VALUES (?,?,?,?,?,?) WHERE id = ?";
         PreparedStatement ps = null;
         Utente n = null;
 
@@ -137,7 +135,7 @@ public class DAOUtente implements IDAO{
 
     @Override
     public void delete(int id) {
-        String query = "DELETE FROM utenti WHERE id = '?'";
+        String query = "DELETE FROM utenti WHERE id = ?";
         PreparedStatement ps = null;
 
         try {

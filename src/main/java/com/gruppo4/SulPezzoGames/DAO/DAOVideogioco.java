@@ -25,7 +25,7 @@ public class DAOVideogioco implements IDAO {
 
     @Override
     public void create(Entity e) {
-        String query = "INSERT INTO Videogiochi (titolo,data,genere,produzione,immagine) VALUES ('?','?','?','?','?')";
+        String query = "INSERT INTO Videogiochi (titolo,data,genere,produzione,immagine) VALUES (?,?,?,?,?)";
         Videogioco n = null;
         PreparedStatement ps = null;
 
@@ -99,7 +99,7 @@ public class DAOVideogioco implements IDAO {
     @Override
     public void update(Entity e) {
 
-        String query = "UPDATE Videogiochi SET (titolo,data,genere,produzione,immagine) VALUES ('?','?','?','?','?') WHERE id = '?'";
+        String query = "UPDATE Videogiochi SET (titolo,data,genere,produzione,immagine) VALUES (?,?,?,?,?) WHERE id = ?";
         PreparedStatement ps = null;
         Videogioco n = null;
 
@@ -128,7 +128,7 @@ public class DAOVideogioco implements IDAO {
 
     @Override
     public void delete(int id) {
-        String query = "DELETE FROM Videogiochi WHERE id = '?'";
+        String query = "DELETE FROM Videogiochi WHERE id = ?";
         PreparedStatement ps = null;
 
         try {
