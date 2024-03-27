@@ -1,0 +1,124 @@
+
+
+/* Stili per la barra di navigazione */
+nav {
+    background-color: #0000fe; /* Sfondo grigio scuro */
+    padding: 10px; /* Aggiunge spazio intorno al contenuto */
+    text-align: right; /* Allinea il testo a destra */
+}
+
+nav a {
+    color: #fff; /* Colore del testo bianco */
+    text-decoration: none; /* Rimuove la sottolineatura */
+    margin: 0 10px; /* Aggiunge margine orizzontale ai link */
+}
+
+nav a:hover {
+    color: #007bff; /* Cambia colore durante l'hover */
+}
+
+/* Stili per le immagini */
+img {
+    width: 200px; /* Larghezza fissa di 200px */
+    height: auto; /* Altezza proporzionale */
+    transition: transform 0.6s; /* Aggiunge una transizione durante l'hover */
+}
+
+img:hover {
+    transform: scale(1.3); /* Ingrandisce l'immagine del 20% durante l'hover */
+}
+
+/* Stili per le icone SVG */
+svg {
+    filter: drop-shadow(0px 0px 4px rgb(251, 9, 9)); /* Aggiunge un'ombra */
+    transition: filter 0.3s; /* Aggiunge una transizione durante l'hover */
+    color: rgba(255, 255, 0, 0.692); /* Colore giallo semi-trasparente */
+}
+
+svg:hover {
+    filter: drop-shadow(0px 0px 25px rgb(245, 209, 1)); /* Aumenta l'ombra durante l'hover */
+}
+
+/* Stili per le recensioni */
+.recensioni .contenitore {
+    display: grid; /* Utilizza il layout a griglia */
+    grid-template-columns: repeat(2, 1fr); /* Divide la sezione in due colonne di larghezza uguale */
+    gap: 20px; /* Aggiunge spazio tra le recensioni */
+    overflow-x: auto; /* Aggiunge uno scroll orizzontale se necessario */
+    background-color: #ffa500; /* Sfondo arancione */
+    font-size: 20px; /* Dimensione del testo */
+    text-align: center; /* Allinea il testo al centro */
+    border-radius: 20px; /* Bordo arrotondato */
+    padding: 20px; /* Aggiunge spazio interno */
+}
+.recensioni {
+    /* Rimuove il margin per centrare l'elemento rispetto al lato destro */
+    margin-right: 0;
+    /* Limita la larghezza massima del contenitore delle recensioni */
+     /* Larghezza massima - larghezza del lato destro */
+    /* Centra l'elemento rispetto all'area disponibile */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Stili per la sezione dei bottoni */
+.latoD, .latoS {
+    display: flex; /* Utilizza il layout flessibile */
+    justify-content: space-between; /* Distribuisce uniformemente gli elementi lungo l'asse principale */
+    align-items: center; /* Allinea i figli lungo l'asse trasversale al centro */
+    width: 80%; /* Larghezza al 80% del contenitore genitore */
+    margin: auto; /* Centra orizzontalmente */
+}
+
+/* Stili per i bottoni */
+.bottoneS,
+.bottoniD,
+.bottoneS,
+.bottoniD {
+    display: flex; /* Utilizza il layout flessibile */
+    flex-direction: column; /* Imposta la direzione dei figli in colonna */
+    align-items: center; /* Allinea i figli lungo l'asse trasversale al centro */
+}
+.bS,
+.bD,
+.bS,
+.bD {
+    display: flex; /* Utilizza il layout flessibile */
+    flex-direction: column; /* Imposta la direzione dei figli in colonna */
+    align-items: center; /* Allinea i figli lungo l'asse trasversale al centro */
+}
+
+.bottoneS button,
+.bottoniD button {
+    font-size: 18px; /* Dimensione del testo */
+    padding: 5px 10px; /* Padding interno */
+    background-color: #ff7f00; /* Colore di sfondo arancione */
+    border: none; /* Nessun bordo */
+    border-radius: 50%; /* Bordo rotondo */
+    cursor: pointer; /* Cambia il cursore al passaggio */
+    color: #fff; /* Testo bianco */
+    margin: 5px 0; /* Aggiunge margine sopra e sotto */
+}
+.bS button,
+.bD button {
+    font-size: 18px; /* Dimensione del testo */
+    padding: 5px 10px; /* Padding interno */
+    background-color: #ff7f00; /* Colore di sfondo arancione */
+    border: none; /* Nessun bordo */
+    border-radius: 50%; /* Bordo rotondo */
+    cursor: pointer; /* Cambia il cursore al passaggio */
+    color: #fff; /* Testo bianco */
+    margin: 5px 0; /* Aggiunge margine sopra e sotto */
+}
+
+/* Sili per la sezione delle pagine */
+.pagine {
+    position: absolute; /* Posizionamento assoluto */
+    bottom: 10px; /* Distanza dal basso */
+    left: 50%; /* Posizionamento al centro */
+    transform: translateX(-50%); /* Centra orizzontalmente */
+    color: #0019f7; /* Testo blu */
+    background-color: rgba(255, 255, 255, 0.8); /* Sfondo leggermente trasparente */
+    padding: 5px 10px; /* Aggiunge spazio interno */
+    border-radius: 5px; /* Bordo arrotondato */
+}
