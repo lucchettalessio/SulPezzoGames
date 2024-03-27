@@ -5,6 +5,7 @@ import { ListarecensioniComponent } from './listarecensioni/listarecensioni.comp
 import { ListavideogiochiComponent } from './listavideogiochi/listavideogiochi.component';
 import { LoginformComponent } from './loginform/loginform.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { DettaglionotiziaComponent } from './dettaglionotizia/dettaglionotizia.component';
 
 const routes: Routes = [{
   //http://localhost:4200/loginpage
@@ -30,6 +31,16 @@ const routes: Routes = [{
   //http://localhost:4200/homepage
   path: 'homepage',
   component: HomepageComponent
+},
+{
+  //http://localhost:4200/dettaglionotizia
+  path: 'dettaglionotizia',
+  component: DettaglionotiziaComponent
+},
+{
+  //http://localhost:4200/dettagliorecensione
+  path: 'dettagliorecensione',
+  component: DettaglionotiziaComponent
 }];
 
 @NgModule({
