@@ -17,13 +17,13 @@ export class HomepageComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    sessionStorage.setItem("token", "admin-login-2")
     this.log()
   }
 
 
   log(){
     var token = sessionStorage.getItem("token")
+    console.log(token)
 
     if(token == null){
       token = "";
@@ -42,7 +42,6 @@ export class HomepageComponent implements OnInit{
     if(token == null){
       token = "";
     }
-
     const headers = new HttpHeaders(
       {
         'Content-Type' : 'application/json',
@@ -61,6 +60,11 @@ export class HomepageComponent implements OnInit{
 
     console.log(this.loggato)
 
+  }
+
+  logout(){
+    sessionStorage.clear()
+    window.location.href = "/homepage"
   }
 
 }
