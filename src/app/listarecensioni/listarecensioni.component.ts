@@ -21,8 +21,8 @@ export class ListarecensioniComponent implements OnInit {
 
   caricaRecensioni(): void {
     this.listaRecensioniService.getRecensione()
-      .subscribe(recensioni => {
-        this.recensioni = recensioni;
+      .subscribe(recensione => {
+        this.recensioni = recensione;
         this.totalPages = Math.ceil(this.recensioni.length / this.itemsPerPage);
       });
   }
