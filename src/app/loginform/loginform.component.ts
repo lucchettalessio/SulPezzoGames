@@ -24,14 +24,14 @@ export class LoginformComponent {
     const formValues = this.formLogin.value;
     const headers = {'Content-Type' : 'application/json'}
     const body = JSON.stringify(formValues);
-    this.http.post("http://localhost:8080/api/login/", body, {'headers' : headers}).subscribe(risposta => {
+    this.http.post("http://localhost:8080/api/login", body, {'headers' : headers}).subscribe(risposta => {
       var loginStatus : LoginStatus = risposta as LoginStatus;
       
+      console.log(risposta)
       sessionStorage.setItem("token", loginStatus.token)
 
         if(loginStatus.tipo_utente != null){
           this.router.navigate(['/homepage'])
-          console.log("ciao");
         }
         else{
           alert("ERRORE LOGIN");

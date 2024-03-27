@@ -17,7 +17,7 @@ export class HomepageComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    sessionStorage.setItem("token", "admin-login-1")
+    sessionStorage.setItem("token", "admin-login-2")
     this.log()
   }
 

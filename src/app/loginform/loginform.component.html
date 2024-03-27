@@ -35,21 +35,17 @@
 </head>
 <body>
 
-    <form>
-        <table>
-            <tr>
-                <td>Username:</td>
-                <td><input type="text" name="username" required></td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td><input type="password" name="password" required></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input type="submit" value="Login" (click)="submitForm()"></td>
-            </tr>
-        </table>
-    </form>
+    <div>
+        <form [formGroup]="formLogin" (ngSubmit)="submitForm()">
+            <label for="username">USERNAME:</label>
+            <input type="text" name="username" formControlName="username">
+            <br>
+            <label for="password">PASSWORD:</label>
+            <input type="password" name="password" formControlName="password">
+            <br>
+            <input type="submit">
+        </form>
+    </div>
     
 </body>
 </html>

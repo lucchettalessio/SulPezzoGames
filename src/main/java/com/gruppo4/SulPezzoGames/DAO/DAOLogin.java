@@ -22,7 +22,8 @@ public class DAOLogin {
         String query = "SELECT id FROM utenti WHERE username = ? AND password = ?";
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Utente u = null;
+        Utente ris = null;
+
 
         try {
             ps = database.getConnection().prepareStatement(query);
@@ -33,7 +34,8 @@ public class DAOLogin {
 
             if(rs.next()){
                 int id = rs.getInt(1);
-                u = DAOUtente.readFromId(id);
+                Utente u = DAOUtente.readFromId(id);
+                ris = u;
             }
 
         } catch (SQLException exc) {
@@ -46,7 +48,7 @@ public class DAOLogin {
                 System.out.println("Errore nella chiusura di ps in DAOLogin" + ex.getMessage());
             }
         }
-        return u;
+        return ris;
     }
 
 }

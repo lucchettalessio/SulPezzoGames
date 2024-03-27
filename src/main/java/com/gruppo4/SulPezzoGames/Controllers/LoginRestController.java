@@ -15,9 +15,9 @@ import com.gruppo4.SulPezzoGames.DTO.LoginStatus;
 import com.gruppo4.SulPezzoGames.Entities.Utente;
 import com.gruppo4.SulPezzoGames.Services.LoginService;
 
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200")
 public class LoginRestController {
 
     @Autowired
