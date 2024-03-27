@@ -6,6 +6,7 @@ import { ListavideogiochiComponent } from './listavideogiochi/listavideogiochi.c
 import { LoginformComponent } from './loginform/loginform.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { DettaglionotiziaComponent } from './dettaglionotizia/dettaglionotizia.component';
+import { DettagliorecensioneComponent } from './dettagliorecensione/dettagliorecensione.component';
 
 const routes: Routes = [{
   //http://localhost:4200/loginpage
@@ -40,7 +41,7 @@ const routes: Routes = [{
 {
   //http://localhost:4200/dettagliorecensione
   path: 'dettagliorecensione',
-  component: DettaglionotiziaComponent
+  component: DettagliorecensioneComponent
 }];
 
 @NgModule({
