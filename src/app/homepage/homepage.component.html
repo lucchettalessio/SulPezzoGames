@@ -1,4 +1,3 @@
-<p>homepage works!</p>
 <a routerLink="/loginpage">accedi</a>
 <br>
 <a routerLink="/listanotizie">notizie</a>
@@ -6,12 +5,25 @@
 <a routerLink="/listarecensioni">recensioni</a>
 <br>
 <a routerLink="/listavideogiochi">videogiochi</a>
-<br><br><br><br>
-
-<button (click)="checkLogin()">prova</button>
+<br><br>
+<button (click)="logout()">logout</button>
 
 <br><br><br><br>
 
 <p>buonGiorno {{utente?.nome}}</p>
+
 <br><br>
-<button (click)="logout()">logout</button>
+<button (click)="onlyNews()">News</button>
+<button (click)="onlyRec()">Recensioni</button>
+
+<br><br>
+<h2>lista news</h2>
+<div *ngFor="let news of notizie" [ngStyle]="{'color': cliccatoNews ? 'black' : 'grey'}">
+    <p>{{news.titolo}}</p>
+</div>
+
+<br><br>
+<h2>lista recensioni</h2>
+<div *ngFor="let recensione of recensioni" [ngStyle]="{'color': cliccatoRec ? 'black' : 'grey'}">
+    <p>{{recensione.titolo}}</p>
+</div>

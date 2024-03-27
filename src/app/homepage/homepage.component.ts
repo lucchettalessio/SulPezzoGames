@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Utente } from '../models/Utente';
+import { News } from '../models/News';
+import { ListanotizieService } from '../listanotizie/listanotizie.service';
+import { ListaRecensioniService } from '../listarecensioni/listarecensioniService';
+import { Recensione } from '../models/Recensione';
 
 @Component({
   selector: 'app-homepage',
@@ -9,21 +13,30 @@ import { Utente } from '../models/Utente';
 })
 export class HomepageComponent implements OnInit{
 
+
+
   loggato? : boolean
   utente? : Utente
+  notizie: News[] = [];
+  recensioni: Recensione[] = []
 
-  constructor(private http : HttpClient){
+  cliccatoNews : boolean = true
+  cliccatoRec : boolean = true
+
+  constructor(private http : HttpClient, private listaNotizieService: ListanotizieService, private listaRecensioniService: ListaRecensioniService){
     this.http = http;
   }
 
   ngOnInit(): void {
-    this.log()
+    this.log();
+    this.caricaNotizie();
+    this.caricaRecensioni();
   }
 
 
   log(){
     var token = sessionStorage.getItem("token")
-    console.log(token)
+    console.log("token: " + token)
 
     if(token == null){
       token = "";
@@ -42,13 +55,13 @@ export class HomepageComponent implements OnInit{
     if(token == null){
       token = "";
     }
+
     const headers = new HttpHeaders(
       {
         'Content-Type' : 'application/json',
         'token': token as string
       }
     );
-
     const params = new HttpParams().set("idUtente", token.split("-")[2])
 
     this.http.get("http://localhost:8080/api/utente/utente-byId", {headers, params}).subscribe(risposta => {
@@ -56,15 +69,32 @@ export class HomepageComponent implements OnInit{
     })
   }
 
-  checkLogin(){
-
-    console.log(this.loggato)
-
-  }
-
   logout(){
     sessionStorage.clear()
     window.location.href = "/homepage"
   }
 
+  caricaNotizie(): void {
+    this.listaNotizieService.getNotizie()
+      .subscribe(notizie => {
+        this.notizie = notizie;
+      });
+  }
+
+  caricaRecensioni(): void {
+    this.listaRecensioniService.getRecensione()
+      .subscribe(recensioni => {
+        this.recensioni = recensioni;
+      });
+  }
+
+  onlyNews(){
+    this.cliccatoNews = true;
+    this.cliccatoRec = false;
+  }
+
+  onlyRec(){
+    this.cliccatoRec = true;
+    this.cliccatoNews = false;
+  }
 }
