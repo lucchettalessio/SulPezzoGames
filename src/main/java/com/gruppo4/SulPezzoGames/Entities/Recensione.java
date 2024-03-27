@@ -9,9 +9,11 @@ public class Recensione extends Entity{
     private String testo;
     private int autore;
     private int videogioco;
+    private String nome;
+    private String cognome;
     
     public Recensione(int id, String titolo, String data, int punteggio, String immagine, String testo, int autore,
-            int videogioco) {
+            int videogioco, String nome, String cognome) {
         super(id);
         this.titolo = titolo;
         this.data = data;
@@ -20,6 +22,8 @@ public class Recensione extends Entity{
         this.testo = testo;
         this.autore = autore;
         this.videogioco = videogioco;
+        this.nome=nome;
+        this.cognome=cognome;
     }
 
     public String getTitolo() {
@@ -77,11 +81,19 @@ public class Recensione extends Entity{
     public void setVideogioco(int videogioco) {
         this.videogioco = videogioco;
     }
+    public String getNome(){
+        return nome;
+    }
+    public void setCognome(String cognome){this.cognome=cognome;}
+    public String getCognome(){
+        return cognome;
+    }
+    public void setNome(String nome){this.nome=nome;}
 
     @Override
     public String toString() {
         return "Recensione [titolo=" + titolo + ", data=" + data + ", punteggio=" + punteggio + ", immagine=" + immagine
-                + ", testo=" + testo + ", autore=" + autore + ", videogioco=" + videogioco + "]";
+                + ", testo=" + testo + ", autore=" + autore + ", videogioco=" + videogioco +  nome + cognome +"]";
     }
 
 }
