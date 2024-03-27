@@ -1,1 +1,10 @@
-<p>listavideogiochi works!</p>
+<div *ngIf="videogiochi.length > 0">
+    <ul>
+      <li *ngFor="let videogioco of videogiochi">
+        <h2>{{ videogioco.titolo }}</h2>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="videogiochi.length === 0">
+    <p>Nessun videogioco disponibile al momento.</p>
+  </div>

@@ -6,5 +6,7 @@ export interface Recensione{
     immagine:string,
     testo:string,
     autore:number,
-    videogioco:number
+    videogioco:number,
+    nome:String,
+    cognome:String
 }

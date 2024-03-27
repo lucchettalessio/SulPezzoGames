@@ -57,7 +57,7 @@ public class DAORecensione implements IDAO {
 
     @Override
     public Map<Integer, Entity> read() {
-        String query = "select * from Recensioni";
+        String query = "select r.*, u.nome, u.cognome from Recensioni r join utenti u on r.autore = u.id";
         Map<Integer, Entity> ris = new HashMap<>();
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -69,13 +69,16 @@ public class DAORecensione implements IDAO {
             while(rs.next())
             {
                 Map<String, String> params = new HashMap<>();
-                params.put("id", rs.getInt(1)+"");
-                params.put("email", rs.getString(2));
-                params.put("username", rs.getString(3));
-                params.put("password", rs.getString(4));
-                params.put("nome", rs.getString(5));
-                params.put("cognome", rs.getString(6));
-                params.put("tipo_utente", rs.getString(7));
+                params.put("id", rs.getString(1));
+                params.put("titolo", rs.getString(2));
+                params.put("data", rs.getString(3));
+                params.put("punteggio", rs.getString(4));
+                params.put("immagine", rs.getString(5));
+                params.put("testo", rs.getString(6));
+                params.put("autore", rs.getString(7));
+                params.put("videogioco", rs.getString(8));
+                params.put("nome",rs.getString(9));
+                params.put("cognome", rs.getString(10));
 
                 Recensione r = context.getBean(Recensione.class, params);
 

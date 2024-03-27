@@ -1,1 +1,11 @@
-<p>listanotizie works!</p>
+<div *ngIf="notizie.length > 0">
+    <ul>
+      <li *ngFor="let news of notizie">
+        <h2>{{ news.titolo }}</h2>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="notizie.length === 0">
+    <p>Nessuna notizia disponibile al momento.</p>
+  </div>
+
