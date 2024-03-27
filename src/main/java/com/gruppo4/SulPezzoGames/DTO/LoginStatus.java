@@ -8,7 +8,7 @@ public class LoginStatus {
         token = tipo_utente + "-" + isLogin + "-" + idUtente;
     }
 
-    public String getRuolo() {
+    public String getTipo_utente() {
         return token.split("-")[0];
     }
 
