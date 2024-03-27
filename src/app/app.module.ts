@@ -12,6 +12,8 @@ import { ListanotizieComponent } from './listanotizie/listanotizie.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DettaglionotiziaComponent } from './dettaglionotizia/dettaglionotizia.component';
+import { DettagliorecensioneComponent } from './dettagliorecensione/dettagliorecensione.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     HomepageComponent,
     ListavideogiochiComponent,
     ListarecensioniComponent,
-    ListanotizieComponent
+    ListanotizieComponent,
+    DettaglionotiziaComponent,
+    DettagliorecensioneComponent
   ],
   imports: [
     BrowserModule,
