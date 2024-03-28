@@ -7,10 +7,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 import com.gruppo4.SulPezzoGames.DAO.DAONews;
 import com.gruppo4.SulPezzoGames.Entities.Entity;
 import com.gruppo4.SulPezzoGames.Entities.News;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 @Service
 public class NewsService {
@@ -43,6 +47,14 @@ public class NewsService {
 
     public void deleteNews(int id){
         DAONews.delete(id);
+    }
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public Optional<News> findNewsById(int id) {
+        News news = entityManager.find(News.class, id);
+        return Optional.ofNullable(news);
     }
 
 }

@@ -34,15 +34,16 @@ const routes: Routes = [{
   component: HomepageComponent
 },
 {
-  //http://localhost:4200/dettaglionotizia
-  path: 'dettaglionotizia',
+  //http://localhost:4200/dettaglionotizia/:id
+  path: 'dettaglionotizia/:id',
   component: DettaglionotiziaComponent
 },
 {
   //http://localhost:4200/dettagliorecensione
   path: 'dettagliorecensione',
   component: DettagliorecensioneComponent
-}];
+}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

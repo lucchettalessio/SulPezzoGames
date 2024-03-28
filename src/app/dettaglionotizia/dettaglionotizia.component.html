@@ -1,1 +1,9 @@
-<p>dettaglionotizia works!</p>
+<div *ngIf="news">
+    <h2>{{ news.titolo }}</h2>
+    <img [src]="news.immagine" alt="{{ news.titolo }}" width="300">
+    <p>{{ news.testo }}</p>
+  </div>
+  
+  <div *ngIf="!news">
+    <p>Caricamento del dettaglio della notizia...</p>
+  </div>

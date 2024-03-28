@@ -1,7 +1,7 @@
 <div *ngIf="notizie.length > 0">
     <ul>
       <li *ngFor="let news of notizie">
-        <h2>{{ news.titolo }}</h2>
+        <h2><a [routerLink]="['/dettaglionotizia', news.id]">{{ news.titolo }}</a></h2>
       </li>
     </ul>
   </div>
