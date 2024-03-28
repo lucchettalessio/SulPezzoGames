@@ -9,7 +9,7 @@ import { ListaRecensioniService } from './listarecensioniService';
 })
 export class ListarecensioniComponent implements OnInit {
   recensioni: Recensione[] = [];
-  itemsPerPage: number = 4;
+  rowsPerPage: number = 4; 
   currentPage: number = 1;
   totalPages: number | undefined;
 
@@ -17,13 +17,15 @@ export class ListarecensioniComponent implements OnInit {
 
   ngOnInit(): void {
     this.caricaRecensioni();
+
   }
+
 
   caricaRecensioni(): void {
     this.listaRecensioniService.getRecensione()
-      .subscribe(recensione => {
-        this.recensioni = recensione;
-        this.totalPages = Math.ceil(this.recensioni.length / this.itemsPerPage);
+      .subscribe(recensioni => {
+        this.recensioni = recensioni;
+        this.totalPages = Math.ceil(this.recensioni.length / this.rowsPerPage);
       });
   }
 
@@ -37,5 +39,8 @@ export class ListarecensioniComponent implements OnInit {
     if (this.currentPage < this.totalPages!) {
       this.currentPage++;
     }
-  }
+    else {
+      this.currentPage = 1; // Imposta currentPage a 1 quando si raggiunge l'ultima pagina
+    }
+}
 }
