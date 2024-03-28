@@ -39,8 +39,8 @@ const routes: Routes = [{
   component: DettaglionotiziaComponent
 },
 {
-  //http://localhost:4200/dettagliorecensione
-  path: 'dettagliorecensione',
+  //http://localhost:4200/dettagliorecensione/:id
+  path: 'dettagliorecensione/:id',
   component: DettagliorecensioneComponent
 }
 ];

@@ -10,6 +10,9 @@ import { Videogioco } from 'src/app/models/Videogioco';
 export class ListavideogiochiComponent implements OnInit {
   videogiochi: Videogioco[] = [];
   tipo_utente?: string;
+  rowsPerPage: number = 4; 
+  currentPage: number = 1;
+  totalPages: number | undefined;
 
   constructor(private videogiochiService: VideogiochiService) { }
 
@@ -23,6 +26,22 @@ export class ListavideogiochiComponent implements OnInit {
     this.videogiochiService.getVideogiochi()
       .subscribe(videogiochi => {
         this.videogiochi = videogiochi;
+        this.totalPages = Math.ceil(this.videogiochi.length / this.rowsPerPage);
       });
+  }
+  prevPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages!) {
+      this.currentPage++;
+    }
+    else {
+      this.currentPage = 1; 
+    }
+
   }
 }

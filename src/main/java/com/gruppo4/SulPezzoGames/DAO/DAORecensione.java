@@ -11,7 +11,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.gruppo4.SulPezzoGames.Entities.Entity;
-import com.gruppo4.SulPezzoGames.Entities.News;
 import com.gruppo4.SulPezzoGames.Entities.Recensione;
 
 @Service

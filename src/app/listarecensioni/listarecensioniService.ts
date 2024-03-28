@@ -19,7 +19,7 @@ getRecensione(): Observable<Recensione[]> {
 }
 
 getRecensioneById(id: number): Observable<Recensione> {
-    const url = `http://localhost:8080/api/news/${id}`;
+    const url = `http://localhost:8080/api/Recensione/${id}`;
     return this.http.get<Recensione>(url);
   }
 }

@@ -7,11 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-
-import com.gruppo4.SulPezzoGames.DAO.DAONews;
 import com.gruppo4.SulPezzoGames.DAO.DAORecensione;
 import com.gruppo4.SulPezzoGames.Entities.Entity;
-import com.gruppo4.SulPezzoGames.Entities.News;
 import com.gruppo4.SulPezzoGames.Entities.Recensione;
 
 import jakarta.persistence.EntityManager;
@@ -53,7 +50,7 @@ public class RecensioneService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Recensione findNewsById(int id){
+    public Recensione findRecensioneById(int id){
         return DAORecensione.readFromId(id);
     }
 

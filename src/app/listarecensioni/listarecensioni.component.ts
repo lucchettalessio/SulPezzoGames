@@ -24,14 +24,11 @@ export class ListarecensioniComponent implements OnInit {
   ngOnInit(): void {
     this.caricaRecensioni();
     let tokenRuolo = sessionStorage.getItem("token")?.split("-")[0];
-    
     if(tokenRuolo != null){
       this.ruolo = tokenRuolo
     }
-
   }
-
-
+  
   caricaRecensioni(): void {
     this.listaRecensioniService.getRecensione()
       .subscribe(recensioni => {
@@ -39,32 +36,25 @@ export class ListarecensioniComponent implements OnInit {
         this.totalPages = Math.ceil(this.recensioni.length / this.rowsPerPage);
       });
   }
-
   prevPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   }
-
   nextPage(): void {
     if (this.currentPage < this.totalPages!) {
       this.currentPage++;
     }
     else {
-      this.currentPage = 1; // Imposta currentPage a 1 quando si raggiunge l'ultima pagina
+      this.currentPage = 1; 
     }
-
   }
-
   elimina(id: number){
     this.isDeleting = true;
     this.deletingId = id;
   }
-
   confermaElimina(id: number){
-    
     var token = sessionStorage.getItem("token");
-
     if(token == null){
       token = "";
     }
