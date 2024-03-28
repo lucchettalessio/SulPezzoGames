@@ -65,6 +65,9 @@ VALUES
 
 INSERT INTO Recensioni (titolo, data, punteggio, immagine, testo, autore, videogioco)
 VALUES 
-    ('Recensione di Super Mario Odyssey', '2024-03-20', 9.0, 'recensione_super_mario.jpg', 'Eccellente gioco di piattaforme con tante sorprese.', 2, 1),
-    ('Recensione di The Legend of Zelda: Breath of the Wild', '2024-03-21', 9.5, 'recensione_zelda.jpg', 'Un capolavoro assoluto, imperdibile per ogni appassionato di giochi d''avventura.', 2, 2),
-    ('Recensione di Red Dead Redemption 2', '2024-03-22', 9.3, 'recensione_red_dead.jpg', "Un'avventura western incredibile con una storia coinvolgente.", 3, 3);
+('Super Mario Odyssey', '2024-03-20', 9.0, 'https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_4/H2x1_NSwitch_SuperMarioOdyssey.jpg', 'Eccellente gioco di piattaforme con tante sorprese.', 2, 1),
+('The Legend of Zelda: Breath of the Wild', '2024-03-21', 9.5, 'https://cdn.sortiraparis.com/images/80/66131/789722-the-legend-of-zelda-tears-of-the-kingdom-breath-of-the-wild-2-bande-annonce-et-date-de-sortie.jpg', 'Un capolavoro assoluto, imperdibile per ogni appassionato di giochi d''avventura.', 2, 2),
+('Red Dead Redemption 2', '2024-03-22', 9.3, 'https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_2560x1440_V01-2560x1440-2a9ebe1f7ee202102555be202d5632ec.jpg', "Un'avventura western incredibile con una storia coinvolgente.", 3, 3),
+('Call of Duty: Modern Warfare III', '2024-03-20', 6, 'https://sm.ign.com/t/ign_it/screenshot/default/ga_fwmt.1280.jpg', 'Eccellente gioco sparatutto', 2, 3),
+('Suicide Squad: Kill the Justice League', '2024-03-21', 8, 'https://orgoglionerd.it/wp-content/uploads/2024/03/Suicide-Squad-Kill-the-Justice-League-Stagione-1.jpg', 'Un capolavoro assoluto, imperdibile per ogni appassionato di giochi d''avventura.', 2, 2),
+('P3: Persona 3: Reload [Shin Megami Tensei]', '2024-03-22', 2, 'https://www.pcgamesn.com/wp-content/sites/pcgamesn/2023/10/persona-3-reload-release-date.jpg', 'Multiple Video Game', 3, 1);

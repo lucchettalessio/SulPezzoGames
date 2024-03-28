@@ -1,41 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        table {
-            margin: 50px auto;
-            border-collapse: collapse;
-        }
-        td {
-            padding: 10px;
-        }
-        input[type="text"],
-        input[type="password"] {
-            width: 200px;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            box-sizing: border-box;
-        }
-        input[type="submit"] {
-            padding: 8px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-
-    <div>
+    <div *ngIf="isLogin">
         <form [formGroup]="formLogin" (ngSubmit)="submitForm()">
             <label for="username">USERNAME:</label>
             <input type="text" name="username" formControlName="username">
@@ -44,8 +7,31 @@
             <input type="password" name="password" formControlName="password">
             <br>
             <input type="submit">
+            <p>Non sei registrato?</p>
+            <a (click)="toggleRegister()">Registrati</a>
+        </form>
+    </div>
+    <div *ngIf="!isLogin">
+        <form [formGroup]="formRegister" (ngSubmit)="submitRegistration()">
+
+            <label for="email">EMAIL:</label>
+            <input type="text" name="email" formControlName="email">
+            <br>
+            <label for="username">USERNAME:</label>
+            <input type="text" name="usernameR" formControlName="usernameR">
+            <br>
+            <label for="password">PASSWORD:</label>
+            <input type="password" name="passwordR" formControlName="passwordR">
+            <br>
+            <label for="nome">NOME:</label>
+            <input type="text" name="nome" formControlName="nome">
+            <br>
+            <label for="cognome">COGNOME:</label>
+            <input type="text" name="cognome" formControlName="cognome">
+            <br>
+            <input type="submit">
+            <p>Sei gia' registrato? </p>
+            <a (click)="toggleRegister()">Accedi</a>
         </form>
     </div>
     
-</body>
-</html>

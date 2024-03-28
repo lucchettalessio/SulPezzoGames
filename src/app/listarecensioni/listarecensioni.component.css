@@ -1,0 +1,191 @@
+html, body{
+    margin: 0;
+	padding: 0!important;
+	border: 0;
+}
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    text-align: center;
+}nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 10px;
+}
+nav a:hover {
+    color: #007bff;
+}
+.switch{
+    position: relative;
+    width: 100%;
+    margin-top: 120px;
+    height: 70%;
+    min-height: 500px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px 10px rgba(80, 80, 75, 0.5);
+}
+.btn-sx, .btn-dx
+{
+    display: inline-block;
+    width: 20%;
+    height: 100%;
+    min-height: 500px;
+}
+
+.btn-sx{
+    background-color: rgb(38, 190, 240);
+    border-radius: 30px 0 0  15px;
+}
+.btn-dx{
+    background-color: rgb(223, 68, 68);
+    border-radius:  0 15px 15px 0;
+    position: relative;
+    float: right;
+}
+.monitor{
+    display: inline-block;
+    position: absolute;
+    width: 60%;
+    background-color: rgb(3, 3, 3);
+    height: 100%;
+    min-height: 500px;
+}
+.screen{
+    position: absolute;
+    background-color: white;
+    height: 450px;
+    width: 95%;
+    top: 25px;
+    left: 2.5%;
+    border-radius: 15px;
+    box-shadow: inset 0 0 10px 5px rgba(80, 80, 75, 0.5);
+    overflow: scroll;
+    text-align: center;
+}
+img {
+    width: 50%;
+    height: auto;
+    transition: transform 0.6s;
+
+}
+
+img:hover {
+    transform: scale(1.1);
+}
+
+svg {
+    filter: drop-shadow(0px 2px 4px rgb(251, 9, 9));
+    transition: filter 0.3s;
+    color: rgba(255, 255, 0, 0.986);
+    
+}
+
+svg:hover {
+    filter: drop-shadow(0px 0px 25px rgb(242, 241, 232));
+    transform: scale(1.2);
+}
+p {
+
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    text-align: center;
+
+}
+
+p:hover {
+    color: #ff0000;
+}
+.spostaPagina{
+    background-color: rgba(0, 0, 0, 0.959);
+    color: white;
+    position: relative;
+    top: 90px;
+    left: 40%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0px 7px 5px rgb(74, 70, 70));
+    box-shadow: inset 0 0 10px 5px rgba(80, 80, 75, 0.5);
+}
+.aggiungiRecensione{
+    background-color:transparent;
+    color: white;
+    top: 225px;
+    left: 60px;
+    width:60px ;
+    height:60px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0px 2px 2px rgb(9, 9, 9));
+}
+.fittizi{
+    background-color: rgba(0, 0, 0, 0.959);
+    color: white;
+    position: relative;
+    width: 45px;
+    height:45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0px 7px 5px rgb(74, 70, 70));
+    box-shadow: inset 0 0 10px 5px rgba(80, 80, 75, 0.5);
+}
+.bt-a{
+top: 65px;
+left: 70%;
+}
+.bt-b{
+    top: 60px;
+    left: 50%;  
+}
+.bt-x{
+    top: -60px;
+    left: 50%;
+}
+.bt-y{
+    top: -70px;
+    left: 30%;
+}
+.btn-sinistra {
+    top: 220px;
+    left: 20%;
+}
+.btn-su{
+    top: 130px;
+    left: 40%;
+}
+.btn-destra{
+    top: 130px;
+    left: 40%;
+}
+.btn-giu{
+    top: 130px;
+    left: 60%;
+}
+.fittizi button{
+    border: none;
+    background-color: transparent;
+}
+a{
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+.interazione{
+    display: flex;
+    justify-content: flex-end ;
+    align-items: center;
+    margin-right: 30px;
+
+}
