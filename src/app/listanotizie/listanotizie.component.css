@@ -3,22 +3,6 @@ html, body{
     padding: 0!important;
     border: 0;
 }
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    text-align: center;
-}nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 10px;
-}
-nav a:hover {
-    color: #007bff;
-}
 .switch{
     position: relative;
     width: 100%;
