@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recensione } from '../models/Recensione';
 import { ListaRecensioniService } from './listarecensioniService';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-listarecensioni',
@@ -13,7 +14,10 @@ export class ListarecensioniComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number | undefined;
 
-  constructor(private listaRecensioniService: ListaRecensioniService) { }
+  isDeleting: boolean = false;
+  deletingId: number = -1;
+
+  constructor(private http: HttpClient, private listaRecensioniService: ListaRecensioniService) { }
 
   ngOnInit(): void {
     this.caricaRecensioni();
@@ -42,5 +46,50 @@ export class ListarecensioniComponent implements OnInit {
     else {
       this.currentPage = 1; // Imposta currentPage a 1 quando si raggiunge l'ultima pagina
     }
-}
+
+  }
+
+  elimina(id: number){
+    this.isDeleting = true;
+    this.deletingId = id;
+  }
+
+  confermaElimina(id: number){
+    
+    var token = sessionStorage.getItem("token");
+
+    if(token == null){
+      token = "";
+    }
+
+    const headers = new HttpHeaders(
+      {
+        'Content-type' : 'application/json',
+        'token': token as string
+      }
+    );
+
+    const params = new HttpParams().set("id", id);
+
+    this.http.get("http://localhost:8080/api/Recensione/delete", {headers, params}).subscribe(risposta =>{
+      var check = risposta as boolean;
+      if(check){
+        alert("Eliminazione avvenuta con successo")
+        // window.location.href = "/areadirigenti"
+        var indice = this.recensioni?.findIndex(x => x.id === id)
+        console.log("indice", indice)
+        if(indice! > -1){
+          this.recensioni?.splice(indice!, 1);
+        }
+      }
+
+    })
+
+    this.isDeleting = false;
+  }
+  
+  annullaElimina(){
+    this.isDeleting = false;
+  }
+
 }
