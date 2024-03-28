@@ -12,6 +12,7 @@ import { News } from '../models/News';
 export class DettaglionotiziaComponent implements OnInit {
   
   news?:News;
+  tipo_utente?:string;
   
   constructor(private route: ActivatedRoute, private http : HttpClient){
     this.http = http;
@@ -21,6 +22,8 @@ export class DettaglionotiziaComponent implements OnInit {
   
   ngOnInit(): void {
     this.getNews();
+    var token = sessionStorage.getItem("token");
+    this.tipo_utente = token?.split("-")[0];
   }
   
   getNews(){

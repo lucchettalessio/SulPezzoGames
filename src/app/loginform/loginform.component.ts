@@ -39,6 +39,7 @@ export class LoginformComponent {
       var loginStatus : LoginStatus = risposta as LoginStatus;
       
       sessionStorage.setItem("token", loginStatus.token)
+      console.log(sessionStorage.getItem("token"));
 
         if(loginStatus.tipo_utente != null){
           this.router.navigate(['/homepage'])

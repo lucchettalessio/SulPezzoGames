@@ -9,11 +9,14 @@ import { ListanotizieService } from './listanotizie.service';
 })
 export class ListanotizieComponent implements OnInit {
   notizie: News[] = [];
+  tipo_utente?: string;
 
   constructor(private listanotizieService: ListanotizieService) { }
 
   ngOnInit(): void {
     this.caricaNotizie();
+    var token = sessionStorage.getItem("token");
+    this.tipo_utente = token?.split("-")[0];
   }
 
   caricaNotizie(): void {

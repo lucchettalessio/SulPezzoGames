@@ -16,6 +16,7 @@ export class HomepageComponent implements OnInit{
 
 
   loggato? : boolean
+  tipo_utente?:string;
   utente? : Utente
   notizie: News[] = [];
   recensioni: Recensione[] = []
@@ -28,9 +29,11 @@ export class HomepageComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    var token = sessionStorage.getItem("token")
     this.log();
     this.caricaNotizie();
     this.caricaRecensioni();
+    this.tipo_utente = token?.split("-")[0];
   }
 
 

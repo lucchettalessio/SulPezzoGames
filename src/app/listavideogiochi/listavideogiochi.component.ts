@@ -9,11 +9,14 @@ import { Videogioco } from 'src/app/models/Videogioco';
 })
 export class ListavideogiochiComponent implements OnInit {
   videogiochi: Videogioco[] = [];
+  tipo_utente?: string;
 
   constructor(private videogiochiService: VideogiochiService) { }
 
   ngOnInit(): void {
     this.getVideogiochi();
+    var token = sessionStorage.getItem("token");
+    this.tipo_utente = token?.split("-")[0];
   }
 
   getVideogiochi(): void {
