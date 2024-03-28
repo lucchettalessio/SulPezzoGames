@@ -49,14 +49,20 @@ public class NewsRestController {
         newsService.deleteNews(id);
     }
 
+    // @GetMapping("/{id}")
+    // public ResponseEntity<News> getNewsById(@PathVariable("id") int id){
+    //     Optional<News> newsOptional = newsService.findNewsById(id);
+    //     if(newsOptional.isPresent()) {
+    //         return new ResponseEntity<>(newsOptional.get(), HttpStatus.OK);
+    //     } else {
+    //         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    //     }
+    // }
+
+    
     @GetMapping("/{id}")
-    public ResponseEntity<News> getNewsById(@PathVariable("id") int id){
-        Optional<News> newsOptional = newsService.findNewsById(id);
-        if(newsOptional.isPresent()) {
-            return new ResponseEntity<>(newsOptional.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public News getNewsById(@PathVariable("id") int id){
+        return newsService.findNewsById(id);
     }
 
 }

@@ -154,4 +154,47 @@ public class DAONews implements IDAO {
 
     }
     
+    
+    
+    public News readFromId(int id) {
+        String query = "select * from news where id = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        News n = null;
+        
+        try {
+            ps = database.getConnection().prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            
+            if(rs.next())
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", id + "");
+                params.put("titolo", rs.getString(2));
+                params.put("categoria", rs.getString(3));
+                params.put("immagine", rs.getString(4));
+                params.put("data", rs.getString(5));
+                params.put("testo", rs.getString(6));
+                params.put("autore", rs.getString(7)+"");
+                
+                n = context.getBean(News.class, params);
+            }
+            
+        } catch (SQLException exc) {
+            System.out.println("Errore nella read di DAONews. " + exc.getMessage());
+        }
+        finally{
+            try {
+                ps.close();
+                rs.close();
+            } catch (SQLException ex) {
+                System.out.println("Errore nella chiusura del ps o rs in read di DAONews" + ex.getMessage());
+            }
+        }
+        
+        return n;
+        
+    }
+    
 }

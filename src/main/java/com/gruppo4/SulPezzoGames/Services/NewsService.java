@@ -52,9 +52,13 @@ public class NewsService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Optional<News> findNewsById(int id) {
-        News news = entityManager.find(News.class, id);
-        return Optional.ofNullable(news);
+    // public Optional<News> findNewsById(int id) {
+    //     News news = entityManager.find(News.class, id);
+    //     return Optional.ofNullable(news);
+    // }
+
+    public News findNewsById(int id){
+        return DAONews.readFromId(id);
     }
 
 }
