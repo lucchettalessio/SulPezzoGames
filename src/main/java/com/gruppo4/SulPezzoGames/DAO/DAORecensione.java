@@ -24,7 +24,7 @@ public class DAORecensione implements IDAO {
 
     @Override
     public void create(Entity e) {
-        String query = "INSERT INTO Recensioni (titolo,data,punteggio,immagine,testo,autore,videogioco) VALUES ('?','?','?','?','?','?','?')";
+        String query = "INSERT INTO Recensioni (titolo,data,punteggio,immagine,testo,autore,videogioco) VALUES (?,?,?,?,?,?,?)";
         Recensione n = null;
         PreparedStatement ps = null;
 
@@ -104,7 +104,7 @@ public class DAORecensione implements IDAO {
     @Override
     public void update(Entity e) {
 
-        String query = "UPDATE Recensioni SET (titolo,data,punteggio,immagine,testo,autore,videogioco) VALUES ('?','?','?','?','?','?','?') WHERE id = '?'";
+        String query = "UPDATE Recensioni SET (titolo,data,punteggio,immagine,testo,autore,videogioco) VALUES (?,?,?,?,?,?,?) WHERE id = ?";
         PreparedStatement ps = null;
         Recensione n = null;
 
@@ -135,7 +135,7 @@ public class DAORecensione implements IDAO {
 
     @Override
     public void delete(int id) {
-        String query = "DELETE FROM Recensioni WHERE id = '?'";
+        String query = "DELETE FROM Recensioni WHERE id = ?";
         PreparedStatement ps = null;
 
         try {

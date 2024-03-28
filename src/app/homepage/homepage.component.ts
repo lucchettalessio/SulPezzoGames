@@ -84,7 +84,7 @@ export class HomepageComponent implements OnInit{
   caricaRecensioni(): void {
     this.listaRecensioniService.getRecensione()
       .subscribe(recensioni => {
-        this.recensioni = recensioni;
+        this.recensioni = recensioni.slice(0,5);
       });
   }
 
