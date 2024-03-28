@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.gruppo4.SulPezzoGames.Entities.Entity;
+import com.gruppo4.SulPezzoGames.Entities.News;
 import com.gruppo4.SulPezzoGames.Entities.Recensione;
 
 @Service
@@ -156,6 +157,49 @@ public class DAORecensione implements IDAO {
             }
         }
 
+    }
+
+    public Recensione readFromId(int id) {
+        String query = "select * from recensioni where id = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Recensione r = null;
+        
+        try {
+            ps = database.getConnection().prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            
+            if(rs.next())
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", id + "");
+                params.put("titolo", rs.getString(2));
+                params.put("data", rs.getString(3));
+                params.put("punteggio", rs.getString(4));
+                params.put("immagine", rs.getString(5));
+                params.put("testo", rs.getString(6));
+                params.put("autore", rs.getString(7));
+                params.put("punteggio", rs.getString(8)+"");
+
+                
+                r = context.getBean(Recensione.class, params);
+            }
+            
+        } catch (SQLException exc) {
+            System.out.println("Errore nella read di DAORecensione. " + exc.getMessage());
+        }
+        finally{
+            try {
+                ps.close();
+                rs.close();
+            } catch (SQLException ex) {
+                System.out.println("Errore nella chiusura del ps o rs in read di DAORecensione" + ex.getMessage());
+            }
+        }
+        
+        return r;
+        
     }
     
 }

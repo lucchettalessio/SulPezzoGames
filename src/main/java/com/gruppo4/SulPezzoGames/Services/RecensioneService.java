@@ -8,9 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.gruppo4.SulPezzoGames.DAO.DAONews;
 import com.gruppo4.SulPezzoGames.DAO.DAORecensione;
 import com.gruppo4.SulPezzoGames.Entities.Entity;
+import com.gruppo4.SulPezzoGames.Entities.News;
 import com.gruppo4.SulPezzoGames.Entities.Recensione;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 @Service
 public class RecensioneService {
@@ -44,4 +49,12 @@ public class RecensioneService {
     public void deleteRecensione(int id){
         DAORecensione.delete(id);
     }
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public Recensione findNewsById(int id){
+        return DAORecensione.readFromId(id);
+    }
+
 }

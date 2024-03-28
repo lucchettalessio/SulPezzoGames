@@ -17,4 +17,9 @@ constructor(private http: HttpClient) {
 getRecensione(): Observable<Recensione[]> {
     return this.http.get<Recensione[]>(this.apiUrl);
 }
+
+getRecensioneById(id: number): Observable<Recensione> {
+    const url = `http://localhost:8080/api/news/${id}`;
+    return this.http.get<Recensione>(url);
+  }
 }
