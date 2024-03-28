@@ -53,26 +53,19 @@
                             </svg></p>
                         </div>
                         <div *ngIf="videogiochi.length > 0">
-                          <ul>
+                        <ul>
                             <li *ngFor="let videogioco of videogiochi">
-                              <h2>{{ videogioco.titolo }}</h2>
+                            <h2>{{ videogioco.titolo }}</h2>
                             </li>
-                          </ul>
+                        </ul>
                         </div>
                         <div *ngIf="videogiochi.length === 0">
-                          <p>Nessun videogioco disponibile al momento.</p>
+                        <p>Nessun videogioco disponibile al momento.</p>
                         </div>
-                      
-                      
-                    
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
     <div class="btn-dx">
         <div class="latoD">
             <div class="bottoneS">

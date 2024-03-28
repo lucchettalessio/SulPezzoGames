@@ -18,7 +18,7 @@ export class ListanotizieService {
   }
 
   getNotiziaById(id: number): Observable<News> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `http://localhost:8080/api/news/${id}`;
     return this.http.get<News>(url);
   }
 }
