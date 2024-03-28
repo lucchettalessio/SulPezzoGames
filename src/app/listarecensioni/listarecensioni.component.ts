@@ -14,13 +14,20 @@ export class ListarecensioniComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number | undefined;
 
+  ruolo: string = ""
+
   isDeleting: boolean = false;
   deletingId: number = -1;
 
-  constructor(private http: HttpClient, private listaRecensioniService: ListaRecensioniService) { }
+  constructor(private http: HttpClient, private listaRecensioniService: ListaRecensioniService) {}
 
   ngOnInit(): void {
     this.caricaRecensioni();
+    let tokenRuolo = sessionStorage.getItem("token")?.split("-")[0];
+    
+    if(tokenRuolo != null){
+      this.ruolo = tokenRuolo
+    }
 
   }
 
