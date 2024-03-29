@@ -58,8 +58,8 @@
                             </p>
                             <img src="{{r.immagine}}">
                             <p>{{r.testo}}</p>
-                            <p>Autore: {{r.nome}} {{r.cognome}} </p>
-                            <p>Videogioco: {{r.videogioco}}</p><hr>
+                            <p>Autore: {{r.autore.nome}} {{r.autore.cognome}} </p>
+                            <p>Videogioco: {{r.videogioco.id}}</p><hr>
                             <div *ngIf="isModifying && modifyingId == r.id" class="modal">
                                 <div *ngIf="isModifying && modifyingId == r.id" class="modal">
                                     <form [formGroup]="formModifica" (ngSubmit)="submitModifica(r.id)">
@@ -75,11 +75,9 @@
                                         <label for="testo">Testo:</label>
                                         <input type="text" name="testo" formControlName="testo"><br>
                                         <label for="autore">Autore:</label>
-                                        <input type="number" name="autore" formControlName="autore"><br>
+                                        <input type="text" name="autore" formControlName="autore"><br>
                                         <label for="videogioco">Videogioco:</label>
-                                        <input type="number" name="videogioco" formControlName="videogioco"><br>
-                                        <label for="testo">Testo:</label>
-                                        <input type="testo" name="testo" formControlName="testo"><br>
+                                        <input type="text" name="videogioco" formControlName="videogioco"><br>
                                         <button (click)="annullaModifica()">Annulla</button>
                                         <input type="submit">
                                     </form>

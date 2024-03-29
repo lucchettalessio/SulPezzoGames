@@ -108,8 +108,8 @@ export class ListarecensioniComponent implements OnInit {
         punteggio: this.recensioni[index].punteggio,
         immagine: this.recensioni[index].immagine,
         testo: this.recensioni[index].testo,
-        autore : this.recensioni[index].autore,
-        videogioco : this.recensioni[index].videogioco
+        autore : this.recensioni[index].autore.nome + " " + this.recensioni[index].autore.cognome,
+        videogioco : this.recensioni[index].videogioco.id
       })
   }
 
