@@ -12,6 +12,7 @@ import { Recensione } from '../models/Recensione';
 export class DettagliorecensioneComponent implements OnInit {
 
   recensione?:Recensione;
+  tipo_utente?:string;
 
   constructor(private route: ActivatedRoute, private http : HttpClient){
     this.http = http;
@@ -20,6 +21,8 @@ export class DettagliorecensioneComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRecensione();
+    var token = sessionStorage.getItem("token");
+    this.tipo_utente = token?.split("-")[0];
   }
   
   getRecensione(){
@@ -27,7 +30,7 @@ export class DettagliorecensioneComponent implements OnInit {
       
       const idRecensione = this.route.snapshot.paramMap.get('id');
       
-      this.http.get("http://localhost:8080/api/news/" + idRecensione, {headers}).subscribe(risposta =>{
+      this.http.get("http://localhost:8080/api/recensione/" + idRecensione, {headers}).subscribe(risposta =>{
         this.recensione = risposta as Recensione;
       })
       

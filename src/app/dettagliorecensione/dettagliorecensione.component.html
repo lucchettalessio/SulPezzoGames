@@ -27,7 +27,17 @@
 
             <div class="monitor">
                 <div class="screen">
-                    
+                    <div *ngIf="recensione">
+                        <h2>{{ recensione.titolo }}</h2>
+                        <img [src]="recensione.immagine" alt="{{ recensione.titolo }}" width="300">
+                        <p>{{ recensione.testo }}</p>
+                        <p>{{recensione.autore}}</p>
+                        <p>{{recensione.data}}</p>
+                        <p>{{recensione.videogioco}}</p>
+                    </div>
+                    <div *ngIf="!recensione">
+                        <p>Caricamento del dettaglio della notizia...{{ recensione }}</p>
+                    </div>
                 </div>
             </div>
 

@@ -57,9 +57,6 @@
                                 </span>
                             </p>
                             <img src="{{r.immagine}}">
-                            <p>{{r.testo}}</p>
-                            <p>Autore: {{r.autore.nome}} {{r.autore.cognome}} </p>
-                            <p>Videogioco: {{r.videogioco.id}}</p><hr>
                             <div *ngIf="isModifying && modifyingId == r.id" class="modal">
                                 <div *ngIf="isModifying && modifyingId == r.id" class="modal">
                                     <form [formGroup]="formModifica" (ngSubmit)="submitModifica(r.id)">

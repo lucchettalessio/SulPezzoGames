@@ -166,12 +166,9 @@ a{
     justify-content: flex-end ;
     align-items: center;
     margin-right: 30px;
-
 }
 .news:hover {
-border-radius: 25px;
     background-color: #d69f132f; 
-    padding: 30px;
 }
 a:visited {
     color: rgb(218, 211, 10); 

@@ -173,3 +173,44 @@ a{
 .news{
     color: orange;
 }
+.RN {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.RN p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.RN h2 {
+    font-size: 20px;
+    color: #333;
+    margin-top: 20px;
+}
+
+.RN div {
+    margin-top: 10px;
+}
+
+.RN div p {
+    font-size: 14px;
+}
+
+.RN div p:hover {
+    color: #FF5733;
+    cursor: pointer;
+}
+
+.RN div {
+    transition: all 0.2s ease-in-out;
+}
+
+.RN .arancione:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(200, 178, 8, 0.731);
+}
+.RN .blu:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(9, 25, 150, 0.731);
+}

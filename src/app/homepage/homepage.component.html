@@ -28,16 +28,18 @@
             <div class="monitor">
                 <div class="screen">
                     <div #container class="contenitore">
-                        <div ngFor="let r of recensioni.slice((currentPage - 1) rowsPerPage, currentPage * rowsPerPage)">
+                        <div>
                             <div #container class="centered">
-                                <p>buonGiorno {{utente?.nome}}</p>
-                                <h2>lista news</h2>
-                                <div *ngFor="let news of notizie" [ngStyle]="{'color': cliccatoNews ? 'black' : 'grey'}">
-                                <p>{{news.titolo}}</p>
-                                </div>
-                                <h2>lista recensioni</h2>
-                                <div *ngFor="let recensione of recensioni" [ngStyle]="{'color': cliccatoRec ? 'black' : 'grey'}">
+                                <div class="RN">
+                                    <p>buonGiorno {{utente?.nome}}</p>
+                                    <h2>lista news</h2>
+                                    <div class="arancione" *ngFor="let news of notizie" [ngStyle]="{'color': cliccatoNews ? 'black' : 'grey'}">
+                                    <p>{{news.titolo}}</p>
+                                    </div>
+                                    <h2>lista recensioni</h2>
+                                    <div class="blu" *ngFor="let recensione of recensioni" [ngStyle]="{'color': cliccatoRec ? 'black' : 'grey'}">
                                     <p>{{recensione.titolo}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
