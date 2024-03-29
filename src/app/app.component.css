@@ -36,3 +36,6 @@ p:hover {
     color: #ff0000;
 }
 
+a:hover{
+    cursor: pointer;
+}
