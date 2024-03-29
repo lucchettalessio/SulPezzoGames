@@ -21,4 +21,9 @@ export class ListanotizieService {
     const url = `http://localhost:8080/api/news/${id}`;
     return this.http.get<News>(url);
   }
+
+  getNotizieOrdered(): Observable<News[]> {
+    return this.http.get<News[]>('http://localhost:8080/api/news/all-ordered');
+  }
+  
 }

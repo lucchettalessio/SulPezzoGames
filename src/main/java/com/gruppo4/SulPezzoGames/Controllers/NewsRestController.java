@@ -37,6 +37,11 @@ public class NewsRestController {
         return newsService.findAllNews();
     }
 
+    @GetMapping("/all-ordered")
+    public List<News> getAllNewsOderBy(){
+        return newsService.findAllNewsOrderBy();
+    }
+
     @PostMapping("/update")
     public void updateNews(@RequestBody News body){
         newsService.updateNews(body);

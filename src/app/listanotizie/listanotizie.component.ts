@@ -23,7 +23,7 @@ export class ListanotizieComponent implements OnInit {
   }
 
   caricaNotizie(): void {
-    this.listanotizieService.getNotizie()
+    this.listanotizieService.getNotizieOrdered()
       .subscribe(notizie => {
         this.notizie = notizie;
         this.totalPages = Math.ceil(this.notizie.length / this.rowsPerPage);
