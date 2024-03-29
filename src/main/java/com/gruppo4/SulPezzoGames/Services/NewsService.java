@@ -41,6 +41,18 @@ public class NewsService {
         return ris;        
     }
 
+    public List<News> findAllNewsOrderBy(){
+        List<News> ris = new ArrayList<>();
+        Map<Integer,Entity> map = DAONews.readOrderBy();
+
+        for(Entity e : map.values())
+            if(e instanceof News){
+                ris.add((News)e);
+            }
+
+        return ris;  
+    }
+
     public void updateNews(News n){
         DAONews.update(n);
     }

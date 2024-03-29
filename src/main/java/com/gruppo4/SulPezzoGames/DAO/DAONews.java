@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,6 +98,50 @@ public class DAONews implements IDAO {
         return ris;
 
     }
+
+    public Map<Integer, Entity> readOrderBy() {
+        String query = "select * from news order by data desc";
+        Map<Integer, Entity> ris = new LinkedHashMap<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            ps = database.getConnection().prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while(rs.next())
+            {
+                Map<String, String> params = new LinkedHashMap<>();
+                params.put("id", rs.getInt(1)+"");
+                params.put("titolo", rs.getString(2));
+                params.put("categoria", rs.getString(3));
+                params.put("immagine", rs.getString(4));
+                params.put("data", rs.getString(5));
+                params.put("testo", rs.getString(6));
+                params.put("autore", rs.getString(7)+"");
+
+                News n = context.getBean(News.class, params);
+                
+                ris.put(n.getId(), n);
+            }
+
+
+        } catch (SQLException exc) {
+            System.out.println("Errore nella readOrderBy di DAONews. " + exc.getMessage());
+        }
+        finally{
+            try {
+                ps.close();
+                rs.close();
+            } catch (SQLException ex) {
+                System.out.println("Errore nella chiusura del ps o rs in readOrderBy di DAONews" + ex.getMessage());
+            }
+        }
+
+        return ris;
+
+    }
+
 
     @Override
     public void update(Entity e) {
