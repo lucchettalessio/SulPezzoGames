@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.gruppo4.SulPezzoGames.Entities.Entity;
+import com.gruppo4.SulPezzoGames.Entities.Utente;
 // import com.gruppo4.SulPezzoGames.Entities.Utente;
 import com.gruppo4.SulPezzoGames.Entities.Videogioco;
 
@@ -150,6 +151,51 @@ public class DAOVideogioco implements IDAO {
         }
 
     }
+
+    public Videogioco readFromId(int id)
+    {
+
+        String query="select * from videogiochi where id = ?";
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        Videogioco v=null;
+
+        try
+        {
+           ps = database.getConnection().prepareStatement(query);
+            ps.setInt(1, id);
+            
+            rs = ps.executeQuery();
+            
+            while(rs.next())
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", rs.getInt(1)+"");
+                params.put("titolo", rs.getString(2));
+                params.put("data", rs.getString(3));
+                params.put("genere", rs.getString(4));
+                params.put("produzione", rs.getString(5));
+                params.put("immagine", rs.getString(6));
+
+                v = context.getBean(Videogioco.class, params);
+ 
+            }
+    }
+
+    catch(SQLException exc){
+        System.out.println("Errore in readFromId in DAOVideogioco");
+    }
+    finally{
+        try{
+            ps.close();
+            rs.close();
+        }
+        catch(Exception exc){
+            System.out.println("Errore chiusura PreparedStatement in readFromId");
+        }
+    }
+    return v;
+}
     
 }
 

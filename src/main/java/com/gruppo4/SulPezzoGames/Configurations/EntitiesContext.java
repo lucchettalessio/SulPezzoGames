@@ -51,12 +51,9 @@ public class EntitiesContext {
         int punteggio = Integer.parseInt(params.get("punteggio"));
         String immagine = params.get("immagine");
         String testo = params.get("testo");
-        int autore = Integer.parseInt(params.get("autore"));
-        int videogioco = Integer.parseInt(params.get("videogioco"));
-        String nome = params.get("nome");
-        String cognome = params.get("cognome");
 
-        return new Recensione(id, titolo, data, punteggio, immagine, testo, autore, videogioco, nome, cognome);
+
+        return new Recensione(id, titolo, data, punteggio, immagine, testo);
     }
 
     @Bean

@@ -22,6 +22,12 @@ public class DAORecensione implements IDAO {
     @Autowired
     private Database database;
 
+    @Autowired
+    private DAOUtente DAOutente;
+
+    @Autowired
+    private DAOVideogioco DAOvideogioco;
+
     @Override
     public void create(Entity e) {
         String query = "INSERT INTO Recensioni (titolo,data,punteggio,immagine,testo,autore,videogioco) VALUES (?,?,?,?,?,?,?)";
@@ -75,12 +81,10 @@ public class DAORecensione implements IDAO {
                 params.put("punteggio", rs.getString(4));
                 params.put("immagine", rs.getString(5));
                 params.put("testo", rs.getString(6));
-                params.put("autore", rs.getString(7));
-                params.put("videogioco", rs.getString(8));
-                params.put("nome",rs.getString(9));
-                params.put("cognome", rs.getString(10));
 
                 Recensione r = context.getBean(Recensione.class, params);
+                r.setAutore(DAOutente.readFromId(rs.getInt(7)));
+                r.setVideogioco(DAOvideogioco.readFromId(rs.getInt(8)));
 
                 ris.put(r.getId(), r);
             }

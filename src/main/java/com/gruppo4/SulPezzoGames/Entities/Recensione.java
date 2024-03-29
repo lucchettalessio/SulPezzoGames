@@ -7,23 +7,16 @@ public class Recensione extends Entity{
     private int punteggio;
     private String immagine;
     private String testo;
-    private int autore;
-    private int videogioco;
-    private String nome;
-    private String cognome;
+    private Utente autore;
+    private Videogioco videogioco;
     
-    public Recensione(int id, String titolo, String data, int punteggio, String immagine, String testo, int autore,
-            int videogioco, String nome, String cognome) {
+    public Recensione(int id, String titolo, String data, int punteggio, String immagine, String testo) {
         super(id);
         this.titolo = titolo;
         this.data = data;
         this.punteggio = punteggio;
         this.immagine = immagine;
         this.testo = testo;
-        this.autore = autore;
-        this.videogioco = videogioco;
-        this.nome=nome;
-        this.cognome=cognome;
     }
 
     public String getTitolo() {
@@ -66,34 +59,26 @@ public class Recensione extends Entity{
         this.testo = testo;
     }
 
-    public int getAutore() {
+    public Utente getAutore() {
         return autore;
     }
 
-    public void setAutore(int autore) {
+    public void setAutore(Utente autore) {
         this.autore = autore;
     }
 
-    public int getVideogioco() {
+    public Videogioco getVideogioco() {
         return videogioco;
     }
 
-    public void setVideogioco(int videogioco) {
+    public void setVideogioco(Videogioco videogioco) {
         this.videogioco = videogioco;
     }
-    public String getNome(){
-        return nome;
-    }
-    public void setCognome(String cognome){this.cognome=cognome;}
-    public String getCognome(){
-        return cognome;
-    }
-    public void setNome(String nome){this.nome=nome;}
 
     @Override
     public String toString() {
         return "Recensione [titolo=" + titolo + ", data=" + data + ", punteggio=" + punteggio + ", immagine=" + immagine
-                + ", testo=" + testo + ", autore=" + autore + ", videogioco=" + videogioco +  nome + cognome +"]";
+                + ", testo=" + testo + ", autore=" + autore + ", videogioco=" + videogioco + "]";
     }
 
 }
