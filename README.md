@@ -1,27 +1,33 @@
-# Angular
+# CONSEGNA:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.7.
+CONSEGNA 4: News Nerd
+   TRACCIA
+Siamo SulPezzoGames, un'azienda giornalistica del settore dei videogiochi.
+Abbiamo bisogno di un nuovo CMS per gestire le news e le recensioni.
 
-## Development server
+L'applicazione deve essere in grado di gestire le news.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Una news deve contenere le seguenti informazioni:
+- il titolo
+- categoria (Sony, Nintendo, etc)
+- immagine copertina (bonus)
+- contenuto
+- data di pubblicazione
+- l'autore
 
-## Code scaffolding
+Le recensioni sono simili
+- il titolo del videogioco
+- la data
+- la recensione
+- il punteggio
+- il recensore
+- immagini in carrosello (bonus)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Dovrà quindi essere anche presente un sistema per gestire le utenze
+Da valutare anche un database di videogiochi a cui vengono associate le recensioni.
+Queste possono anche essere funzioni da aggiungere in futuro
+All'inizio a noi va bene anche solo che sia l'admin ad aggiungere news/recensioni
 
-## Build
+Il tutto deve essere consultabile come un sito di news.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Aspettiamo dal vostro team una valutazione in termini di tempo per un primo prototipo.
