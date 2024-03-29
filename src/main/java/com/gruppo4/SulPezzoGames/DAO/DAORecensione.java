@@ -118,6 +118,7 @@ public class DAORecensione implements IDAO {
             ps.setString(5, n.getTesto());
             ps.setString(6, n.getAutore() + "");
             ps.setString(7, n.getVideogioco() + "");
+            ps.setString(8, n.getId() + "");
             ps.executeUpdate();
 
         } catch (SQLException exc) {

@@ -93,18 +93,62 @@ export class ListarecensioniComponent implements OnInit {
   
   annullaElimina(){
     this.isDeleting = false;
+    this.deletingId = -1;
   }
 
   modifica(id: number){
     this.isModifying = true;
     this.modifyingId = id;
+    const index = this.recensioni.findIndex((recensione) => recensione.id === id);
     this.formModifica = this.formBuilder.group(
       {
-        id : "",
-        titolo : "", 
-        data : "",
-        autore : "gg",
+        id : this.recensioni[index].id,
+        titolo : this.recensioni[index].titolo,
+        data : this.recensioni[index].data,
+        punteggio: this.recensioni[index].punteggio,
+        immagine: this.recensioni[index].immagine,
+        testo: this.recensioni[index].testo,
+        autore : this.recensioni[index].autore,
+        videogioco : this.recensioni[index].videogioco
       })
+  }
+
+  submitModifica(id: number){
+    var token = sessionStorage.getItem("token")
+    if(token == null){
+      token = "";
+    }
+
+    const formValues = this.formModifica.value;
+    const headers = new HttpHeaders(
+      {
+        'Content-Type' : 'application/json',
+        'token': token as string
+      }
+    );
+
+    const body = JSON.stringify(formValues);
+
+    this.http.post("http://localhost:8080/api/Recensione/update", body, {headers}).subscribe(risposta =>{
+      var check = risposta as boolean;
+      if(check){
+        alert("Modifica avvenuta con successo")
+        // window.location.href = "/areadirigenti"
+        var rew : Recensione = JSON.parse(body) as Recensione;
+
+        var index = this.recensioni.findIndex(x => x.id == rew.id)
+        this.recensioni.splice(index!, 1, rew);
+
+      }
+    })
+
+    this.isModifying = false;
+    this.modifyingId = -1;
+  }
+
+  annullaModifica(){
+    this.isModifying = false;
+    this.modifyingId = -1;
   }
 }
 
