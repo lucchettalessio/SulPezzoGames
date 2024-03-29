@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Recensione } from '../models/Recensione';
 import { ListaRecensioniService } from './listarecensioniService';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-listarecensioni',
@@ -19,7 +20,11 @@ export class ListarecensioniComponent implements OnInit {
   isDeleting: boolean = false;
   deletingId: number = -1;
 
-  constructor(private http: HttpClient, private listaRecensioniService: ListaRecensioniService) {}
+  isModifying: boolean = false;
+  modifyingId: number = -1;
+  formModifica! : FormGroup;
+
+  constructor(private http: HttpClient, private listaRecensioniService: ListaRecensioniService, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.caricaRecensioni();
@@ -83,10 +88,24 @@ export class ListarecensioniComponent implements OnInit {
     })
 
     this.isDeleting = false;
+    this.deletingId = -1;
   }
   
   annullaElimina(){
     this.isDeleting = false;
   }
 
+  modifica(id: number){
+    this.isModifying = true;
+    this.modifyingId = id;
+    this.formModifica = this.formBuilder.group(
+      {
+        id : "",
+        titolo : "", 
+        data : "",
+        autore : "gg",
+      })
+  }
 }
+
+
