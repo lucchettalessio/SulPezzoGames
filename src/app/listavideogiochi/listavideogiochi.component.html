@@ -4,88 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ListaVideogiochi</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="switch">
-        <div class="btn-sx">
-            
-            <div class="spostaPagina">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-lock" viewBox="0 0 16 16">
+    <body>
+        <div class="switch">
+            <div class="btn-sx">
+                <div class="spostaPagina btn-lato-sx">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-lock" viewBox="0 0 16 16">
                     <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m0 5.996V14H3s-1 0-1-1 1-4 6-4q.845.002 1.544.107a4.5 4.5 0 0 0-.803.918A11 11 0 0 0 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664zM9 13a1 1 0 0 1 1-1v-1a2 2 0 1 1 4 0v1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zm3-3a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1"/>
-                </svg>
-            </div>
-            <div class="fittizi btn-sinistra ">
-                <button></button>
+                    </svg>
+                </div>
+                <div class="fittizi btn-sinistra ">
+                    <button></button>
                 </div>
                 <div class="fittizi btn-su">
-                <button (click)="prevPage()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
-                    <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                    <button (click)="prevPage()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                        <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
                         </svg></button>
                 </div>
                 <div class="fittizi btn-destra">
-                        <button></button> 
+                    <button></button> 
                 </div>
-    <div class="fittizi btn-giu">
+                <div class="fittizi btn-giu">
                     <button (click)="nextPage()"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                         <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
                         </svg></button>
+                </div>
             </div>
-    
-        </div>
-        <div class="monitor">
-            <div class="screen">
-                <div #container class="contenitore">
-                    <div *ngFor="let videogioco of videogiochi.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage)">
-                        <div class="interazione" *ngIf="tipo_utente == 'admin'">
-                            
-                            <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                            </svg></p>
-                        </div>
-                        <!-- <img src="{{ videogioco.immagine }}" class="sfondoSchedaVideogioco"> -->
-                        <div class="schedaVideogioco">
-                            <h2>{{ videogioco.titolo }}</h2>
-                            <p>{{videogioco.data.split("-")[0]}} - {{videogioco.genere}}</p>
-                            <p [routerLink]="['/listarecensioni', videogioco.id]"><img src="{{ videogioco.immagine }}" class="immagineCliccabile"></p>
-                            <p>Produzione: {{videogioco.produzione}}</p>
-                            <hr>
-                        </div>
+            
+            <div class="monitor">
+                <div class="screen">
+                    <div #container class="contenitore">
+                        <div *ngFor="let videogioco of videogiochi.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage)">
+                            <div class="interazione" *ngIf="tipo_utente == 'admin'">
+                                
+                                <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                </svg></p>
+                            </div>
+                            <div class="schedaVideogioco">
+                                <h2>{{ videogioco.titolo }}</h2>
+                                <p>{{videogioco.data.split("-")[0]}} - {{videogioco.genere}}</p>
+                                <p [routerLink]="['/listarecensioni', videogioco.id]"><img src="{{ videogioco.immagine }}" class="immagineCliccabile"></p>
+                                <p>Produzione: {{videogioco.produzione}}</p>
+                                <hr>
+                            </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="btn-dx">
+                <div class="latoD">
+                    <div class="bottoneS">
+                        <button class="aggiungiRecensione"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                        </svg></button>
+                    </div>
+                    <div class="fittizi bt-a ">
+                        A
+                    </div>
+                    <div class="fittizi bt-b ">
+                        B
+                    </div>
+                    <div class="fittizi bt-x ">
+                        X
+                    </div>
+                    <div class="fittizi bt-y ">
+                        Y
+                    </div>
+                    <div class="spostaPagina">
+                        <a class="pagine">{{currentPage}} / {{totalPages}}</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="btn-dx">
-        <div class="latoD">
-            <div class="bottoneS">
-                <button class="aggiungiRecensione"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
-                </svg></button>
-            </div>
-            <div class="fittizi bt-a ">
-                A
-            </div>
-            <div class="fittizi bt-b ">
-                B
-            </div>
-            <div class="fittizi bt-x ">
-                X
-            </div>
-            <div class="fittizi bt-y ">
-                Y
-            </div>
-
-            <div class="spostaPagina">
-                <a class="pagine">{{currentPage}} / {{totalPages}}</a>
-            </div>
-
-            </div>
-        </div>
-    </div>
-
-</body>
+        
+    </body>
 </html>
 
