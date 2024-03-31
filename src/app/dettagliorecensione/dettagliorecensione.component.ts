@@ -30,7 +30,7 @@ export class DettagliorecensioneComponent implements OnInit {
       
       const idRecensione = this.route.snapshot.paramMap.get('id');
       
-      this.http.get("http://localhost:8080/api/recensione/" + idRecensione, {headers}).subscribe(risposta =>{
+      this.http.get("http://localhost:8080/api/Recensione/" + idRecensione, {headers}).subscribe(risposta =>{
         this.recensione = risposta as Recensione;
       })
       

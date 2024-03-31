@@ -60,7 +60,7 @@ img:hover {
 svg {
     filter: drop-shadow(0px 2px 4px rgb(251, 9, 9));
     transition: filter 0.3s;
-    color: rgba(255, 255, 0, 0.986);
+    color: rgba(255, 0, 230, 0.986);
 }
 svg:hover {
     filter: drop-shadow(0px 0px 25px rgb(242, 241, 232));
@@ -166,10 +166,4 @@ a{
     justify-content: flex-end ;
     align-items: center;
     margin-right: 30px;
-}
-.recensioni{
-    color: blue;
-}
-.news{
-    color: orange;
 }
