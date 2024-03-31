@@ -60,7 +60,7 @@ img:hover {
 svg {
     filter: drop-shadow(0px 2px 4px rgb(251, 9, 9));
     transition: filter 0.3s;
-    color: rgba(255, 255, 0, 0.986);
+    color: rgba(255, 0, 251, 0.986);
 }
 svg:hover {
     filter: drop-shadow(0px 0px 25px rgb(242, 241, 232));
@@ -73,7 +73,7 @@ p {
     text-align: center;
 }
 p:hover {
-    color: #ff0000;
+    color: #2f00ff;
 }
 .spostaPagina{
     background-color: rgba(0, 0, 0, 0.959);
@@ -98,14 +98,14 @@ p:hover {
     background-color:transparent;
     color: white;
     top: 225px;
-    left: 60px;
-    width:60px ;
+    left: 70px;
+    width:70px ;
     height:60px;
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    filter: drop-shadow(0px 2px 2px rgb(9, 9, 9));
+    filter: drop-shadow(0px 2px 2px rgb(255, 255, 255));
 }
 .fittizi{
     background-color: rgba(0, 0, 0, 0.959);
@@ -141,10 +141,12 @@ left: 70%;
     left: 20%;
 }
 .btn-su{
+    filter: drop-shadow(0px 7px 5px rgb(255, 0, 251));
     top: 130px;
     left: 40%;
 }
 .btn-giu{
+    filter: drop-shadow(0px 7px 5px rgb(255, 0, 251));
     top: 130px;
     left: 40%;
 }
@@ -168,8 +170,15 @@ a{
     margin-right: 30px;
 }
 .news:hover {
-    background-color: #d69f132f; 
+    transform: translateY(-5px); /* Sposta leggermente l'elemento verso l'alto */
+    box-shadow: 0 10px 20px rgba(191, 8, 201, 0.566); 
+    color: #e806fdd4; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Animazioni fluide */
+
 }
 a:visited {
-    color: rgb(218, 211, 10); 
+    color: rgb(62, 10, 218); 
+}
+h3{
+    color: #2f00ff;
 }

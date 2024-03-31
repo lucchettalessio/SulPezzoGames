@@ -66,14 +66,31 @@ svg:hover {
     filter: drop-shadow(0px 0px 25px rgb(242, 241, 232));
     transform: scale(1.2);
 }
+h3 {
+    font-family: 'Roboto', sans-serif;
+    color: #4CAF50;
+    text-align: center;
+    animation: holographic 3s infinite alternate;
+}  
+@keyframes holographic {
+    0% {
+      color: #4CAF50;
+      text-shadow: 0 0 10px #4CAF50;
+    }
+    50% {
+      color: #2196F3;
+      text-shadow: 0 0 20px #2196F3;
+    }
+    100% {
+      color: #FF5722;
+      text-shadow: 0 0 30px #FF5722;
+    }
+}
 p {
     font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
     text-align: center;
-}
-p:hover {
-    color: #ff0000;
 }
 .spostaPagina{
     background-color: rgba(0, 0, 0, 0.959);
@@ -98,14 +115,14 @@ p:hover {
     background-color:transparent;
     color: white;
     top: 225px;
-    left: 60px;
-    width:60px ;
+    left: 70px;
+    width:70px ;
     height:60px;
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    filter: drop-shadow(0px 2px 2px rgb(9, 9, 9));
+    filter: drop-shadow(0px 2px 2px rgb(255, 254, 254));
 }
 .fittizi{
     background-color: rgba(0, 0, 0, 0.959);
@@ -139,6 +156,7 @@ left: 70%;
 .btn-sinistra {
     top: 220px;
     left: 20%;
+    filter: drop-shadow(0px 7px 5px rgb(255, 0, 251));
 }
 .btn-su{
     top: 130px;
@@ -151,6 +169,7 @@ left: 70%;
 .btn-destra{
     top: 130px;
     left: 60%;
+    filter: drop-shadow(0px 7px 5px rgb(255, 0, 251));
 }
 .fittizi button{
     border: none;
@@ -161,56 +180,47 @@ a{
     flex-direction: column;
     align-items: center;
 }
-.interazione{
-    display: flex;
-    justify-content: flex-end ;
-    align-items: center;
-    margin-right: 30px;
-}
 .recensioni{
+    font-size: 30px;
     color: blue;
 }
 .news{
-    color: orange;
+    font-size: 30px;
+    color: rgb(255, 234, 0);
 }
 .RN {
     font-family: Arial, sans-serif;
-    padding: 20px;
+    padding: 30px;
 }
-
 .RN p {
-    font-size: 16px;
     line-height: 1.5;
 }
-
-.RN h2 {
-    font-size: 20px;
-    color: #333;
-    margin-top: 20px;
-}
-
-.RN div {
-    margin-top: 10px;
-}
-
-.RN div p {
-    font-size: 14px;
-}
-
 .RN div p:hover {
-    color: #FF5733;
     cursor: pointer;
 }
-
-.RN div {
+.RN div p {
+    font-size: 20px;
     transition: all 0.2s ease-in-out;
 }
-
 .RN .arancione:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(200, 178, 8, 0.731);
+    box-shadow: 0 0 20px rgba(238, 211, 7, 0.731);
 }
 .RN .blu:hover {
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(9, 25, 150, 0.731);
 }
+.arancione{
+    color: orange;
+}
+.arancione:hover{
+    background-color: rgba(255, 255, 0, 0.508);
+    border-radius: 20px;
+}
+.blu{
+    color: blue;
+}
+.blu:hover{
+    background-color: rgba(0, 170, 255, 0.611);
+    border-radius: 20px;
+    }
