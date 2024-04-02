@@ -6,6 +6,15 @@ nav {
     background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
     text-align: center;
+    display: flex;
+    justify-content: space-between; /* Allinea gli elementi ai margini estremi del container */
+    align-items: center;   
+}
+.parte-dx{
+    margin-right:30px ;
+}
+.parte-centrale{
+    margin-left: 10%;
 }
 nav a {
     color: #fff;
