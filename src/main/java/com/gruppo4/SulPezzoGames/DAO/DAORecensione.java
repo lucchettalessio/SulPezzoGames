@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.gruppo4.SulPezzoGames.Entities.Entity;
 import com.gruppo4.SulPezzoGames.Entities.Recensione;
+import com.gruppo4.SulPezzoGames.Entities.Utente;
 
 @Service
 public class DAORecensione implements IDAO {
@@ -108,7 +109,7 @@ public class DAORecensione implements IDAO {
     @Override
     public void update(Entity e) {
 
-        String query = "UPDATE Recensioni SET (titolo,data,punteggio,immagine,testo,autore,videogioco) VALUES (?,?,?,?,?,?,?) WHERE id = ?";
+        String query = "UPDATE Recensioni SET titolo = ?, data = ?, punteggio = ?, immagine = ?, testo = ?, autore = ?, videogioco = ? WHERE id = ?";
         PreparedStatement ps = null;
         Recensione n = null;
 
@@ -120,9 +121,10 @@ public class DAORecensione implements IDAO {
             ps.setString(3, n.getPunteggio()+"");
             ps.setString(4, n.getImmagine());
             ps.setString(5, n.getTesto());
-            ps.setString(6, n.getAutore() + "");
-            ps.setString(7, n.getVideogioco() + "");
+            ps.setString(6, n.getAutore().getId() + "");
+            ps.setString(7, n.getVideogioco().getId() + "");
             ps.setString(8, n.getId() + "");
+            System.out.println(ps);
             ps.executeUpdate();
 
         } catch (SQLException exc) {
@@ -203,6 +205,48 @@ public class DAORecensione implements IDAO {
         }
         
         return r;
+        
+    }
+
+    public Map<Integer, Entity> getAutori(){
+        String query = "select * from utenti where tipo_utente = 'autore'";
+        Map<Integer, Entity> ris = new HashMap<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            ps = database.getConnection().prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while(rs.next())
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", rs.getString(1));
+                params.put("email", rs.getString(2));
+                params.put("username", rs.getString(3));
+                params.put("password", rs.getString(4));
+                params.put("nome", rs.getString(5));
+                params.put("cognome", rs.getString(6));
+                params.put("tipo_utente", rs.getString(7));
+
+                Utente u = context.getBean(Utente.class, params);
+
+                ris.put(u.getId(), u);
+            }
+
+        } catch (SQLException exc) {
+            System.out.println("Errore nella read di DAORecensione. " + exc.getMessage());
+        }
+        finally{
+            try {
+                ps.close();
+                rs.close();
+            } catch (SQLException ex) {
+                System.out.println("Errore nella chiusura del ps o rs in read di DAORecensione" + ex.getMessage());
+            }
+        }
+
+        return ris;
         
     }
     

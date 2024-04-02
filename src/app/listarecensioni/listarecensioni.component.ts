@@ -3,6 +3,7 @@ import { Recensione } from '../models/Recensione';
 import { ListaRecensioniService } from './listarecensioniService';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Utente } from '../models/Utente';
 
 @Component({
   selector: 'app-listarecensioni',
@@ -11,6 +12,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class ListarecensioniComponent implements OnInit {
   recensioni: Recensione[] = [];
+  autori: Utente[] = [];
+
   rowsPerPage: number = 4; 
   currentPage: number = 1;
   totalPages: number | undefined;
@@ -28,6 +31,7 @@ export class ListarecensioniComponent implements OnInit {
 
   ngOnInit(): void {
     this.caricaRecensioni();
+    this.caricaAutori();
     let tokenRuolo = sessionStorage.getItem("token")?.split("-")[0];
     if(tokenRuolo != null){
       this.ruolo = tokenRuolo
@@ -41,6 +45,14 @@ export class ListarecensioniComponent implements OnInit {
         this.totalPages = Math.ceil(this.recensioni.length / this.rowsPerPage);
       });
   }
+
+  caricaAutori(): void {
+    this.listaRecensioniService.getAutori()
+    .subscribe(autori => {
+      this.autori = autori;
+    })
+  }
+
   prevPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -108,7 +120,7 @@ export class ListarecensioniComponent implements OnInit {
         punteggio: this.recensioni[index].punteggio,
         immagine: this.recensioni[index].immagine,
         testo: this.recensioni[index].testo,
-        autore : this.recensioni[index].autore.nome + " " + this.recensioni[index].autore.cognome,
+        autore : this.recensioni[index].autore.id,
         videogioco : this.recensioni[index].videogioco.id
       })
   }
@@ -128,17 +140,21 @@ export class ListarecensioniComponent implements OnInit {
     );
 
     const body = JSON.stringify(formValues);
+    console.log(body)
 
     this.http.post("http://localhost:8080/api/Recensione/update", body, {headers}).subscribe(risposta =>{
       var check = risposta as boolean;
       if(check){
         alert("Modifica avvenuta con successo")
-        // window.location.href = "/areadirigenti"
-        var rew : Recensione = JSON.parse(body) as Recensione;
+        window.location.href = "/listarecensioni"
+        /* var rew : Recensione = JSON.parse(body) as Recensione;
 
         var index = this.recensioni.findIndex(x => x.id == rew.id)
-        this.recensioni.splice(index!, 1, rew);
+        this.recensioni.splice(index!, 1, rew); */
 
+      }
+      if(!check){
+        console.log("ammazzati")
       }
     })
 

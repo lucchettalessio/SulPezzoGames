@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Recensione } from '../models/Recensione';
+import { Utente } from '../models/Utente';
 
 
 @Injectable({
@@ -21,5 +22,10 @@ getRecensione(): Observable<Recensione[]> {
 getRecensioneById(id: number): Observable<Recensione> {
     const url = `http://localhost:8080/api/Recensione/${id}`;
     return this.http.get<Recensione>(url);
-  }
+}
+
+getAutori(): Observable<Utente[]> {
+  const url = `http://localhost:8080/api/Recensione/autori`;
+  return this.http.get<Utente[]>(url);
+}
 }

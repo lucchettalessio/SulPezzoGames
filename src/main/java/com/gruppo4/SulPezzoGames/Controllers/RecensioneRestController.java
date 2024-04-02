@@ -2,10 +2,12 @@ package com.gruppo4.SulPezzoGames.Controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 import com.gruppo4.SulPezzoGames.Entities.Recensione;
+import com.gruppo4.SulPezzoGames.Entities.Utente;
 import com.gruppo4.SulPezzoGames.Services.RecensioneService;
 
 import java.util.List;
 // import java.util.Map;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -38,7 +40,7 @@ public class RecensioneRestController {
     }
 
     @PostMapping("/update")
-    public boolean updateRecensione(@RequestBody Recensione body, @RequestHeader("token") String token){
+    public boolean updateRecensione(@RequestBody Map<String, String> body, @RequestHeader("token") String token){
         if(token.split("-")[0].equalsIgnoreCase("admin")){
             System.out.println(body);
             recensioneService.updateRecensione(body);
@@ -71,6 +73,11 @@ public class RecensioneRestController {
     @GetMapping("/{id}")
     public Recensione getRecensioneById(@PathVariable("id") int id){
         return recensioneService.findRecensioneById(id);
+    }
+
+    @GetMapping("/autori")
+    public List<Utente> getAllAutori(){
+        return recensioneService.getAutori();
     }
 
 }
