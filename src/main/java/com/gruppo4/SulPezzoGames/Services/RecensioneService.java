@@ -37,7 +37,13 @@ public class RecensioneService {
     @Autowired
     private DAOVideogioco DAOvideogioco;
 
-    public void createRecensione(Recensione r){
+    public void createRecensione(Map<String, String> params){
+        params.put("id","0");
+        Recensione r = context.getBean(Recensione.class, params);
+        Utente c = DAOutente.readFromId(Integer.parseInt(params.get("autore")));
+        Videogioco v = DAOvideogioco.readFromId(Integer.parseInt(params.get("videogioco")));
+        r.setAutore(c);
+        r.setVideogioco(v);
         DAORecensione.create(r);
     }
 

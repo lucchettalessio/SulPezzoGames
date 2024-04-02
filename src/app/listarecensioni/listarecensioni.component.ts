@@ -27,6 +27,9 @@ export class ListarecensioniComponent implements OnInit {
   modifyingId: number = -1;
   formModifica! : FormGroup;
 
+  isInserting: boolean = false;
+  formInsert! : FormGroup;
+
   constructor(private http: HttpClient, private listaRecensioniService: ListaRecensioniService, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
@@ -66,10 +69,14 @@ export class ListarecensioniComponent implements OnInit {
       this.currentPage = 1; 
     }
   }
+
   elimina(id: number){
+    this.isModifying = false;
+    this.isInserting = false;
     this.isDeleting = true;
     this.deletingId = id;
   }
+
   confermaElimina(id: number){
     var token = sessionStorage.getItem("token");
     if(token == null){
@@ -109,6 +116,8 @@ export class ListarecensioniComponent implements OnInit {
   }
 
   modifica(id: number){
+    this.isDeleting = false;
+    this.isInserting = false;
     this.isModifying = true;
     this.modifyingId = id;
     const index = this.recensioni.findIndex((recensione) => recensione.id === id);
@@ -140,17 +149,16 @@ export class ListarecensioniComponent implements OnInit {
     );
 
     const body = JSON.stringify(formValues);
-    console.log(body)
 
     this.http.post("http://localhost:8080/api/Recensione/update", body, {headers}).subscribe(risposta =>{
       var check = risposta as boolean;
       if(check){
         alert("Modifica avvenuta con successo")
-        window.location.href = "/listarecensioni"
-        /* var rew : Recensione = JSON.parse(body) as Recensione;
+        /* window.location.href = "/listarecensioni" */
+        var rew : Recensione = JSON.parse(body) as Recensione;
 
         var index = this.recensioni.findIndex(x => x.id == rew.id)
-        this.recensioni.splice(index!, 1, rew); */
+        this.recensioni.splice(index!, 1, rew);
 
       }
       if(!check){
@@ -165,6 +173,65 @@ export class ListarecensioniComponent implements OnInit {
   annullaModifica(){
     this.isModifying = false;
     this.modifyingId = -1;
+  }
+
+
+
+  insert(){
+    this.isDeleting = false;
+    this.isModifying = false;
+    this.isInserting = true;
+    this.formInsert = this.formBuilder.group(
+      {
+        id : "",
+        titolo : "",
+        data : "",
+        punteggio: "",
+        immagine: "",
+        testo: "",
+        autore : "",
+        videogioco : ""
+      })
+  }
+
+  submitInsert(){
+    var token = sessionStorage.getItem("token")
+    if(token == null){
+      token = "";
+    }
+
+    const formValues = this.formInsert.value;
+    const headers = new HttpHeaders(
+      {
+        'Content-Type' : 'application/json',
+        'token': token as string
+      }
+    );
+
+    const body = JSON.stringify(formValues);
+    console.log(body)
+
+    this.http.post("http://localhost:8080/api/Recensione/add", body, {headers}).subscribe(risposta =>{
+      var check = risposta as boolean;
+      if(check){
+        alert("Inserimento avvenuta con successo")
+        /* window.location.href = "/listarecensioni" */
+        var rew : Recensione = JSON.parse(body) as Recensione;
+
+        var index = this.recensioni.findIndex(x => x.id == rew.id)
+        this.recensioni.splice(index!, 1, rew);
+
+      }
+      if(!check){
+        console.log("ammazzati")
+      }
+    })
+
+    this.isInserting = false;
+  }
+
+  annullaInsert(){
+    this.isInserting = false;
   }
 }
 
