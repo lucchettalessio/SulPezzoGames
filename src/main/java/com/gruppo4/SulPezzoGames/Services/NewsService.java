@@ -5,13 +5,16 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 // import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 
 import com.gruppo4.SulPezzoGames.DAO.DAONews;
+import com.gruppo4.SulPezzoGames.DAO.DAOUtente;
 import com.gruppo4.SulPezzoGames.Entities.Entity;
 import com.gruppo4.SulPezzoGames.Entities.News;
+import com.gruppo4.SulPezzoGames.Entities.Utente;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -19,13 +22,20 @@ import jakarta.persistence.PersistenceContext;
 @Service
 public class NewsService {
 
-    // @Autowired
-    // private ApplicationContext context;
+    @Autowired
+    private ApplicationContext context;
 
     @Autowired
     private DAONews DAONews;
 
-    public void createNews(News n){
+    @Autowired
+    private DAOUtente DAOutente;
+
+    public void createNews(Map<String, String> params){
+        params.put("id","0");
+        News n = context.getBean(News.class, params);
+        Utente u = DAOutente.readFromId(Integer.parseInt(params.get("autore")));
+        n.setAutore(u);
         DAONews.create(n);
     }
 
@@ -53,7 +63,10 @@ public class NewsService {
         return ris;  
     }
 
-    public void updateNews(News n){
+    public void updateNews(Map<String, String> params){
+        News n = context.getBean(News.class, params);
+        Utente u = DAOutente.readFromId(Integer.parseInt(params.get("autore")));
+        n.setAutore(u);
         DAONews.update(n);
     }
 
@@ -63,11 +76,6 @@ public class NewsService {
 
     @PersistenceContext
     private EntityManager entityManager;
-
-    // public Optional<News> findNewsById(int id) {
-    //     News news = entityManager.find(News.class, id);
-    //     return Optional.ofNullable(news);
-    // }
 
     public News findNewsById(int id){
         return DAONews.readFromId(id);

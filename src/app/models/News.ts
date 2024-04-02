@@ -1,3 +1,5 @@
+import { Utente } from "./Utente";
+
 export interface News{
     id:number,
     titolo:string,
@@ -5,5 +7,5 @@ export interface News{
     immagine:string,
     data:string,
     testo:string,
-    autore:number
+    autore:Utente
 }

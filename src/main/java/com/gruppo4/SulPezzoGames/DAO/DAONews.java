@@ -24,6 +24,9 @@ public class DAONews implements IDAO {
     @Autowired
     private ApplicationContext context;
 
+    @Autowired
+    private DAOUtente DAOutente;
+
     @Override
     public void create(Entity e) {
         String query = "INSERT INTO News (titolo,categoria,immagine,data,testo,autore) VALUES (?,?,?,?,?,?)";
@@ -38,7 +41,7 @@ public class DAONews implements IDAO {
             ps.setString(3, n.getImmagine());
             ps.setString(4, n.getData());
             ps.setString(5, n.getTesto());
-            ps.setString(6, n.getAutore() + "");
+            ps.setString(6, n.getAutore().getId() + "");
 
             ps.executeUpdate();
 
@@ -76,9 +79,9 @@ public class DAONews implements IDAO {
                 params.put("immagine", rs.getString(4));
                 params.put("data", rs.getString(5));
                 params.put("testo", rs.getString(6));
-                params.put("autore", rs.getString(7)+"");
 
                 News n = context.getBean(News.class, params);
+                n.setAutore(DAOutente.readFromId(rs.getInt(7)));
                 
                 ris.put(n.getId(), n);
             }
@@ -118,9 +121,9 @@ public class DAONews implements IDAO {
                 params.put("immagine", rs.getString(4));
                 params.put("data", rs.getString(5));
                 params.put("testo", rs.getString(6));
-                params.put("autore", rs.getString(7)+"");
 
                 News n = context.getBean(News.class, params);
+                n.setAutore(DAOutente.readFromId(rs.getInt(7)));
                 
                 ris.put(n.getId(), n);
             }
@@ -158,7 +161,7 @@ public class DAONews implements IDAO {
             ps.setString(3, n.getImmagine());
             ps.setString(4, n.getData());
             ps.setString(5, n.getTesto());
-            ps.setInt(6, n.getAutore());
+            ps.setString(6, n.getAutore().getId() + "");
             ps.executeUpdate();
 
         } catch (SQLException exc) {
@@ -221,9 +224,9 @@ public class DAONews implements IDAO {
                 params.put("immagine", rs.getString(4));
                 params.put("data", rs.getString(5));
                 params.put("testo", rs.getString(6));
-                params.put("autore", rs.getString(7)+"");
                 
                 n = context.getBean(News.class, params);
+                n.setAutore(DAOutente.readFromId(rs.getInt(7)));
             }
             
         } catch (SQLException exc) {

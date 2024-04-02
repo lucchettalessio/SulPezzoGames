@@ -7,6 +7,7 @@ import com.gruppo4.SulPezzoGames.Services.NewsService;
 
 import java.util.List;
 // import java.util.Map;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,8 +30,19 @@ public class NewsRestController {
     private NewsService newsService;
 
     @PostMapping("/add")
-    public void addNews(@RequestBody News body){
-        newsService.createNews(body);
+    public boolean addNews(@RequestBody Map<String, String> body, @RequestHeader("token") String token){
+        if(token.split("-")[0].equalsIgnoreCase("admin")){
+            newsService.createNews(body);
+            return true;
+        }
+        else {
+            // Handle the case where the token is not "admin"
+            // For example, you can return an error response, log the event, or perform any other appropriate action.
+            // Here's an example of logging the event:
+            System.out.println("Unauthorized access attempt: Token is not admin.");
+            return false;
+        }
+        
     }
 
     @GetMapping("/get-all")
@@ -43,13 +56,35 @@ public class NewsRestController {
     }
 
     @PostMapping("/update")
-    public void updateNews(@RequestBody News body){
-        newsService.updateNews(body);
+    public boolean updateNews(@RequestBody Map<String, String> body, @RequestHeader("token") String token){
+        if(token.split("-")[0].equalsIgnoreCase("admin")){
+            newsService.updateNews(body);
+            return true;
+        }
+        else {
+            // Handle the case where the token is not "admin"
+            // For example, you can return an error response, log the event, or perform any other appropriate action.
+            // Here's an example of logging the event:
+            System.out.println("Unauthorized access attempt: Token is not admin.");
+            return false;
+        }
+        
     }
 
-    @PostMapping("/delete")
-    public void deleteNews(@RequestParam int id){
-        newsService.deleteNews(id);
+    @GetMapping("/delete")
+    public boolean deleteNews(@RequestParam int id, @RequestHeader("token") String token){
+        if(token.split("-")[0].equalsIgnoreCase("admin")){
+            newsService.deleteNews(id);
+            return true;
+        }
+        else {
+            // Handle the case where the token is not "admin"
+            // For example, you can return an error response, log the event, or perform any other appropriate action.
+            // Here's an example of logging the event:
+            System.out.println("Unauthorized access attempt: Token is not admin.");
+            return false;
+        }
+        
     }
 
     // @GetMapping("/{id}")

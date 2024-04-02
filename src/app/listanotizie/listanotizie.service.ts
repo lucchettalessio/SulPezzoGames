@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { News } from 'src/app/models/News';
+import { Utente } from '../models/Utente';
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +27,8 @@ export class ListanotizieService {
     return this.http.get<News[]>('http://localhost:8080/api/news/all-ordered');
   }
   
+  getAutori(): Observable<Utente[]> {
+    const url = `http://localhost:8080/api/Recensione/autori`;
+    return this.http.get<Utente[]>(url);
+  }
 }

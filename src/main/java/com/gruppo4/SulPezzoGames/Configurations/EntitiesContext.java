@@ -23,9 +23,8 @@ public class EntitiesContext {
         String immagine = params.get("immagine");
         String data = params.get("data");
         String testo = params.get("testo");
-        int autore = Integer.parseInt(params.get("autore"));
 
-        return new News(id,titolo,categoria,immagine,data,testo,autore);
+        return new News(id,titolo,categoria,immagine,data,testo);
     }
 
     @Bean

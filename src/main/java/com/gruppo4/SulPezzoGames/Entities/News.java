@@ -7,16 +7,15 @@ public class News extends Entity{
     private String immagine;
     private String data;
     private String testo;
-    private int autore;
+    private Utente autore;
     
-    public News(int id, String titolo, String categoria, String immagine, String data, String testo, int autore) {
+    public News(int id, String titolo, String categoria, String immagine, String data, String testo) {
         super(id);
         this.titolo = titolo;
         this.categoria = categoria;
         this.immagine = immagine;
         this.data = data;
         this.testo = testo;
-        this.autore = autore;
     }
 
     public String getTitolo() {
@@ -59,11 +58,11 @@ public class News extends Entity{
         this.testo = testo;
     }
 
-    public int getAutore() {
+    public Utente getAutore() {
         return autore;
     }
 
-    public void setAutore(int autore) {
+    public void setAutore(Utente autore) {
         this.autore = autore;
     }
 
