@@ -8,9 +8,9 @@
     <body>
         <div class="switch">
             <div class="btn-sx">
-                <div class="spostaPagina btn-lato-sx">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fb00ff" class="bi bi-person-lock" viewBox="0 0 16 16">
-                    <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m0 5.996V14H3s-1 0-1-1 1-4 6-4q.845.002 1.544.107a4.5 4.5 0 0 0-.803.918A11 11 0 0 0 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664zM9 13a1 1 0 0 1 1-1v-1a2 2 0 1 1 4 0v1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zm3-3a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1"/>
+                <div class="spostaPagina btn-lato-sx" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fb00ff" class="bi bi-person-lock" viewBox="0 0 16 16" *ngIf="tipo_utente == 'admin'">
+                    <path  d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m0 5.996V14H3s-1 0-1-1 1-4 6-4q.845.002 1.544.107a4.5 4.5 0 0 0-.803.918A11 11 0 0 0 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664zM9 13a1 1 0 0 1 1-1v-1a2 2 0 1 1 4 0v1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zm3-3a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1"/>
                     </svg>
                 </div>
                 <div class="fittizi btn-sinistra " >
@@ -31,14 +31,14 @@
                         <div>
                             <div #container class="centered">
                                 <div class="RN">
-                                    <h3>Buon giorno {{utente?.nome}}</h3>
-                                    <h2 class="arancione">LISTA NEWS</h2>
-                                    <div class="arancione" *ngFor="let news of notizie" [ngStyle]="{'color': cliccatoNews ? 'black' : 'grey'}">
-                                    <p>{{news.titolo}}</p>
+                                    <h3>Bentornato {{utente?.nome}}</h3>
+                                    <h2 class="arancioneTitolo" [ngStyle]="{'color': cliccatoNews ? 'orange' : 'rgb(203, 203, 203)'}">ULTIME NEWS</h2>
+                                    <div class="arancione" *ngFor="let news of notizie" [ngStyle]="{'color': cliccatoNews ? 'black' : 'rgb(203, 203, 203)'}">
+                                    <p [routerLink]="['/dettaglionotizia', news.id]">{{news.titolo}}</p>
                                     </div>
-                                    <h2 class="blu">LISTA RECENSIONI</h2>
-                                    <div class="blu" *ngFor="let recensione of recensioni" [ngStyle]="{'color': cliccatoRec ? 'black' : 'grey'}">
-                                    <p>{{recensione.titolo}}</p>
+                                    <h2 class="bluTitolo" [ngStyle]="{'color': cliccatoRec ? 'blue' : 'rgb(203, 203, 203)'}">TOP RECENSIONI</h2>
+                                    <div class="blu" *ngFor="let recensione of recensioni" [ngStyle]="{'color': cliccatoRec ? 'black' : 'rgb(203, 203, 203)'}">
+                                    <p [routerLink]="['/dettagliorecensione', recensione.id]">{{recensione.titolo}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -48,9 +48,9 @@
             </div>
 
             <div class="btn-dx">
-                <div class="latoD">
-                    <div class="bottoneS">
-                        <button  class="aggiungiRecensione"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                <div [ngClass]="tipo_utente == 'admin'? '' : 'latoD'">
+                    <div class="bottoneS" *ngIf="tipo_utente == 'admin'">
+                        <button class="aggiungiRecensione"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-plus-lg" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
                             </svg></button>
                     </div>

@@ -9,45 +9,69 @@ html, body{
     margin-top: 120px;
     height: 70%;
     min-height: 500px;
-    border-radius: 30px;
-    box-shadow: 0 0 10px 10px rgba(80, 80, 75, 0.5);
+    border-radius: 100px;
+    box-shadow: 0 0 30px 20px rgba(80, 80, 75, 0.5);
+
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* I joycon sono di larghezza fissa, lo schermo occupa lo spazio rimanente */
+
 }
 .btn-sx, .btn-dx
 {
     display: inline-block;
-    width: 20%;
+    width: 230px;
     height: 100%;
     min-height: 500px;
 }
+.btn-destra:hover{
+    transform: scale(1.1);
+}
+.btn-sinistra:hover{
+    transform: scale(1.1);
+}
+.btn-destra:active{
+    transform: scale(1);
+    filter: none;
+}
+.btn-sinistra:active{
+    transform: scale(1);
+    filter:none
+}
 .btn-sx{
     background-color: rgb(38, 190, 240);
-    border-radius: 30px 0 0  15px;
+    border-radius: 100px 0 0  100px;
+    /* border-width: solid rgb(21, 99, 125) 10px; */
 }
 .btn-dx{
     background-color: rgb(223, 68, 68);
-    border-radius:  0 15px 15px 0;
+    border-radius:  0 100px 100px 0;
     position: relative;
     float: right;
 }
 .monitor{
     display: inline-block;
-    position: absolute;
-    width: 60%;
+    /* position: absolute;  */
+    /* /* width: 80%; */
     background-color: rgb(3, 3, 3);
     height: 100%;
     min-height: 500px;
 }
 .screen{
-    position: absolute;
+    /* position: absolute; */
     background-color: white;
-    height: 450px;
-    width: 95%;
-    top: 25px;
-    left: 2.5%;
+    height: 480px;
+    /* width: 80%; */
+    /* top: 40px; */
+    /* margin-left: 15px; */
+    margin: 15px;
+    /* left: 2.5%; */
     border-radius: 15px;
     box-shadow: inset 0 0 10px 5px rgba(80, 80, 75, 0.5);
     overflow: scroll;
     text-align: center;
+}
+.screen::-webkit-scrollbar { 
+    display: none;  /* solo per Safari e Chrome */
 }
 img {
     width: 50%;
@@ -57,7 +81,7 @@ img {
 img:hover {
     transform: scale(1.1);
 }
-svg {
+/* svg {
     filter: drop-shadow(0px 2px 4px rgb(251, 9, 9));
     transition: filter 0.3s;
     color: rgba(255, 255, 0, 0.986);
@@ -65,12 +89,13 @@ svg {
 svg:hover {
     filter: drop-shadow(0px 0px 25px rgb(242, 241, 232));
     transform: scale(1.2);
-}
+} */
 h3 {
     font-family: 'Roboto', sans-serif;
     color: #4CAF50;
     text-align: center;
     animation: holographic 3s infinite alternate;
+    font-size: 30px;
 }  
 @keyframes holographic {
     0% {
@@ -108,8 +133,8 @@ p {
     box-shadow: inset 0 0 10px 5px rgba(80, 80, 75, 0.5);
 }
 .btn-lato-sx{
-    top: 110px;
-    left: 20%;
+    top: 90px;
+    left: 30%;
 }
 .aggiungiRecensione{
     background-color:transparent;
@@ -123,6 +148,14 @@ p {
     justify-content: center;
     align-items: center;
     filter: drop-shadow(0px 2px 2px rgb(255, 254, 254));
+}
+.aggiungiRecensione:hover{
+    transform: scale(1.2);
+}
+.aggiungiRecensione:active{
+    transform: scale(1);
+    filter: none;
+
 }
 .fittizi{
     background-color: rgba(0, 0, 0, 0.959);
@@ -182,14 +215,14 @@ a{
 }
 .recensioni{
     font-size: 30px;
-    color: blue;
+    color: rgb(52, 106, 255);
 }
 .news{
     font-size: 30px;
     color: rgb(255, 234, 0);
 }
 .RN {
-    font-family: Arial, sans-serif;
+    
     padding: 30px;
 }
 .RN p {
@@ -205,22 +238,32 @@ a{
 .RN .arancione:hover {
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(238, 211, 7, 0.731);
+
 }
 .RN .blu:hover {
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(9, 25, 150, 0.731);
 }
-.arancione{
+.arancioneTitolo{
     color: orange;
 }
 .arancione:hover{
     background-color: rgba(255, 255, 0, 0.508);
     border-radius: 20px;
+    transition: 0.2s;
 }
-.blu{
+.bluTitolo{
     color: blue;
 }
 .blu:hover{
     background-color: rgba(0, 170, 255, 0.611);
     border-radius: 20px;
+    transition: 0.2s;
+
     }
+.latoD{
+    margin-top: 60px;
+}
+p, button{
+    font-family: "Kanit", sans-serif;
+}
