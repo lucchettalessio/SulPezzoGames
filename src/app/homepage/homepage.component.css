@@ -99,16 +99,16 @@ h3 {
 }  
 @keyframes holographic {
     0% {
-      color: #4CAF50;
-      text-shadow: 0 0 10px #4CAF50;
+    color: #4CAF50;
+    text-shadow: 0 0 10px #4CAF50;
     }
     50% {
-      color: #2196F3;
-      text-shadow: 0 0 20px #2196F3;
+    color: #2196F3;
+    text-shadow: 0 0 20px #2196F3;
     }
     100% {
-      color: #FF5722;
-      text-shadow: 0 0 30px #FF5722;
+    color: #FF5722;
+    text-shadow: 0 0 30px #FF5722;
     }
 }
 p {

@@ -1,8 +1,69 @@
 /* You can add global styles to this file, and also import other style files */
-html{
+html body .dark-mode-enabled{
     font-family: "Kanit", sans-serif;
+    background-color:  rgb(38, 190, 240);
+}
+.dark-mode-enabled a{
+    color: white;
+}
+.dark-mode-enabled svg{
+    color: #1900ff;
+}
+.dark-mode-enabled a:hover{
+    color: blueviolet;
+}
+html {
+    font-family: "Kanit", sans-serif;
+    background-color: rgb(68, 9, 135);
+}
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between; /* Allinea gli elementi ai margini estremi del container */
+    align-items: center;   
+}
+.parte-dx{
+    margin-right:30px ;
+}
+.parte-centrale{
+    margin-left: 10%;
+}
+nav a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    margin: 10px;
+}
+nav a:hover {
+    color: #1900ff;
+}
+svg {
+    filter: drop-shadow(0px 2px 4px rgb(57, 9, 251));
+    transition: filter 0.3s;
+    color: rgba(174, 0, 255, 0.986);
+}
+svg:hover {
+    filter: drop-shadow(0px 0px 25px rgb(242, 241, 232));
+    transform: scale(1.2);
+}
+a:hover{
+    cursor: pointer;
+}
+img{
+    border-radius: 20px;
+}
+.logo-chiaro{
+display: inline;
+margin-right: 10px;
+}
+.logo-scuro{
+    display: inline;
+    margin-right: 10px;
 }
 
-p{
-    font-family: "Kanit", sans-serif;
-}
