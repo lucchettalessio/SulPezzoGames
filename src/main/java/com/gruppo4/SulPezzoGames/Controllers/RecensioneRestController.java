@@ -29,8 +29,18 @@ public class RecensioneRestController {
     private RecensioneService recensioneService;
 
     @PostMapping("/add")
-    public void addRecensione(@RequestBody Recensione body){
-        recensioneService.createRecensione(body);
+    public boolean addRecensione(@RequestBody Map<String, String> body, @RequestHeader("token") String token){
+        if(token.split("-")[0].equalsIgnoreCase("admin")){
+            recensioneService.createRecensione(body);
+            return true;
+        }
+        else {
+            // Handle the case where the token is not "admin"
+            // For example, you can return an error response, log the event, or perform any other appropriate action.
+            // Here's an example of logging the event:
+            System.out.println("Unauthorized access attempt: Token is not admin.");
+            return false;
+        }
     }
 
 
@@ -42,7 +52,6 @@ public class RecensioneRestController {
     @PostMapping("/update")
     public boolean updateRecensione(@RequestBody Map<String, String> body, @RequestHeader("token") String token){
         if(token.split("-")[0].equalsIgnoreCase("admin")){
-            System.out.println(body);
             recensioneService.updateRecensione(body);
             return true;
         }

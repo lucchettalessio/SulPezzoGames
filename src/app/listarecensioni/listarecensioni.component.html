@@ -58,29 +58,30 @@
                             </p>
                             <img src="{{r.immagine}}">
                             <div *ngIf="isModifying && modifyingId == r.id" class="modal">
-                                <div *ngIf="isModifying && modifyingId == r.id" class="modal">
-                                    <form [formGroup]="formModifica" (ngSubmit)="submitModifica(r.id)">
-                                        <input type="hidden" name="id" formControlName="id">
-                                        <label for="nome">Titolo:</label>
-                                        <input type="text" name="titolo" formControlName="titolo"><br>
-                                        <label for="data">Data:</label>
-                                        <input type="date" name="data" formControlName="data"><br>
-                                        <label for="punteggio">Punteggio:</label>
-                                        <input type="number" name="punteggio" formControlName="punteggio"><br>
-                                        <label for="immagine">Immagine:</label>
-                                        <input type="text" name="immagine" formControlName="immagine"><br>
-                                        <label for="testo">Testo:</label>
-                                        <input type="text" name="testo" formControlName="testo"><br>
-                                        <select name="autore" formControlName="autore">
-                                        <!--<option *ngFor="let autore of autori" [value]="autore.id">{{autore.nome}} {{autore.cognome}}</option> -->
-                                        </select>
-                                        <label for="videogioco">Videogioco:</label>
-                                        <input type="text" name="videogioco" formControlName="videogioco"><br>
-                                        <button (click)="annullaModifica()">Annulla</button>
-                                        <input type="submit">
-                                    </form>
-                                </div>
+                                
+                                <form [formGroup]="formModifica" (ngSubmit)="submitModifica(r.id)">
+                                    <input type="hidden" name="id" formControlName="id">
+                                    <label for="nome">Titolo:</label>
+                                    <input type="text" name="titolo" formControlName="titolo"><br>
+                                    <label for="data">Data:</label>
+                                    <input type="date" name="data" formControlName="data"><br>
+                                    <label for="punteggio">Punteggio:</label>
+                                    <input type="number" name="punteggio" formControlName="punteggio"><br>
+                                    <label for="immagine">Immagine:</label>
+                                    <input type="text" name="immagine" formControlName="immagine"><br>
+                                    <label for="testo">Testo:</label>
+                                    <input type="text" name="testo" formControlName="testo"><br>
+                                    <label for="autore">Autore:</label>
+                                    <select name="autore" formControlName="autore">
+                                        <option *ngFor="let autore of autori" [value]="autore.id">{{autore.nome}} {{autore.cognome}}</option>
+                                    </select><br>
+                                    <label for="videogioco">Videogioco:</label>
+                                    <input type="text" name="videogioco" formControlName="videogioco"><br>
+                                    <button (click)="annullaModifica()">Annulla</button>
+                                    <input type="submit">
+                                </form>
                             </div>
+
                             <div *ngIf="isDeleting && deletingId == r.id"  class="modal">
                                 <p>Sei siuro di voler eliminare l'articolo: "{{r.titolo}}"?</p>
                                     <button (click)="confermaElimina(r.id)">Si</button>
@@ -94,9 +95,34 @@
             <div class="btn-dx">
                 <div class="latoD">
                     <div class="bottoneS">
-                        <button class="aggiungiRecensione"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <button (click)="insert()" class="aggiungiRecensione"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-plus-lg" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
                         </svg></button>
+
+                        <div *ngIf="isInserting" class="modal">
+                                
+                            <form [formGroup]="formInsert" (ngSubmit)="submitInsert()">
+                                <input type="hidden" name="id" formControlName="id">
+                                <label for="nome">Titolo:</label>
+                                <input type="text" name="titolo" formControlName="titolo"><br>
+                                <label for="data">Data:</label>
+                                <input type="date" name="data" formControlName="data"><br>
+                                <label for="punteggio">Punteggio:</label>
+                                <input type="number" name="punteggio" formControlName="punteggio"><br>
+                                <label for="immagine">Immagine:</label>
+                                <input type="text" name="immagine" formControlName="immagine"><br>
+                                <label for="testo">Testo:</label>
+                                <input type="text" name="testo" formControlName="testo"><br>
+                                <label for="autore">Autore:</label>
+                                <select name="autore" formControlName="autore">
+                                    <option *ngFor="let autore of autori" [value]="autore.id">{{autore.nome}} {{autore.cognome}}</option>
+                                </select><br>
+                                <label for="videogioco">Videogioco:</label>
+                                <input type="text" name="videogioco" formControlName="videogioco"><br>
+                                <button (click)="annullaInsert()">Annulla</button>
+                                <input type="submit">
+                            </form>
+                        </div>
                     </div>
                     <div class="fittizi bt-a ">
                         A
