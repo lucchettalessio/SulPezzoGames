@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParameterCodec } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Recensione } from '../models/Recensione';
+import { ListaRecensioniService } from '../listarecensioni/listarecensioniService';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Utente } from '../models/Utente';
 
 @Component({
   selector: 'app-dettagliorecensione',
@@ -11,18 +14,29 @@ import { Recensione } from '../models/Recensione';
 })
 export class DettagliorecensioneComponent implements OnInit {
 
-  recensione?:Recensione;
-  tipo_utente?:string;
+  recensione!:Recensione;
+  autori: Utente[] = [];
 
-  constructor(private route: ActivatedRoute, private http : HttpClient){
+  ruolo: string = "";
+
+  isModifying: boolean = false;
+  formModifica! : FormGroup;
+
+
+
+  constructor(private route: ActivatedRoute, private http: HttpClient, private listaRecensioniService: ListaRecensioniService, private formBuilder: FormBuilder){
     this.http = http;
     this.getRecensione;
   }
 
   ngOnInit(): void {
     this.getRecensione();
-    var token = sessionStorage.getItem("token");
-    this.tipo_utente = token?.split("-")[0];
+    this.caricaAutori();
+    let tokenRuolo = sessionStorage.getItem("token")?.split("-")[0];
+    if(tokenRuolo != null){
+      this.ruolo = tokenRuolo
+    }
+    console.log("----->" + this.recensione);
   }
   
   getRecensione(){
@@ -32,8 +46,65 @@ export class DettagliorecensioneComponent implements OnInit {
       
       this.http.get("http://localhost:8080/api/Recensione/" + idRecensione, {headers}).subscribe(risposta =>{
         this.recensione = risposta as Recensione;
+        
       })
       
     }
+
+  caricaAutori(): void {
+    this.listaRecensioniService.getAutori()
+    .subscribe(autori => {
+      this.autori = autori;
+    })
+  }
+
+  modifica(id: number){
+    console.log(this.recensione);
+    this.isModifying = true;
+    this.formModifica = this.formBuilder.group(
+      {
+        id : this.recensione.id,
+        titolo : this.recensione.titolo,
+        data : this.recensione.data,
+        punteggio: this.recensione.punteggio,
+        immagine: this.recensione.immagine,
+        testo: this.recensione.testo,
+        autore : this.recensione.autore.id,
+        videogioco : this.recensione.videogioco.id
+      })
+  }
+
+  submitModifica(id: number){
+    var token = sessionStorage.getItem("token")
+    if(token == null){
+      token = "";
+    }
+
+    const formValues = this.formModifica.value;
+    const headers = new HttpHeaders(
+      {
+        'Content-Type' : 'application/json',
+        'token': token as string
+      }
+    );
+
+    const body = JSON.stringify(formValues);
+
+    this.http.post("http://localhost:8080/api/Recensione/update", body, {headers}).subscribe(risposta =>{
+      var check = risposta as boolean;
+      if(check){
+        alert("Modifica avvenuta con successo")
+        console.log(this.recensione.id);
+        window.location.reload;
+
+        this.isModifying = false;
+      }
+    })
+  }
+
+
+  annullaModifica(){
+    this.isModifying = false;
+  }
 
 }

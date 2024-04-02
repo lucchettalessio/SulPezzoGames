@@ -124,7 +124,7 @@ public class DAORecensione implements IDAO {
             ps.setString(6, n.getAutore().getId() + "");
             ps.setString(7, n.getVideogioco().getId() + "");
             ps.setString(8, n.getId() + "");
-            System.out.println(ps);
+            
             ps.executeUpdate();
 
         } catch (SQLException exc) {
@@ -185,11 +185,12 @@ public class DAORecensione implements IDAO {
                 params.put("punteggio", rs.getString(4));
                 params.put("immagine", rs.getString(5));
                 params.put("testo", rs.getString(6));
-                params.put("autore", rs.getString(7));
-                params.put("punteggio", rs.getString(8)+"");
 
                 
                 r = context.getBean(Recensione.class, params);
+                r.setAutore(DAOutente.readFromId(rs.getInt(7)));
+                r.setVideogioco(DAOvideogioco.readFromId(rs.getInt(8)));
+
             }
             
         } catch (SQLException exc) {

@@ -23,10 +23,6 @@ export class ListarecensioniComponent implements OnInit {
   isDeleting: boolean = false;
   deletingId: number = -1;
 
-  isModifying: boolean = false;
-  modifyingId: number = -1;
-  formModifica! : FormGroup;
-
   isInserting: boolean = false;
   formInsert! : FormGroup;
 
@@ -71,7 +67,6 @@ export class ListarecensioniComponent implements OnInit {
   }
 
   elimina(id: number){
-    this.isModifying = false;
     this.isInserting = false;
     this.isDeleting = true;
     this.deletingId = id;
@@ -98,7 +93,6 @@ export class ListarecensioniComponent implements OnInit {
         alert("Eliminazione avvenuta con successo")
         // window.location.href = "/areadirigenti"
         var indice = this.recensioni?.findIndex(x => x.id === id)
-        console.log("indice", indice)
         if(indice! > -1){
           this.recensioni?.splice(indice!, 1);
         }
@@ -115,71 +109,9 @@ export class ListarecensioniComponent implements OnInit {
     this.deletingId = -1;
   }
 
-  modifica(id: number){
-    this.isDeleting = false;
-    this.isInserting = false;
-    this.isModifying = true;
-    this.modifyingId = id;
-    const index = this.recensioni.findIndex((recensione) => recensione.id === id);
-    this.formModifica = this.formBuilder.group(
-      {
-        id : this.recensioni[index].id,
-        titolo : this.recensioni[index].titolo,
-        data : this.recensioni[index].data,
-        punteggio: this.recensioni[index].punteggio,
-        immagine: this.recensioni[index].immagine,
-        testo: this.recensioni[index].testo,
-        autore : this.recensioni[index].autore.id,
-        videogioco : this.recensioni[index].videogioco.id
-      })
-  }
-
-  submitModifica(id: number){
-    var token = sessionStorage.getItem("token")
-    if(token == null){
-      token = "";
-    }
-
-    const formValues = this.formModifica.value;
-    const headers = new HttpHeaders(
-      {
-        'Content-Type' : 'application/json',
-        'token': token as string
-      }
-    );
-
-    const body = JSON.stringify(formValues);
-
-    this.http.post("http://localhost:8080/api/Recensione/update", body, {headers}).subscribe(risposta =>{
-      var check = risposta as boolean;
-      if(check){
-        alert("Modifica avvenuta con successo")
-        /* window.location.href = "/listarecensioni" */
-        var rew : Recensione = JSON.parse(body) as Recensione;
-
-        var index = this.recensioni.findIndex(x => x.id == rew.id)
-        this.recensioni.splice(index!, 1, rew);
-
-      }
-      if(!check){
-        console.log("ammazzati")
-      }
-    })
-
-    this.isModifying = false;
-    this.modifyingId = -1;
-  }
-
-  annullaModifica(){
-    this.isModifying = false;
-    this.modifyingId = -1;
-  }
-
-
 
   insert(){
     this.isDeleting = false;
-    this.isModifying = false;
     this.isInserting = true;
     this.formInsert = this.formBuilder.group(
       {
