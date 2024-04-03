@@ -6,16 +6,18 @@ public class Recensione extends Entity{
     private String data;
     private int punteggio;
     private String immagine;
+    private String immagine2;
     private String testo;
     private Utente autore;
     private Videogioco videogioco;
     
-    public Recensione(int id, String titolo, String data, int punteggio, String immagine, String testo) {
+    public Recensione(int id, String titolo, String data, int punteggio, String immagine, String immagine2, String testo) {
         super(id);
         this.titolo = titolo;
         this.data = data;
         this.punteggio = punteggio;
         this.immagine = immagine;
+        this.immagine2 = immagine2;
         this.testo = testo;
     }
 
@@ -51,6 +53,14 @@ public class Recensione extends Entity{
         this.immagine = immagine;
     }
 
+    public String getImmagine2(){
+        return immagine2;
+    }
+
+    public void setImmagine2(String immagine2){
+        this.immagine2 = immagine2;
+    }
+
     public String getTesto() {
         return testo;
     }
@@ -78,7 +88,7 @@ public class Recensione extends Entity{
     @Override
     public String toString() {
         return "Recensione [titolo=" + titolo + ", data=" + data + ", punteggio=" + punteggio + ", immagine=" + immagine
-                + ", testo=" + testo + ", autore=" + autore + ", videogioco=" + videogioco + "]";
+                + ", immagine2=" + immagine2 + ", testo=" + testo + ", autore=" + autore + ", videogioco=" + videogioco + "]";
     }
 
 }

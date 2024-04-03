@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParameterCodec } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, interval } from 'rxjs';
 import { Recensione } from '../models/Recensione';
 import { ListaRecensioniService } from '../listarecensioni/listarecensioniService';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -16,13 +16,15 @@ export class DettagliorecensioneComponent implements OnInit {
 
   recensione!:Recensione;
   autori: Utente[] = [];
+  immagine = "";
+  isDisabled = false;
 
-  ruolo: string = "";
+  tipo_utente: string = "";
 
   isModifying: boolean = false;
   formModifica! : FormGroup;
 
-
+  currentIndex = 0;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private listaRecensioniService: ListaRecensioniService, private formBuilder: FormBuilder){
     this.http = http;
@@ -34,10 +36,24 @@ export class DettagliorecensioneComponent implements OnInit {
     this.caricaAutori();
     let tokenRuolo = sessionStorage.getItem("token")?.split("-")[0];
     if(tokenRuolo != null){
-      this.ruolo = tokenRuolo
+      this.tipo_utente = tokenRuolo
     }
     console.log("----->" + this.recensione);
+
+    let cont = 0;
+    setInterval(()=>{
+      if(cont%2 == 0){
+        this.immagine = this.recensione.immagine;
+      }
+      else{
+        this.immagine = this.recensione.immagine2;
+      }
+      cont++;
+    },2000)
+
+
   }
+
   
   getRecensione(){
     const headers = new HttpHeaders({'Content-Type' : 'application/json',});

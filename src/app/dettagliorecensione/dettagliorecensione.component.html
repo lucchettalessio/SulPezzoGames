@@ -11,7 +11,7 @@
         <div class="switch">
             <div class="btn-sx">
                 <div class="spostaPagina btn-lato-sx">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-lock" viewBox="0 0 16 16">
+                    <svg *ngIf="tipo_utente == 'admin'" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-lock" viewBox="0 0 16 16">
                     <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m0 5.996V14H3s-1 0-1-1 1-4 6-4q.845.002 1.544.107a4.5 4.5 0 0 0-.803.918A11 11 0 0 0 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664zM9 13a1 1 0 0 1 1-1v-1a2 2 0 1 1 4 0v1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zm3-3a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1"/>
                     </svg>
                 </div>
@@ -28,19 +28,21 @@
             <div class="monitor">
                 <div class="screen">
                     <div *ngIf="recensione">
-                        <button *ngIf="ruolo.toLowerCase() === 'admin'" (click)="modifica(recensione.id)"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fb00ff" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <button *ngIf="tipo_utente.toLowerCase() === 'admin'" (click)="modifica(recensione.id)"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fb00ff" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                         </svg></button>
                         <h2>{{ recensione.titolo }}</h2>
-                        <img [src]="recensione.immagine" alt="{{ recensione.titolo }}" width="300">
+
+                        <img [src]="immagine" alt="{{ recensione.titolo }}" width="300">                        
+
                         <p>{{ recensione.testo }}</p>
                         <p>{{recensione.autore.nome}} {{recensione.autore.cognome}}</p>
                         <p>{{recensione.data}}</p>
                         <p>{{recensione.videogioco.titolo}}</p>
                     </div>
                     <div *ngIf="!recensione">
-                        <p>Caricamento del dettaglio della notizia...{{ recensione }}</p>
+                        <p>Nessuna recensione disponibile</p>
                     </div>
 
                     <div *ngIf="isModifying" class="modal">
@@ -74,6 +76,7 @@
             <div class="btn-dx">
                 <div class="latoD">
                     <div class="bottoneS">
+                        
                     </div>
                     <div class="fittizi bt-a ">
                         A

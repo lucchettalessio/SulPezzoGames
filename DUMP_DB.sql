@@ -37,6 +37,7 @@ CREATE TABLE Recensioni (
     data DATE,
     punteggio INT,
     immagine VARCHAR(255),
+    immagine2 VARCHAR(255),
     testo TEXT,
     autore INT,
     videogioco INT,
@@ -73,3 +74,16 @@ VALUES
 ('Call of Duty: Modern Warfare III', '2024-03-20', 6, 'https://sm.ign.com/t/ign_it/screenshot/default/ga_fwmt.1280.jpg', 'Eccellente gioco sparatutto', 2, 3),
 ('Suicide Squad: Kill the Justice League', '2024-03-21', 8, 'https://orgoglionerd.it/wp-content/uploads/2024/03/Suicide-Squad-Kill-the-Justice-League-Stagione-1.jpg', 'Un capolavoro assoluto, imperdibile per ogni appassionato di giochi d''avventura.', 2, 2),
 ('P3: Persona 3: Reload [Shin Megami Tensei]', '2024-03-22', 2, 'https://www.pcgamesn.com/wp-content/sites/pcgamesn/2023/10/persona-3-reload-release-date.jpg', 'Multiple Video Game', 3, 1);
+
+alter table recensioni
+add column immagine2 varchar(300);
+
+select * from recensioni;
+
+UPDATE `sulpezzogames`.`recensioni` SET `immagine2` = 'https://images.kinguin.net/g/carousel-main-mobile/media/category/s/u/super-mario-odyssey_1509187305_1_1.jpg' WHERE (`id` = '1');
+UPDATE `sulpezzogames`.`recensioni` SET `immagine2` = 'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000000025/7137262b5a64d921e193653f8aa0b722925abc5680380ca0e18a5cfd91697f58' WHERE (`id` = '2');
+UPDATE `sulpezzogames`.`recensioni` SET `immagine2` = 'https://sm.ign.com/t/ign_it/screenshot/default/rdr2-copertina_ucy9.1280.jpg' WHERE (`id` = '3');
+UPDATE `sulpezzogames`.`recensioni` SET `immagine2` = 'https://ftw.usatoday.com/wp-content/uploads/sites/90/2023/12/call-of-duty-modern-warfare-3-season-1.jpg?w=1000&h=600&crop=1' WHERE (`id` = '4');
+UPDATE `sulpezzogames`.`recensioni` SET `immagine2` = 'https://sm.ign.com/t/ign_it/preview/s/suicide-sq/suicide-squad-kill-the-justice-league-preview-we-played-it-a_qw51.1280.jpg' WHERE (`id` = '5');
+UPDATE `sulpezzogames`.`recensioni` SET `immagine2` = 'https://www.digitaltrends.com/wp-content/uploads/2023/01/Persona-3-Portable.jpg?resize=1200%2C630&p=1' WHERE (`id` = '6');
+
