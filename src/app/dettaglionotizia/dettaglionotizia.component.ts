@@ -24,7 +24,6 @@ export class DettaglionotiziaComponent implements OnInit {
   
   constructor(private route: ActivatedRoute, private http : HttpClient, private listanotizieService: ListanotizieService, private formBuilder: FormBuilder){
     this.http = http;
-    this.getNews;
   }
   
   
