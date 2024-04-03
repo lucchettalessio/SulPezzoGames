@@ -38,7 +38,6 @@ export class DettagliorecensioneComponent implements OnInit {
     if(tokenRuolo != null){
       this.tipo_utente = tokenRuolo
     }
-<<<<<<< HEAD
     console.log("----->" + this.recensione);
 
     let cont = 0;
@@ -53,8 +52,6 @@ export class DettagliorecensioneComponent implements OnInit {
     },2000)
 
 
-=======
->>>>>>> 20be707678c921965c55f402eecad1516bda785b
   }
 
   
