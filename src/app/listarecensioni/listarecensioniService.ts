@@ -9,14 +9,13 @@ import { Utente } from '../models/Utente';
 providedIn: 'root'
 })
 export class ListaRecensioniService {
-private apiUrl = 'http://localhost:8080/api/Recensione/get-all';
 
 constructor(private http: HttpClient) {
         this.http=http;
 }
 
 getRecensione(): Observable<Recensione[]> {
-    return this.http.get<Recensione[]>(this.apiUrl);
+    return this.http.get<Recensione[]>('http://localhost:8080/api/Recensione/get-all');
 }
 
 getRecensioneById(id: number): Observable<Recensione> {
@@ -30,7 +29,7 @@ getAutori(): Observable<Utente[]> {
 }
 
 getRecensioniByVideogioco(videogiocoId: number): Observable<Recensione[]> {
-  const url = `${this.apiUrl}/get-all/videogioco/${videogiocoId}`;
+  const url = `http://localhost:8080/api/Recensione/get-all/videogioco/${videogiocoId}`;
   return this.http.get<Recensione[]>(url);
 }
 }
