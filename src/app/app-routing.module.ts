@@ -7,6 +7,7 @@ import { LoginformComponent } from './loginform/loginform.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { DettaglionotiziaComponent } from './dettaglionotizia/dettaglionotizia.component';
 import { DettagliorecensioneComponent } from './dettagliorecensione/dettagliorecensione.component';
+import { UserpageComponent } from './userpage/userpage.component';
 
 const routes: Routes = [{
   //http://localhost:4200/loginpage
@@ -47,6 +48,11 @@ const routes: Routes = [{
   //http://localhost:4200/dettagliorecensione/:id
   path: 'dettagliorecensione/:id',
   component: DettagliorecensioneComponent
+},
+{
+  //http://localhost:4200/userpage
+  path: 'userpage',
+  component: UserpageComponent
 }
 ];
 
