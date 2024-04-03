@@ -62,7 +62,7 @@
                                 <option *ngFor="let autore of autori" [value]="autore.id">{{autore.nome}} {{autore.cognome}}</option>
                             </select><br>
                             <label for="videogioco">Videogioco:</label>
-                            <input type="text" name="videogioco" formControlName="videogioco"><br>
+                            <input type="number" name="videogioco" formControlName="videogioco"><br>
                             <button (click)="annullaModifica()">Annulla</button>
                             <input type="submit">
                         </form>
