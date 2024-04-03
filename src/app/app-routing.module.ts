@@ -20,7 +20,7 @@ const routes: Routes = [{
 },
 {
   //http://localhost:4200/listarecensioni
-  path: 'listarecensioni',
+  path: 'listarecensioni/:id',
   component: ListarecensioniComponent
 },
 {
