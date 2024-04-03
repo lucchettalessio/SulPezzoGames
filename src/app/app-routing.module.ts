@@ -24,6 +24,11 @@ const routes: Routes = [{
   component: ListarecensioniComponent
 },
 {
+  //http://localhost:4200/listarecensioni
+  path: 'listarecensioni/:id',
+  component: ListarecensioniComponent
+},
+{
   //http://localhost:4200/listavideogiochi
   path: 'listavideogiochi',
   component: ListavideogiochiComponent

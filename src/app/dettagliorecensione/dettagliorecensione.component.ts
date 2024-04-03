@@ -36,7 +36,6 @@ export class DettagliorecensioneComponent implements OnInit {
     if(tokenRuolo != null){
       this.ruolo = tokenRuolo
     }
-    console.log("----->" + this.recensione);
   }
   
   getRecensione(){
@@ -94,8 +93,7 @@ export class DettagliorecensioneComponent implements OnInit {
       var check = risposta as boolean;
       if(check){
         alert("Modifica avvenuta con successo")
-        console.log(this.recensione.id);
-        window.location.reload;
+        window.location.reload();
 
         this.isModifying = false;
       }
