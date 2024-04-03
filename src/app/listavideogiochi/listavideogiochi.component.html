@@ -48,7 +48,7 @@
                             <div class="schedaVideogioco">
                                 <h2>{{ videogioco.titolo }}</h2>
                                 <p>{{videogioco.data.split("-")[0]}} - {{videogioco.genere}}</p>
-                                <p [routerLink]="['/listarecensioni', videogioco.id]" (click)="filterRecensioni(videogioco.id)"><img src="{{ videogioco.immagine }}" class="immagineCliccabile"></p>
+                                <p [routerLink]="['/listarecensioni', { idVideogioco: videogioco.id }]" (click)="openRecensioni(videogioco.id)"><img src="{{ videogioco.immagine }}" class="immagineCliccabile"></p>
                                 <p>Produzione: {{videogioco.produzione}}</p>
                             </div>
                     </div>
