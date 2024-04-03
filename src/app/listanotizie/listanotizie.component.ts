@@ -130,6 +130,7 @@ export class ListanotizieComponent implements OnInit {
         categoria : "",
         data : "",
         immagine: "",
+        immagine2: "",
         testo: "",
         autore : "",
       })

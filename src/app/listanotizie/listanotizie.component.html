@@ -35,7 +35,13 @@
             <div class="monitor">
                 <div class="screen">
                     <div #container class="contenitore">
+                        <h2 style="font-size: 30px;">NOTIZIE</h2>
                         <div *ngFor="let n of notizie.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage)">
+                            <div class="schedaNews">
+                                <h3 class="news" [routerLink]="['/dettaglionotizia', n.id]"> {{ n.titolo }} <p>{{ n.data }}</p>
+                                    <p><img src="{{n.immagine}}"></p>
+                                    </h3>
+                            </div>
                             <div class="interazione">
                                 <p>
                                     <button class="cestino" *ngIf="ruolo.toLowerCase() === 'admin'" (click)="elimina(n.id)"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fb00ff" class="bi bi-trash" viewBox="0 0 16 16">
@@ -47,16 +53,13 @@
                                     </svg></button>
                                 </p>
                             </div>
-                            <div class="schedaNews">
-                                <h2><a class="news" [routerLink]="['/dettaglionotizia', n.id]"> {{ n.titolo }} <p>{{ n.data }}</p>
-                                    <p><img src="{{n.immagine}}"></p>
-                                    </a></h2>
-                            </div>
                             <div *ngIf="isDeleting && deletingId == n.id"  class="modal">
-                                <p>Sei siuro di voler eliminare l'articolo: "{{n.titolo}}"?</p>
+                                <p style="font-weight: bold;">ATTENZIONE</p>
+                                <p>Sei siuro di voler eliminare l'articolo: "{{n.titolo}}"?</p><br>
                                     <button class="modal-button-S" (click)="confermaElimina(n.id)">Si</button>
                                     <button class="modal-button-N" (click)="annullaElimina()">No</button>
                             </div>
+                            <div style="background-color: black;height: 5px;width: 100%;"></div>
                         </div>
                     </div>
                 </div>
@@ -65,7 +68,7 @@
             <div class="btn-dx">
                 <div class="latoD">
                     <div class="bottoneS">
-                        <button  class="aggiungiNotizia" (click)="insert()"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <button [disabled]="ruolo != 'admin'" class="aggiungiNotizia" (click)="insert()"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-plus-lg" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
                             </svg>
                         </button>
@@ -73,6 +76,7 @@
                         <div *ngIf="isInserting" class="modal">
                                 
                             <form [formGroup]="formInsert" (ngSubmit)="submitInsert()">
+                                <h2>Nuova Notizia</h2>
                                 <input type="hidden" name="id" formControlName="id">
                                 <label for="titolo">Titolo:</label>
                                 <input type="text" name="titolo" formControlName="titolo"><br>
@@ -80,10 +84,13 @@
                                 <input type="text" name="categoria" formControlName="titolo"><br>
                                 <label for="immagine">Immagine:</label>
                                 <input type="text" name="immagine" formControlName="immagine"><br>
+                                <label for="immagine2">Immagine 2:</label>
+                                <input type="text" name="immagine2" formControlName="immagine2"><br>
                                 <label for="data">Data:</label>
                                 <input type="date" name="data" formControlName="data"><br>
                                 <label for="testo">Testo:</label>
-                                <input type="text" name="testo" formControlName="testo"><br>
+                                <!-- <input type="textarea" name="testo" formControlName="testo"><br> -->
+                                <textarea name="testo" id="" cols="30" rows="10"></textarea><br>
                                 <label for="autore">Autore:</label>
                                 <select name="autore" formControlName="autore">
                                     <option *ngFor="let autore of autori" [value]="autore.id">{{autore.nome}} {{autore.cognome}}</option>
