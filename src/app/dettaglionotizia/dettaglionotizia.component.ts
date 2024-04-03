@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParameterCodec } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { News } from '../models/News';
+import { ListanotizieService } from '../listanotizie/listanotizie.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Utente } from '../models/Utente';
 
 @Component({
   selector: 'app-dettaglionotizia',
@@ -11,10 +14,15 @@ import { News } from '../models/News';
 })
 export class DettaglionotiziaComponent implements OnInit {
   
-  news?:News;
-  tipo_utente?:string;
+  news!:News;
+  autori: Utente[] = [];
+
+  ruolo: string = "";
+
+  isModifying: boolean = false;
+  formModifica! : FormGroup;
   
-  constructor(private route: ActivatedRoute, private http : HttpClient){
+  constructor(private route: ActivatedRoute, private http : HttpClient, private listanotizieService: ListanotizieService, private formBuilder: FormBuilder){
     this.http = http;
     this.getNews;
   }
@@ -22,8 +30,11 @@ export class DettaglionotiziaComponent implements OnInit {
   
   ngOnInit(): void {
     this.getNews();
-    var token = sessionStorage.getItem("token");
-    this.tipo_utente = token?.split("-")[0];
+    this.caricaAutori();
+    let tokenRuolo = sessionStorage.getItem("token")?.split("-")[0];
+    if(tokenRuolo != null){
+      this.ruolo = tokenRuolo
+    }
   }
   
   getNews(){
@@ -36,38 +47,58 @@ export class DettaglionotiziaComponent implements OnInit {
       })
       
     }
-    
-    
+
+  caricaAutori(): void {
+    this.listanotizieService.getAutori()
+    .subscribe(autori => {
+      this.autori = autori;
+    })
   }
-  
-  
-  // news: News | undefined;
-  // private apiUrl = 'http://localhost:8080/api/news/${id}';
+    
+  modifica(id: number){
+    console.log(this.news);
+    this.isModifying = true;
+    this.formModifica = this.formBuilder.group(
+      {
+        id : this.news.id,
+        titolo : this.news.titolo,
+        categoria : this.news.categoria,
+        data : this.news.data,
+        immagine: this.news.immagine,
+        testo: this.news.testo,
+        autore : this.news.autore.id,
+      })
+  }
 
-  // constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) { }
+  submitModifica(id: number){
+    var token = sessionStorage.getItem("token")
+    if(token == null){
+      token = "";
+    }
 
-  // ngOnInit(): void {
-  //   this.caricaDettaglioNotizia();
-  // }
+    const formValues = this.formModifica.value;
+    const headers = new HttpHeaders(
+      {
+        'Content-Type' : 'application/json',
+        'token': token as string
+      }
+    );
 
-  // caricaDettaglioNotizia(): void {
-  //   const id = this.route.snapshot.paramMap.get('id');
-  //   if (!id) {
-  //     this.router.navigate(['/notizie']);
-  //     return;
-  //   }
+    const body = JSON.stringify(formValues);
 
-  //   this.getNotiziaById(+id).subscribe(
-  //     news => {
-  //       this.news = news;
-  //     },
-  //     error => {
-  //       console.error('Errore durante il recupero della notizia:', error);
-  //     }
-  //   );
-  // }
+    this.http.post("http://localhost:8080/api/news/update", body, {headers}).subscribe(risposta =>{
+      var check = risposta as boolean;
+      if(check){
+        alert("Modifica avvenuta con successo")
+        window.location.reload();
 
-  // getNotiziaById(id: number): Observable<News> {
-  //   const url = `${this.apiUrl}/${id}`;
-  //   return this.http.get<News>(url);
-  // }
+        this.isModifying = false;
+      }
+    })
+  }
+
+  annullaModifica(){
+    this.isModifying = false;
+  }
+
+}

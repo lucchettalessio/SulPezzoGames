@@ -48,7 +48,7 @@
                             <div class="schedaVideogioco">
                                 <h2>{{ videogioco.titolo }}</h2>
                                 <p>{{videogioco.data.split("-")[0]}} - {{videogioco.genere}}</p>
-                                <p [routerLink]="['/listarecensioni', videogioco.id]"><img src="{{ videogioco.immagine }}" class="immagineCliccabile"></p>
+                                <p [routerLink]="['/listarecensioni', videogioco.id]" (click)="filterRecensioni(videogioco.id)"><img src="{{ videogioco.immagine }}" class="immagineCliccabile"></p>
                                 <p>Produzione: {{videogioco.produzione}}</p>
                             </div>
                     </div>
@@ -58,11 +58,7 @@
 
             <div class="btn-dx">
                 <div class="latoD">
-                    <div class="bottoneS">
-                        <button class="aggiungiRecensione"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
-                        </svg></button>
-                    </div>
+                    
                     <div class="fittizi bt-a ">
                         A
                     </div>

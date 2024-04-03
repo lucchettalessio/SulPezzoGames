@@ -149,7 +149,7 @@ public class DAONews implements IDAO {
     @Override
     public void update(Entity e) {
 
-        String query = "UPDATE news SET (titolo,categoria,immagine,data,testo,autore) VALUES (?,?,?,?,?,?) WHERE id = ?";
+        String query = "UPDATE news SET titolo = ?, categoria = ?,immagine = ?, data = ?, testo = ?, autore = ? WHERE id = ?";
         PreparedStatement ps = null;
         News n = null;
 
@@ -162,6 +162,7 @@ public class DAONews implements IDAO {
             ps.setString(4, n.getData());
             ps.setString(5, n.getTesto());
             ps.setString(6, n.getAutore().getId() + "");
+            ps.setString(7, n.getId() + "");
             ps.executeUpdate();
 
         } catch (SQLException exc) {

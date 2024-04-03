@@ -127,6 +127,7 @@ export class ListanotizieComponent implements OnInit {
       {
         id : "",
         titolo : "",
+        categoria : "",
         data : "",
         immagine: "",
         testo: "",
