@@ -56,10 +56,7 @@ public class RecensioneRestController {
             return true;
         }
         else {
-            // Handle the case where the token is not "admin"
-            // For example, you can return an error response, log the event, or perform any other appropriate action.
-            // Here's an example of logging the event:
-            System.out.println("Unauthorized access attempt: Token is not admin.");
+
             return false;
         }
     }
@@ -71,10 +68,7 @@ public class RecensioneRestController {
             return true;
         }
         else {
-            // Handle the case where the token is not "admin"
-            // For example, you can return an error response, log the event, or perform any other appropriate action.
-            // Here's an example of logging the event:
-            System.out.println("Unauthorized access attempt: Token is not admin.");
+
             return false;
         }
     }

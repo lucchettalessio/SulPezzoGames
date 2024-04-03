@@ -31,7 +31,7 @@ public class DAORecensione implements IDAO {
 
     @Override
     public void create(Entity e) {
-        String query = "INSERT INTO Recensioni (titolo,data,punteggio,immagine,testo,autore,videogioco) VALUES (?,?,?,?,?,?,?)";
+        String query = "INSERT INTO Recensioni (titolo,data,punteggio,immagine,immagine2,testo,autore,videogioco) VALUES (?,?,?,?,?,?,?,?)";
         Recensione n = null;
         PreparedStatement ps = null;
 
@@ -42,9 +42,10 @@ public class DAORecensione implements IDAO {
             ps.setString(2, n.getData());
             ps.setString(3, n.getPunteggio()+"");
             ps.setString(4, n.getImmagine());
-            ps.setString(5, n.getTesto());
-            ps.setString(6, n.getAutore().getId() + "");
-            ps.setString(7, n.getVideogioco().getId() + "");
+            ps.setString(5, n.getImmagine2());
+            ps.setString(6, n.getTesto());
+            ps.setString(7, n.getAutore().getId() + "");
+            ps.setString(8, n.getVideogioco().getId() + "");
 
             ps.executeUpdate();
 
@@ -64,7 +65,7 @@ public class DAORecensione implements IDAO {
 
     @Override
     public Map<Integer, Entity> read() {
-        String query = "select r.*, u.nome, u.cognome from Recensioni r join utenti u on r.autore = u.id";
+        String query = "select r.* from Recensioni r join utenti u on r.autore = u.id";
         Map<Integer, Entity> ris = new HashMap<>();
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -81,11 +82,12 @@ public class DAORecensione implements IDAO {
                 params.put("data", rs.getString(3));
                 params.put("punteggio", rs.getString(4));
                 params.put("immagine", rs.getString(5));
-                params.put("testo", rs.getString(6));
+                params.put("immagine2", rs.getString(6));
+                params.put("testo", rs.getString(7));
 
                 Recensione r = context.getBean(Recensione.class, params);
-                r.setAutore(DAOutente.readFromId(rs.getInt(7)));
-                r.setVideogioco(DAOvideogioco.readFromId(rs.getInt(8)));
+                r.setAutore(DAOutente.readFromId(rs.getInt(8)));
+                r.setVideogioco(DAOvideogioco.readFromId(rs.getInt(9)));
 
                 ris.put(r.getId(), r);
             }
@@ -109,7 +111,7 @@ public class DAORecensione implements IDAO {
     @Override
     public void update(Entity e) {
 
-        String query = "UPDATE Recensioni SET titolo = ?, data = ?, punteggio = ?, immagine = ?, testo = ?, autore = ?, videogioco = ? WHERE id = ?";
+        String query = "UPDATE Recensioni SET titolo = ?, data = ?, punteggio = ?, immagine = ?, immagine2 = ?, testo = ?, autore = ?, videogioco = ? WHERE id = ?";
         PreparedStatement ps = null;
         Recensione n = null;
 
@@ -120,11 +122,12 @@ public class DAORecensione implements IDAO {
             ps.setString(2, n.getData());
             ps.setString(3, n.getPunteggio()+"");
             ps.setString(4, n.getImmagine());
-            ps.setString(5, n.getTesto());
-            ps.setString(6, n.getAutore().getId() + "");
-            ps.setString(7, n.getVideogioco().getId() + "");
-            ps.setString(8, n.getId() + "");
-            
+            ps.setString(5, n.getImmagine2());
+            ps.setString(6, n.getTesto());
+            ps.setString(7, n.getAutore().getId() + "");
+            ps.setString(8, n.getVideogioco().getId() + "");
+            ps.setString(9, n.getId() + "");
+            System.out.println(ps);
             ps.executeUpdate();
 
         } catch (SQLException exc) {
@@ -184,13 +187,13 @@ public class DAORecensione implements IDAO {
                 params.put("data", rs.getString(3));
                 params.put("punteggio", rs.getString(4));
                 params.put("immagine", rs.getString(5));
-                params.put("testo", rs.getString(6));
+                params.put("immagine2", rs.getString(6));
+                params.put("testo", rs.getString(7));
+                params.put("autore", rs.getString(8));
+                params.put("punteggio", rs.getString(9)+"");
 
                 
                 r = context.getBean(Recensione.class, params);
-                r.setAutore(DAOutente.readFromId(rs.getInt(7)));
-                r.setVideogioco(DAOvideogioco.readFromId(rs.getInt(8)));
-
             }
             
         } catch (SQLException exc) {

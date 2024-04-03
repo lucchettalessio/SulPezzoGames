@@ -7,6 +7,7 @@ export interface Recensione{
     data:string,
     punteggio:number,
     immagine:string,
+    immagine2:string,
     testo:string,
     autore:Utente,
     videogioco:Videogioco,

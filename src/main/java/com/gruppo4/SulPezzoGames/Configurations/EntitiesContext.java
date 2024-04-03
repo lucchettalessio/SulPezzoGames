@@ -49,10 +49,11 @@ public class EntitiesContext {
         String data = params.get("data");
         int punteggio = Integer.parseInt(params.get("punteggio"));
         String immagine = params.get("immagine");
+        String immagine2 = params.get("immagine2");
         String testo = params.get("testo");
 
 
-        return new Recensione(id, titolo, data, punteggio, immagine, testo);
+        return new Recensione(id, titolo, data, punteggio, immagine, immagine2, testo);
     }
 
     @Bean
