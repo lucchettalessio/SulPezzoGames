@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { VideogiochiService } from './videogiochi.service';
 import { Videogioco } from 'src/app/models/Videogioco';
+import { ListarecensioniComponent } from '../listarecensioni/listarecensioni.component';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-listavideogiochi',
@@ -14,7 +16,7 @@ export class ListavideogiochiComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number | undefined;
 
-  constructor(private videogiochiService: VideogiochiService) { }
+  constructor(private videogiochiService: VideogiochiService, private router : Router) { }
 
   ngOnInit(): void {
     this.getVideogiochi();
@@ -43,5 +45,10 @@ export class ListavideogiochiComponent implements OnInit {
       this.currentPage = 1; 
     }
 
+  }
+
+  filterRecensioni(videogiocoId: number | null) {
+    // Naviga alla pagina delle recensioni con l'ID del videogioco come parametro
+    this.router.navigate(['/listarecensioni', { videogiocoId }]);
   }
 }
