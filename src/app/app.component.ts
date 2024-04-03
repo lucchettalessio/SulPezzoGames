@@ -43,9 +43,6 @@ export class AppComponent implements OnInit{
       this.ruolo = this.token.split("-")[0]
       this.getUtente();
     }
-    else{
-      this.token = '';
-    }
   }
 
   getUtente(){
@@ -78,7 +75,8 @@ export class AppComponent implements OnInit{
 
 
   clearToken(){
-    sessionStorage.removeItem("token");
+    sessionStorage.clear();
+    window.location.href = "/homepage";
   }
 
   

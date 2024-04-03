@@ -54,6 +54,7 @@ export class LoginformComponent {
           )
       }
     })
+    window.location.href = "/homepage";
   }
 
   submitRegistration(){
