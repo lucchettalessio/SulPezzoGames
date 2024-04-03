@@ -78,7 +78,7 @@ VALUES
 alter table recensioni
 add column immagine2 varchar(300);
 
-select * from recensioni;
+select * from news;
 
 UPDATE `sulpezzogames`.`recensioni` SET `immagine2` = 'https://images.kinguin.net/g/carousel-main-mobile/media/category/s/u/super-mario-odyssey_1509187305_1_1.jpg' WHERE (`id` = '1');
 UPDATE `sulpezzogames`.`recensioni` SET `immagine2` = 'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000000025/7137262b5a64d921e193653f8aa0b722925abc5680380ca0e18a5cfd91697f58' WHERE (`id` = '2');
@@ -86,4 +86,9 @@ UPDATE `sulpezzogames`.`recensioni` SET `immagine2` = 'https://sm.ign.com/t/ign_
 UPDATE `sulpezzogames`.`recensioni` SET `immagine2` = 'https://ftw.usatoday.com/wp-content/uploads/sites/90/2023/12/call-of-duty-modern-warfare-3-season-1.jpg?w=1000&h=600&crop=1' WHERE (`id` = '4');
 UPDATE `sulpezzogames`.`recensioni` SET `immagine2` = 'https://sm.ign.com/t/ign_it/preview/s/suicide-sq/suicide-squad-kill-the-justice-league-preview-we-played-it-a_qw51.1280.jpg' WHERE (`id` = '5');
 UPDATE `sulpezzogames`.`recensioni` SET `immagine2` = 'https://www.digitaltrends.com/wp-content/uploads/2023/01/Persona-3-Portable.jpg?resize=1200%2C630&p=1' WHERE (`id` = '6');
+
+UPDATE `sulpezzogames`.`news` SET `testo` = 'Nintendo ha rilasciato un nuovo aggiornamento per Breath of the Wild. Breath of the Wild potrebbe essere considerato persino lo Zelda originale, quello da cui scaturiscono i tasselli che comporranno le varie versioni di Hyrule (Sempre più martoriate, e oscure, annegate, e poi così fragili da diventare aeree).' WHERE (`id` = '3');
+UPDATE `sulpezzogames`.`news` SET `titolo` = 'Annunciato nuovo videogioco Activision', `testo` = 'Activision ha svelato il suo prossimo grande titolo. Call of Duty Modern Warfare 3 è il nuovo capitolo dell\'iconica serie sparatutto targata Activision. Il titolo, il cui sviluppo è guidato da Sledgehammer Games in collaborazione con Treyarch e Raven Software. COD Modern Warfare 3 esce il 10 novembre 2023 su PC, PS4, Xbox One, PlayStation 5 e Xbox Series X|S. ' WHERE (`id` = '2');
+UPDATE `sulpezzogames`.`news` SET `testo` = 'Nintendo ha annunciato un nuovo DLC per Super Mario Odyssey. Questa volta Bowser fa sul serio. Non si è limitato a rapire la soave Peach, ma è intenzionato addirittura a sposarla. A dirla tutta, quando Mario lo affronta all\'inizio del gioco è già imbellettato nel suo vestito bianco, pronto a rendere ufficiale l\'unione con la principessa del Regno dei Funghi.' WHERE (`id` = '1');
+
 

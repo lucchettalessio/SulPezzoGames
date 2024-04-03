@@ -29,20 +29,21 @@
                 <div class="screen">
                     <div *ngIf="news">
 
-                        <button *ngIf="ruolo.toLowerCase() === 'admin'" (click)="modifica(news.id)"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fb00ff" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        
+                        <h2 style="background-image: url('{{news.immagine}}'); margin-top: 20px;height: 250px;color: rgb(255, 255, 255);text-shadow: 2px 2px rgb(0, 0, 0);">{{ news.titolo }}</h2>
+                        <!-- <img [src]="news.immagine" alt="{{ news.titolo }}" style="width: 100%;height: auto;"> -->
+                        <p style="text-align: left;margin-left: 50px;font-size: 20px;">Scritto da {{news.autore.nome.toUpperCase()}} {{news.autore.cognome.toUpperCase()}}, categoria {{ news.categoria.toUpperCase() }}
+                            <p style="text-align: right;margin-right: 50px;font-weight: bold;">{{ news.data }}</p>
+                            
+                            <p style="margin-left: 90px;margin-right: 90px;">{{ news.testo }}</p>
+                        </div>
+                        <button *ngIf="ruolo.toLowerCase() === 'admin'" (click)="modifica(news.id)" style="background-color: none;border: dotted 2px grey;display: flex;border-radius: 5px;"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#fb00ff" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                         </svg></button>
-
-                        <h2>{{ news.titolo }}</h2>
-                        <img [src]="news.immagine" alt="{{ news.titolo }}" width="300">
-                        <p>{{ news.testo }}</p>
-                        <p>{{ news.categoria }}</p>
-                        <p>{{news.autore.nome}} {{news.autore.cognome}}</p>
-                      </div>
-                      <div *ngIf="!news">
-                          <p>Caricamento del dettaglio della notizia...{{ news }}</p>
-                      </div>
+                        <div *ngIf="!news">
+                            <p>Caricamento del dettaglio della notizia...{{ news }}</p>
+                        </div>
 
                       <div *ngIf="isModifying" class="modal">
                                 
@@ -57,13 +58,13 @@
                                 <label for="data">Data:</label>
                                 <input type="date" name="data" formControlName="data"><br>
                                 <label for="testo">Testo:</label>
-                                <input type="text" name="testo" formControlName="testo"><br>
+                                <textarea name="testo" id="" cols="30" rows="10" formControlName="testo"></textarea>
                                 <label for="autore">Autore:</label>
                                 <select name="autore" formControlName="autore">
                                     <option *ngFor="let autore of autori" [value]="autore.id">{{autore.nome}} {{autore.cognome}}</option>
                                 </select><br>
-                                <button (click)="annullaModifica()">Annulla</button>
-                                <input type="submit">
+                                <input class="bottone-salva" type="submit">
+                                <button class="bottone-annulla" (click)="annullaModifica()">Annulla</button>
                         </form>
                     </div>
 
