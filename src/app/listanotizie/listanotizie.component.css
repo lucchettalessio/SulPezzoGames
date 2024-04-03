@@ -118,6 +118,10 @@ left: 70%;
     top: 130px;
     left: 40%;
     filter: drop-shadow(0px 7px 5px rgb(255, 0, 251));
+    /* border-radius: 50%;
+    background: #26bef0;
+    box-shadow:  2px 2px 7px #1c8db2,
+                 -5px -5px 10px #30efff; */
 }
 .btn-su:hover, .btn-giu:hover{
     transform: scale(1.1);
@@ -125,11 +129,17 @@ left: 70%;
 .btn-su:active, .btn-giu:active{
     transform: scale(1);
     filter: none;
+    /* box-shadow:  inset 5px 5px 10px #1c8db2,
+                 inset -2px -2px 7px #30efff; */
 }
 .btn-giu{
     top: 130px;
     left: 40%;
     filter: drop-shadow(0px 7px 5px rgb(255, 0, 251));
+    /* border-radius: 50%;
+    background: #26bef0;
+    box-shadow:  2px 2px 7px #1c8db2,
+                 -2px -2px 7px #30efff; */
 }
 .btn-destra{
     top: 130px;
