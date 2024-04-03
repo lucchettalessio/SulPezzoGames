@@ -28,4 +28,9 @@ getAutori(): Observable<Utente[]> {
   const url = `http://localhost:8080/api/Recensione/autori`;
   return this.http.get<Utente[]>(url);
 }
+
+getRecensioniByVideogioco(videogiocoId: number): Observable<Recensione[]> {
+  const url = `${this.apiUrl}/get-all/videogioco/${videogiocoId}`;
+  return this.http.get<Recensione[]>(url);
+}
 }

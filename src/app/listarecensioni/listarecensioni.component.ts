@@ -4,6 +4,7 @@ import { ListaRecensioniService } from './listarecensioniService';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Utente } from '../models/Utente';
+import { ActivatedRoute, Route } from '@angular/router';
 
 @Component({
   selector: 'app-listarecensioni',
@@ -13,6 +14,7 @@ import { Utente } from '../models/Utente';
 export class ListarecensioniComponent implements OnInit {
   recensioni: Recensione[] = [];
   autori: Utente[] = [];
+  idVideogioco: number | null = null;
 
   rowsPerPage: number = 4; 
   currentPage: number = 1;
@@ -26,7 +28,7 @@ export class ListarecensioniComponent implements OnInit {
   isInserting: boolean = false;
   formInsert! : FormGroup;
 
-  constructor(private http: HttpClient, private listaRecensioniService: ListaRecensioniService, private formBuilder: FormBuilder) {}
+  constructor(private http: HttpClient, private listaRecensioniService: ListaRecensioniService, private formBuilder: FormBuilder, private route : ActivatedRoute) {}
 
   ngOnInit(): void {
     this.caricaRecensioni();
@@ -35,6 +37,13 @@ export class ListarecensioniComponent implements OnInit {
     if(tokenRuolo != null){
       this.ruolo = tokenRuolo
     }
+    this.route.paramMap.subscribe(params => {
+      // Recupera l'id del videogioco dai parametri dell'URL
+      this.idVideogioco = parseInt(params.get('idVideogioco') || '');
+      
+      // Chiamata al metodo per filtrare le recensioni
+      this.filterRecensioni();
+    });
   }
   
   caricaRecensioni(): void {
@@ -164,6 +173,20 @@ export class ListarecensioniComponent implements OnInit {
 
   annullaInsert(){
     this.isInserting = false;
+  }
+
+  filterRecensioni(): void {
+    console.log('ID del videogioco:', this.idVideogioco);
+    if (this.idVideogioco !== null) {
+      this.listaRecensioniService.getRecensioniByVideogioco(this.idVideogioco).subscribe(recensioni => {
+        this.recensioni = recensioni;
+      });
+    } else {
+      // Se l'ID del videogioco è null, recupera tutte le recensioni
+      this.listaRecensioniService.getRecensione().subscribe(recensioni => {
+        this.recensioni = recensioni;
+      });
+    }
   }
 }
 

@@ -3,6 +3,7 @@ import { VideogiochiService } from './videogiochi.service';
 import { Videogioco } from 'src/app/models/Videogioco';
 import { ListarecensioniComponent } from '../listarecensioni/listarecensioni.component';
 import { Router, RouterModule } from '@angular/router';
+import { EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-listavideogiochi',
@@ -15,6 +16,7 @@ export class ListavideogiochiComponent implements OnInit {
   rowsPerPage: number = 4; 
   currentPage: number = 1;
   totalPages: number | undefined;
+  @Output() filterRecensioniEvent = new EventEmitter<number>();
 
   constructor(private videogiochiService: VideogiochiService, private router : Router) { }
 
@@ -47,7 +49,8 @@ export class ListavideogiochiComponent implements OnInit {
 
   }
 
-  filterRecensioni(id: number | null) {
-    this.router.navigate(['/listarecensioni', { id }]);
+  openRecensioni(idVideogioco: number) {
+    this.filterRecensioniEvent.emit(idVideogioco);
   }
+
 }
