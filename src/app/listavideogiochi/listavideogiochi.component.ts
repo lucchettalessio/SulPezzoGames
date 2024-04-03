@@ -47,8 +47,7 @@ export class ListavideogiochiComponent implements OnInit {
 
   }
 
-  filterRecensioni(videogiocoId: number | null) {
-    // Naviga alla pagina delle recensioni con l'ID del videogioco come parametro
-    this.router.navigate(['/listarecensioni', { videogiocoId }]);
+  filterRecensioni(id: number | null) {
+    this.router.navigate(['/listarecensioni', { id }]);
   }
 }
