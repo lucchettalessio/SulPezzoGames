@@ -13,12 +13,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class ListanotizieComponent implements OnInit {
   notizie: News[] = [];
   autori: Utente[] = [];
-  tipo_utente?: string;
   rowsPerPage: number = 4; 
   currentPage: number = 1;
   totalPages: number | undefined;
 
-  ruolo: string = ""
+  ruolo: string = "";
 
   isDeleting: boolean = false;
   deletingId: number = -1;
@@ -36,7 +35,10 @@ export class ListanotizieComponent implements OnInit {
     let tokenRuolo = sessionStorage.getItem("token")?.split("-")[0];
     this.caricaNotizie();
     this.caricaAutori();
-    this.tipo_utente = tokenRuolo?.split("-")[0];
+
+    if(tokenRuolo != null){
+      this.ruolo = tokenRuolo
+    }
   }
 
   caricaNotizie(): void {
