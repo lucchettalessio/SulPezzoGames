@@ -33,12 +33,10 @@ export class ListanotizieComponent implements OnInit {
   constructor(private http: HttpClient, private listanotizieService: ListanotizieService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    let tokenRuolo = sessionStorage.getItem("token")?.split("-")[0];
     this.caricaNotizie();
     this.caricaAutori();
-    let tokenRuolo = sessionStorage.getItem("token")?.split("-")[0];
-    if(tokenRuolo != null){
-      this.ruolo = tokenRuolo
-    }
+    this.tipo_utente = tokenRuolo?.split("-")[0];
   }
 
   caricaNotizie(): void {
