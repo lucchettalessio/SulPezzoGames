@@ -38,7 +38,6 @@ export class DettagliorecensioneComponent implements OnInit {
     if(tokenRuolo != null){
       this.tipo_utente = tokenRuolo
     }
-    console.log("----->" + this.recensione);
 
     let cont = 0;
     setInterval(()=>{
