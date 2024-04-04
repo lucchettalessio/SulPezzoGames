@@ -25,7 +25,11 @@ import { DettagliorecensioneComponent } from './dettagliorecensione/dettagliorec
     ListarecensioniComponent,
     ListanotizieComponent,
     DettaglionotiziaComponent,
+<<<<<<< HEAD
     DettagliorecensioneComponent,
+=======
+    DettagliorecensioneComponent
+>>>>>>> 96f6973f33803054135665aa1bf81e7ea559fa36
   ],
   imports: [
     BrowserModule,
