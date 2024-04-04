@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,50 @@ public class DAORecensione implements IDAO {
     public Map<Integer, Entity> read() {
         String query = "select r.* from Recensioni r join utenti u on r.autore = u.id";
         Map<Integer, Entity> ris = new HashMap<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            ps = database.getConnection().prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while(rs.next())
+            {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", rs.getString(1));
+                params.put("titolo", rs.getString(2));
+                params.put("data", rs.getString(3));
+                params.put("punteggio", rs.getString(4));
+                params.put("immagine", rs.getString(5));
+                params.put("immagine2", rs.getString(6));
+                params.put("testo", rs.getString(7));
+
+                Recensione r = context.getBean(Recensione.class, params);
+                r.setAutore(DAOutente.readFromId(rs.getInt(8)));
+                r.setVideogioco(DAOvideogioco.readFromId(rs.getInt(9)));
+
+                ris.put(r.getId(), r);
+            }
+
+        } catch (SQLException exc) {
+            System.out.println("Errore nella read di DAORecensione. " + exc.getMessage());
+        }
+        finally{
+            try {
+                ps.close();
+                rs.close();
+            } catch (SQLException ex) {
+                System.out.println("Errore nella chiusura del ps o rs in read di DAORecensione" + ex.getMessage());
+            }
+        }
+
+        return ris;
+
+    }
+
+    public Map<Integer, Entity> readOrderBy() {
+        String query = "select * from recensioni order by data desc";
+        Map<Integer, Entity> ris = new LinkedHashMap<>();;
         PreparedStatement ps = null;
         ResultSet rs = null;
 

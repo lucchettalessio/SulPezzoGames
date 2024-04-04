@@ -100,13 +100,15 @@
                                 <label for="immagine2">Immagine2:</label>
                                 <input type="text" name="immagine2" formControlName="immagine2"><br>
                                 <label for="testo">Testo:</label>
-                                <textarea name="testo" id="" cols="30" rows="10"></textarea><br>
+                                <textarea name="testo" id="" cols="30" rows="10" formControlName="testo"></textarea><br>
                                 <label for="autore">Autore:</label>
                                 <select name="autore" formControlName="autore">
                                     <option *ngFor="let autore of autori" [value]="autore.id">{{autore.nome}} {{autore.cognome}}</option>
                                 </select><br>
                                 <label for="videogioco">Videogioco:</label>
-                                <input type="text" name="videogioco" formControlName="videogioco"><br>
+                                <select name="autore" formControlName="videogioco">
+                                    <option *ngFor="let videogioco of videogiochi" [value]="videogioco.id">{{videogioco.titolo}}</option>
+                                </select><br>
                                 <input type="submit" class="bottone-salva">
                                 <button (click)="annullaInsert()" class="bottone-annulla">Annulla</button>
                             </form>
