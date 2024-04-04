@@ -11,55 +11,21 @@ html, body{
     min-height: 500px;
     border-radius: 100px;
     box-shadow: 0 0 30px 20px rgba(80, 80, 75, 0.5);
-
     display: grid;
     grid-template-columns: auto 1fr auto; /* I joycon sono di larghezza fissa, lo schermo occupa lo spazio rimanente */
-
-}
-.btn-sx, .btn-dx
-{
-    display: inline-block;
-    width: 230px;
-    height: 100%;
-    min-height: 500px;
-}
-.btn-su:hover, .btn-giu:hover{
-    transform: scale(1.1);
-}
-.btn-su:active, .btn-giu:active{
-    transform: scale(1);
-    filter: none;
-}
-.btn-sx{
-    background-color: rgb(38, 190, 240);
-    border-radius: 100px 0 0  100px;
-    /* border-width: solid rgb(21, 99, 125) 10px; */
-}
-.btn-dx{
-    background-color: rgb(223, 68, 68);
-    border-radius:  0 100px 100px 0;
-    position: relative;
-    float: right;
 }
 .monitor{
     display: inline-block;
-    /* position: absolute;  */
-    /* /* width: 80%; */
     background-color: rgb(3, 3, 3);
     height: 100%;
     min-height: 500px;
 }
 .screen{
-    /* position: absolute; */
     background-color: white;
     height: 480px;
-    /* width: 80%; */
-    /* top: 40px; */
-    /* margin-left: 15px; */
     margin: 15px;
-    /* left: 2.5%; */
     border-radius: 15px;
-    box-shadow: inset 0 0 10px 5px rgba(80, 80, 75, 0.5);
+    box-shadow: inset 0 0 10px 5px rgba(80, 80, 75, 0.979);
     overflow: scroll;
     text-align: center;
 }
@@ -74,42 +40,29 @@ img {
 img:hover {
     transform: scale(1.1);
 }
-/* svg {
-    filter: drop-shadow(0px 2px 4px rgb(251, 9, 9));
-    transition: filter 0.3s;
-    color: rgba(255, 255, 0, 0.986);
+
+/*bottoni entrambi i lati*/
+.fittizi{
+    background-color: rgba(0, 0, 0, 0.959);
+    color: white;
+    position: relative;
+    width: 45px;
+    height:45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0px 7px 5px rgb(74, 70, 70));
+    box-shadow: inset 0 0 10px 5px rgba(80, 80, 75, 0.5);
 }
-svg:hover {
-    filter: drop-shadow(0px 0px 25px rgb(242, 241, 232));
-    transform: scale(1.2);
-} */
-h3 {
-    font-family: 'Roboto', sans-serif;
-    color: #4CAF50;
-    text-align: center;
-    animation: holographic 3s infinite alternate;
-    font-size: 30px;
-}  
-@keyframes holographic {
-    0% {
-      color: #4CAF50;
-      text-shadow: 0 0 10px #4CAF50;
-    }
-    50% {
-      color: #2196F3;
-      text-shadow: 0 0 20px #2196F3;
-    }
-    100% {
-      color: #FF5722;
-      text-shadow: 0 0 30px #FF5722;
-    }
+.btn-sx, .btn-dx{
+    display: inline-block;
+    width: 230px;
+    height: 100%;
+    min-height: 500px;
 }
-p {
-    font-family: "Raleway", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    text-align: center;
-}
+
+/* bottoni lato destra*/
 .spostaPagina{
     background-color: rgba(0, 0, 0, 0.959);
     color: white;
@@ -125,43 +78,11 @@ p {
     filter: drop-shadow(0px 7px 5px rgb(74, 70, 70));
     box-shadow: inset 0 0 10px 5px rgba(80, 80, 75, 0.5);
 }
-.btn-lato-sx{
-    top: 90px;
-    left: 30%;
-}
-.aggiungiRecensione{
-    background-color:transparent;
-    color: white;
-    top: 225px;
-    left: 70px;
-    width:70px ;
-    height:60px;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    filter: drop-shadow(0px 2px 2px rgb(255, 254, 254));
-}
-.aggiungiRecensione:hover{
-    transform: scale(1.2);
-}
-.aggiungiRecensione:active{
-    transform: scale(1);
-    filter: none;
-
-}
-.fittizi{
-    background-color: rgba(0, 0, 0, 0.959);
-    color: white;
+.btn-dx{
+    background-color: rgb(223, 68, 68);
+    border-radius:  0 100px 100px 0;
     position: relative;
-    width: 45px;
-    height:45px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    filter: drop-shadow(0px 7px 5px rgb(74, 70, 70));
-    box-shadow: inset 0 0 10px 5px rgba(80, 80, 75, 0.5);
+    float: right;
 }
 .bt-a{
 top: 70px;
@@ -179,124 +100,55 @@ left: 70%;
     top: -65px;
     left: 30%;
 }
+
+/* bottoni lato sinistra*/
+.btn-sx{
+    background-color: rgb(38, 190, 240);
+    border-radius: 100px 0 0  100px;
+}
+.btn-lato-sx{
+    top: 90px;
+    left: 30%;
+}
 .btn-sinistra {
     top: 220px;
     left: 20%;
-    /* filter: drop-shadow(0px 7px 5px rgb(255, 0, 251)); */
 }
 .btn-su{
     top: 130px;
     left: 40%;
     filter: drop-shadow(0px 7px 5px rgb(255, 0, 251));
-
+}
+.btn-su:hover, .btn-giu:hover{
+    transform: scale(1.1);
+}
+.btn-su:active, .btn-giu:active{
+    transform: scale(1);
+    filter: none;
 }
 .btn-giu{
     top: 130px;
     left: 40%;
     filter: drop-shadow(0px 7px 5px rgb(255, 0, 251));
-
 }
 .btn-destra{
     top: 130px;
     left: 60%;
+    
 }
 .fittizi button{
     border: none;
     background-color: transparent;
 }
-a{
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-}
-.recensioni{
-    font-size: 30px;
-    color: rgb(52, 106, 255);
-}
 .news{
-    font-size: 30px;
-    color: rgb(255, 234, 0);
+    font-size: 25px;
+    color: rgb(83, 0, 155);
+    cursor: default;
 }
-.RN {
-    
-    padding: 30px;
+.aggiungiVideogioco{
+    background-color: transparent;
+    border: none;
 }
-.RN p {
-    line-height: 1.5;
-}
-.RN div p:hover {
-    cursor: pointer;
-}
-.RN div p {
-    font-size: 20px;
-    transition: all 0.2s ease-in-out;
-}
-.RN .arancione:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(238, 211, 7, 0.731);
-
-}
-.RN .blu:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(9, 25, 150, 0.731);
-}
-.arancioneTitolo{
-    color: orange;
-}
-.arancione:hover{
-    background-color: rgba(255, 255, 0, 0.508);
-    border-radius: 20px;
-    transition: 0.2s;
-}
-.bluTitolo{
-    color: blue;
-}
-.blu:hover{
-    background-color: rgba(0, 170, 255, 0.611);
-    border-radius: 20px;
-    transition: 0.2s;
-
-    }
-.latoD{
-    margin-top: 60px;
-}
-p, button{
-    font-family: "Kanit", sans-serif;
-}
-a{
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-}
-.interazione{
-    display: flex;
-    justify-content: flex-end ;
-    align-items: center;
-    margin-right: 30px;
-}
-a:visited {
-    color: rgb(218, 211, 10); 
-}
-
-h2{
-    background-color: rgb(237, 79, 255);
-    box-shadow: inset 0px 0px 50px rgb(255, 255, 255);
-}
-.immagineCliccabile {
-    width: 50%;
-    height: auto;
-    transition: transform 0.6s;
-    border-radius: 10px;
-}
-.immagineCliccabile:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 10px black;
-}
-.immagineCliccabile:active{
-    transform: scale(1);
-    box-shadow: none;
-}
-
 .modal{
     position: fixed;
     top: 50%;
@@ -312,4 +164,90 @@ h2{
     font-size: 20px;
     box-shadow: 0px 0px 10px white;
     text-align: center;
+}
+.modal-button-N{
+    margin-left:3px ;
+    border:transparent;
+    padding: 6px;
+    background-color: rgb(168, 92, 255);
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+} 
+.modal-button-S{
+    margin-right:3px ;
+    border:transparent;
+    padding: 6px;
+    background-color: rgb(0, 184, 197);
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+
+} 
+.modal-button-N:hover, .modal-button-S:hover{
+    box-shadow: 0px 0px 5px black;
+}
+.modal-button-N:active, .modal-button-S:active{
+    box-shadow: none;
+}
+.bottone-salva{
+    margin-right:3px ;
+    border:transparent;
+    padding: 6px;
+    background-color: rgb(0, 184, 197);
+    height: 40px;
+    width: 100px;
+    border-radius: 10px;
+}
+.bottone-annulla{
+    margin-left:3px ;
+    border:transparent;
+    padding: 6px;
+    background-color: rgb(168, 92, 255); 
+    height: 40px;
+    width: 100px;
+    border-radius: 10px;
+}
+.bottone-annulla:hover, .bottone-salva:hover{
+    box-shadow: 0px 5px 5px rgb(169, 169, 169);
+}
+.bottone-annulla:active, .bottone-salva:active{
+    box-shadow: none;
+}
+.bi-plus-lg{
+    filter: drop-shadow(0px 3px 5px rgb(255, 255, 255));
+}
+.interazione{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 30px;
+}
+.cestino{
+    border: none;
+    background-color: transparent;
+    float: left;
+}
+input, select{
+    height: 25px;
+    border: solid 2px rgba(135, 211, 255, 0.549);
+    margin: 10px;
+    margin-left: 50px;
+    width: 300px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+}
+textarea{
+    border: solid 2px rgba(135, 211, 255, 0.814);
+    margin: 10px;
+    margin-left: 50px;
+    width: 450px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+
+}
+input:hover, select:hover,textarea:hover{
+    background-color: rgb(241, 241, 241);
+    border: dotted 2px rgb(135, 211, 255);
+
 }
