@@ -13,7 +13,7 @@ export class LoginformComponent {
   formLogin: FormGroup;
   formRegister: FormGroup;
   isLogin?=true;
-
+//commento
   constructor(private http: HttpClient, private formBuilder: FormBuilder, private router: Router){
     this.http = http;
     this.formLogin = formBuilder.group({
