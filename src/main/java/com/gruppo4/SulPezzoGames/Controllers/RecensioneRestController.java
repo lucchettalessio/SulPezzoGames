@@ -1,6 +1,8 @@
 package com.gruppo4.SulPezzoGames.Controllers;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import com.gruppo4.SulPezzoGames.Entities.News;
 import com.gruppo4.SulPezzoGames.Entities.Recensione;
 import com.gruppo4.SulPezzoGames.Entities.Utente;
 import com.gruppo4.SulPezzoGames.Services.RecensioneService;
@@ -47,6 +49,11 @@ public class RecensioneRestController {
     @GetMapping("/get-all")
     public List<Recensione> getAllRecensioni(){
         return recensioneService.findAllRecensioni();
+    }
+
+    @GetMapping("/all-ordered")
+    public List<Recensione> getAllNewsOderBy(){
+        return recensioneService.findAllNewsOrderBy();
     }
 
     @PostMapping("/update")
