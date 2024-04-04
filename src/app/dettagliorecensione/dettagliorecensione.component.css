@@ -205,3 +205,47 @@ a{
 .bottoneS{
     margin-top: 60px;
 }
+
+.modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(245, 230, 255, 0.942);
+    color: rgb(175, 0, 0);
+    padding: 30px;
+    border: 3px solid rgb(72, 0, 166);
+    border-radius: 20px;
+    z-index: 9999;
+    width: 500px;
+    /* display: flex;
+    justify-content: center; */
+    font-size: 20px;
+    box-shadow: 0px 0px 10px white;
+    text-align: center;
+}
+
+.bottone-salva{
+    margin-right:3px ;
+    border:transparent;
+    padding: 6px;
+    background-color: rgb(0, 184, 197);
+    height: 40px;
+    width: 100px;
+    border-radius: 10px;
+}
+.bottone-annulla{
+    margin-left:3px ;
+    border:transparent;
+    padding: 6px;
+    background-color: rgb(168, 92, 255); 
+    height: 40px;
+    width: 100px;
+    border-radius: 10px;
+}
+.bottone-annulla:hover, .bottone-salva:hover{
+    box-shadow: 0px 5px 5px rgb(169, 169, 169);
+}
+.bottone-annulla:active, .bottone-salva:active{
+    box-shadow: none;
+}
