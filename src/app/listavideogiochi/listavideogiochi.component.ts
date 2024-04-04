@@ -21,6 +21,8 @@ export class ListavideogiochiComponent implements OnInit {
   isDeleting: boolean = false;
   deletingId: number = -1;
 
+  ruolo: string = ""
+
   isInserting: boolean = false;
   formInsert! : FormGroup;
   @Output() filterRecensioniEvent = new EventEmitter<number>();
@@ -31,6 +33,10 @@ export class ListavideogiochiComponent implements OnInit {
     this.getVideogiochi();
     var token = sessionStorage.getItem("token");
     this.tipo_utente = token?.split("-")[0];
+    let tokenRuolo = sessionStorage.getItem("token")?.split("-")[0];
+    if(tokenRuolo != null){
+      this.ruolo = tokenRuolo
+    }
   }
 
   getVideogiochi(): void {
