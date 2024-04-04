@@ -40,10 +40,11 @@
                         <div *ngFor="let videogioco of videogiochi.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage)">
                             <div class="interazione" *ngIf="tipo_utente == 'admin'">
                                 
-                                <p><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <button class="cestino" *ngIf="tipo_utente.toLowerCase() === 'admin'" (click)="elimina(videogioco.id)"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
                                     <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                                </svg></p>
+                                </svg>
+                                </button>
                             </div>
                             <div class="schedaVideogioco">
                                 <h2>{{ videogioco.titolo }}</h2>
@@ -63,6 +64,34 @@
 
             <div class="btn-dx">
                 <div class="latoD">
+
+                    <div class="bottoneS">
+                        
+
+                        <button (click)="insert()" class="aggiungiVideogioco"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                        </svg></button>
+
+                        <div *ngIf="isInserting" class="modal">
+                                
+                            <form [formGroup]="formInsert" (ngSubmit)="submitInsert()">
+                                <input type="hidden" name="id" formControlName="id">
+                                <label for="titolo">Titolo:</label>
+                                <input type="text" name="titolo" formControlName="titolo"><br>
+                                <label for="data">Data:</label>
+                                <input type="date" name="data" formControlName="data"><br>
+                                <label for="genere">genere:</label>
+                                <input type="text" name="genere" formControlName="genere"><br>
+                                <label for="produzione">produzione:</label>
+                                <input type="text" name="produzione" formControlName="produzione"><br>
+                                <label for="immagine">Immagine:</label>
+                                <input type="text" name="immagine" formControlName="immagine"><br>
+                                
+                                <button (click)="annullaInsert()">Annulla</button>
+                                <input type="submit">
+                            </form>
+                        </div>
+                    </div>
                     
                     <div class="fittizi bt-a ">
                         A

@@ -21,15 +21,11 @@ export class ListavideogiochiComponent implements OnInit {
   isDeleting: boolean = false;
   deletingId: number = -1;
 
-  isModifying: boolean = false;
-  modifyingId: number = -1;
-  formModifica! : FormGroup;
-
   isInserting: boolean = false;
   formInsert! : FormGroup;
   @Output() filterRecensioniEvent = new EventEmitter<number>();
 
-  constructor(private videogiochiService: VideogiochiService, private router : Router, private http : HttpClient) { }
+  constructor(private videogiochiService: VideogiochiService, private router : Router, private http : HttpClient, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.getVideogiochi();
@@ -65,7 +61,6 @@ export class ListavideogiochiComponent implements OnInit {
   }
 
   elimina(id: number){
-    this.isModifying = false;
     this.isInserting = false;
     this.isDeleting = true;
     this.deletingId = id;
@@ -107,6 +102,61 @@ export class ListavideogiochiComponent implements OnInit {
   annullaElimina(){
     this.isDeleting = false;
     this.deletingId = -1;
+  }
+
+
+  insert(){
+    this.isDeleting = false;
+    this.isInserting = true;
+    this.formInsert = this.formBuilder.group(
+      {
+        id : "",
+        titolo : "",
+        data : "",
+        genere: "",
+        produzione: "",
+        immagine: "",
+      })
+  }
+
+  submitInsert(){
+    var token = sessionStorage.getItem("token")
+    if(token == null){
+      token = "";
+    }
+
+    const formValues = this.formInsert.value;
+    const headers = new HttpHeaders(
+      {
+        'Content-Type' : 'application/json',
+        'token': token as string
+      }
+    );
+
+    const body = JSON.stringify(formValues);
+    console.log(body)
+
+    this.http.post("http://localhost:8080/api/Videogioco/add", body, {headers}).subscribe(risposta =>{
+      var check = risposta as boolean;
+      if(check){
+        alert("Inserimento avvenuta con successo")
+        /* window.location.href = "/listarecensioni" */
+        var rew : Videogioco = JSON.parse(body) as Videogioco;
+
+        var index = this.videogiochi.findIndex(x => x.id == rew.id)
+        this.videogiochi.splice(index!, 1, rew);
+
+      }
+      if(!check){
+        console.log("ammazzati")
+      }
+    })
+
+    this.isInserting = false;
+  }
+
+  annullaInsert(){
+    this.isInserting = false;
   }
 
 }
