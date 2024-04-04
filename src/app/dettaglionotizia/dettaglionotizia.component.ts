@@ -16,7 +16,7 @@ export class DettaglionotiziaComponent implements OnInit {
   
   news!:News;
   autori: Utente[] = [];
-
+  tipo_utente?:string;
   ruolo: string = "";
 
   isModifying: boolean = false;
@@ -24,17 +24,18 @@ export class DettaglionotiziaComponent implements OnInit {
   
   constructor(private route: ActivatedRoute, private http : HttpClient, private listanotizieService: ListanotizieService, private formBuilder: FormBuilder){
     this.http = http;
-    this.getNews;
   }
   
   
   ngOnInit(): void {
+    var token = sessionStorage.getItem("token")
     this.getNews();
     this.caricaAutori();
     let tokenRuolo = sessionStorage.getItem("token")?.split("-")[0];
     if(tokenRuolo != null){
       this.ruolo = tokenRuolo
     }
+    this.tipo_utente = token?.split("-")[0];
   }
   
   getNews(){

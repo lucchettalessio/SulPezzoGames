@@ -13,7 +13,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class ListanotizieComponent implements OnInit {
   notizie: News[] = [];
   autori: Utente[] = [];
-  
   tipo_utente?: string;
   rowsPerPage: number = 4; 
   currentPage: number = 1;
@@ -130,6 +129,7 @@ export class ListanotizieComponent implements OnInit {
         categoria : "",
         data : "",
         immagine: "",
+        immagine2: "",
         testo: "",
         autore : "",
       })

@@ -14,7 +14,7 @@ import { ActivatedRoute, Route } from '@angular/router';
 export class ListarecensioniComponent implements OnInit {
   recensioni: Recensione[] = [];
   autori: Utente[] = [];
-  idVideogioco: number | null = null;
+  idVideogioco: any;
 
   rowsPerPage: number = 4; 
   currentPage: number = 1;
@@ -37,13 +37,7 @@ export class ListarecensioniComponent implements OnInit {
     if(tokenRuolo != null){
       this.ruolo = tokenRuolo
     }
-    this.route.paramMap.subscribe(params => {
-      // Recupera l'id del videogioco dai parametri dell'URL
-      this.idVideogioco = parseInt(params.get('idVideogioco') || '');
-      
-      // Chiamata al metodo per filtrare le recensioni
-      this.filterRecensioni();
-    });
+    
   }
   
   caricaRecensioni(): void {
@@ -52,6 +46,14 @@ export class ListarecensioniComponent implements OnInit {
         this.recensioni = recensioni;
         this.totalPages = Math.ceil(this.recensioni.length / this.rowsPerPage);
       });
+
+    // Recupera l'id del videogioco dai parametri dell'URL
+    this.idVideogioco = this.route.snapshot.paramMap.get('id');
+    console.log("-------->" + this.idVideogioco); // stampa idgiusto messo come parametro URL
+
+    // La lista recensioni sembra essere riempita a linea 44 dato che sul sito vengono mostrate tutte le recensioni tramite ngFor di this.recensioni
+    console.log(this.recensioni); // stampa lista vuota anche se dovrebbe essere già riempita a linea 44
+    this.filterRecensioni();
   }
 
   caricaAutori(): void {
@@ -176,17 +178,13 @@ export class ListarecensioniComponent implements OnInit {
   }
 
   filterRecensioni(): void {
-    console.log('ID del videogioco:', this.idVideogioco);
     if (this.idVideogioco !== null) {
-      this.listaRecensioniService.getRecensioniByVideogioco(this.idVideogioco).subscribe(recensioni => {
-        this.recensioni = recensioni;
-      });
-    } else {
-      // Se l'ID del videogioco è null, recupera tutte le recensioni
-      this.listaRecensioniService.getRecensione().subscribe(recensioni => {
-        this.recensioni = recensioni;
-      });
+      console.log("entratooooooooooooooooooo");
+      console.log(this.recensioni); // lista pre filtro --> stampa lista vuota anche se dovrebbe essere già riempita a linea 44
+      this.recensioni = this.recensioni.filter(recensione => recensione.videogioco.id === this.idVideogioco);
+      console.log(this.recensioni); // lista post filtro --> stampa lista vuota anche se dovrebbe essere già riempita a linea 44
     }
+  
   }
 }
 
