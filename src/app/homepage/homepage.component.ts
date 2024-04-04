@@ -100,4 +100,11 @@ export class HomepageComponent implements OnInit{
     this.cliccatoRec = true;
     this.cliccatoNews = false;
   }
+
+  scrollTo(id: string) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+    }
+}
 }

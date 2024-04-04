@@ -14,12 +14,12 @@
                     </svg>
                 </div>
                 <div class="fittizi btn-sinistra " >
-                    <button  class="news" (click)="onlyNews()">N</button>
+                    <button  class="news"  (click)="onlyNews(); scrollTo('paragrafoNews')">N</button>
                 </div>
                 <div class="fittizi btn-su">
                 </div>
                 <div class="fittizi btn-destra">
-                    <button class="recensioni" (click)="onlyRec()">R</button> 
+                    <button class="recensioni" href="#paragrafoRecensioni" (click)="onlyRec(); scrollTo('paragrafoRecensioni')">R</button> 
                 </div>
                 <div class="fittizi btn-su">
                 </div>
@@ -31,12 +31,12 @@
                         <div>
                             <div #container class="centered">
                                 <div class="RN">
-                                    <h3>Bentornato {{utente?.nome}}</h3>
-                                    <h2 class="arancioneTitolo" [ngStyle]="{'color': cliccatoNews ? 'orange' : 'rgb(203, 203, 203)'}">ULTIME NEWS</h2>
+                                    <h3 *ngIf="loggato">Bentornato {{utente?.nome}}</h3>
+                                    <h2 id="paragrafoNews" class="arancioneTitolo" [ngStyle]="{'color': cliccatoNews ? 'orange' : 'rgb(203, 203, 203)'}">ULTIME NEWS</h2>
                                     <div class="arancione" *ngFor="let news of notizie" [ngStyle]="{'color': cliccatoNews ? 'black' : 'rgb(203, 203, 203)'}">
                                     <p [routerLink]="['/dettaglionotizia', news.id]">{{news.titolo}}</p>
                                     </div>
-                                    <h2 class="bluTitolo" [ngStyle]="{'color': cliccatoRec ? 'blue' : 'rgb(203, 203, 203)'}">TOP RECENSIONI</h2>
+                                    <h2 id="paragrafoRecensioni" class="bluTitolo" [ngStyle]="{'color': cliccatoRec ? 'blue' : 'rgb(203, 203, 203)'}">TOP RECENSIONI</h2>
                                     <div class="blu" *ngFor="let recensione of recensioni" [ngStyle]="{'color': cliccatoRec ? 'black' : 'rgb(203, 203, 203)'}">
                                     <p [routerLink]="['/dettagliorecensione', recensione.id]">{{recensione.titolo}}</p>
                                     </div>
@@ -48,7 +48,7 @@
             </div>
 
             <div class="btn-dx">
-                <div [ngClass]="tipo_utente == 'admin'? '' : 'latoD'">
+                <!-- <div [ngClass]="tipo_utente == 'admin'? '' : 'latoD'"> -->
                     <div class="fittizi bt-a ">
                         A
                     </div>
@@ -65,7 +65,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
 
     </body>
 </html>
