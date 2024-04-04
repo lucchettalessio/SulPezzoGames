@@ -14,7 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DettaglionotiziaComponent } from './dettaglionotizia/dettaglionotizia.component';
 import { DettagliorecensioneComponent } from './dettagliorecensione/dettagliorecensione.component';
-import { UserpageComponent } from './userpage/userpage.component';
+
 
 @NgModule({
   declarations: [
@@ -25,8 +25,7 @@ import { UserpageComponent } from './userpage/userpage.component';
     ListarecensioniComponent,
     ListanotizieComponent,
     DettaglionotiziaComponent,
-    DettagliorecensioneComponent,
-    UserpageComponent
+    DettagliorecensioneComponent
   ],
   imports: [
     BrowserModule,
