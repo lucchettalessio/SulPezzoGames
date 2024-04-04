@@ -37,6 +37,10 @@ export class ListarecensioniComponent implements OnInit {
     if(tokenRuolo != null){
       this.ruolo = tokenRuolo
     }
+    setTimeout(() => {
+      this.filterRecensioni();
+
+    }, 100)
     
   }
   
@@ -49,10 +53,12 @@ export class ListarecensioniComponent implements OnInit {
 
     // Recupera l'id del videogioco dai parametri dell'URL
     this.idVideogioco = this.route.snapshot.paramMap.get('id');
-    console.log("-------->" + this.idVideogioco); // stampa idgiusto messo come parametro URL
+    
+  }
 
+
+  prova(){
     // La lista recensioni sembra essere riempita a linea 44 dato che sul sito vengono mostrate tutte le recensioni tramite ngFor di this.recensioni
-    console.log(this.recensioni); // stampa lista vuota anche se dovrebbe essere già riempita a linea 44
     this.filterRecensioni();
   }
 
@@ -179,10 +185,7 @@ export class ListarecensioniComponent implements OnInit {
 
   filterRecensioni(): void {
     if (this.idVideogioco !== null) {
-      console.log("entratooooooooooooooooooo");
-      console.log(this.recensioni); // lista pre filtro --> stampa lista vuota anche se dovrebbe essere già riempita a linea 44
-      this.recensioni = this.recensioni.filter(recensione => recensione.videogioco.id === this.idVideogioco);
-      console.log(this.recensioni); // lista post filtro --> stampa lista vuota anche se dovrebbe essere già riempita a linea 44
+      this.recensioni = this.recensioni.filter(recensione => recensione.videogioco.id == this.idVideogioco);
     }
   
   }
