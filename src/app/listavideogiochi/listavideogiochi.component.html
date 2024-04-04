@@ -51,6 +51,11 @@
                                 <p [routerLink]="['/listarecensioni', { idVideogioco: videogioco.id }]" (click)="openRecensioni(videogioco.id)"><img src="{{ videogioco.immagine }}" class="immagineCliccabile"></p>
                                 <p>Produzione: {{videogioco.produzione}}</p>
                             </div>
+                            <div *ngIf="isDeleting && deletingId == videogioco.id"  class="modal">
+                                <p>Sei siuro di voler eliminare il videogioco: "{{videogioco.titolo}}"?</p>
+                                    <button class="modal-button-S" (click)="confermaElimina(videogioco.id)">Si</button>
+                                    <button class="modal-button-N" (click)="annullaElimina()">No</button>
+                            </div>
                     </div>
                 </div>
                 </div>
