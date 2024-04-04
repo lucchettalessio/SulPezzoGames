@@ -87,7 +87,6 @@ export class ListavideogiochiComponent implements OnInit {
         alert("Eliminazione avvenuta con successo")
         // window.location.href = "/areadirigenti"
         var indice = this.videogiochi?.findIndex(x => x.id === id)
-        console.log("indice", indice)
         if(indice! > -1){
           this.videogiochi?.splice(indice!, 1);
         }
@@ -134,7 +133,6 @@ export class ListavideogiochiComponent implements OnInit {
     );
 
     const body = JSON.stringify(formValues);
-    console.log(body)
 
     this.http.post("http://localhost:8080/api/Videogioco/add", body, {headers}).subscribe(risposta =>{
       var check = risposta as boolean;
