@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Utente } from '../models/Utente';
 import { ActivatedRoute, Route } from '@angular/router';
+import { Videogioco } from '../models/Videogioco';
+import { VideogiochiService } from '../listavideogiochi/videogiochi.service';
 
 @Component({
   selector: 'app-listarecensioni',
@@ -14,6 +16,7 @@ import { ActivatedRoute, Route } from '@angular/router';
 export class ListarecensioniComponent implements OnInit {
   recensioni: Recensione[] = [];
   autori: Utente[] = [];
+  videogiochi: Videogioco[] = [];
   idVideogioco: any;
 
   rowsPerPage: number = 4; 
@@ -28,11 +31,12 @@ export class ListarecensioniComponent implements OnInit {
   isInserting: boolean = false;
   formInsert! : FormGroup;
 
-  constructor(private http: HttpClient, private listaRecensioniService: ListaRecensioniService, private formBuilder: FormBuilder, private route : ActivatedRoute) {}
+  constructor(private http: HttpClient, private listaRecensioniService: ListaRecensioniService, private videogiochiService: VideogiochiService, private formBuilder: FormBuilder, private route : ActivatedRoute) {}
 
   ngOnInit(): void {
     this.caricaRecensioni();
     this.caricaAutori();
+    this.caricaVideogiochi();
     let tokenRuolo = sessionStorage.getItem("token")?.split("-")[0];
     if(tokenRuolo != null){
       this.ruolo = tokenRuolo
@@ -45,7 +49,7 @@ export class ListarecensioniComponent implements OnInit {
   }
   
   caricaRecensioni(): void {
-    this.listaRecensioniService.getRecensione()
+    this.listaRecensioniService.getRecensioneOrdered()
       .subscribe(recensioni => {
         this.recensioni = recensioni;
         this.totalPages = Math.ceil(this.recensioni.length / this.rowsPerPage);
@@ -57,16 +61,18 @@ export class ListarecensioniComponent implements OnInit {
   }
 
 
-  prova(){
-    // La lista recensioni sembra essere riempita a linea 44 dato che sul sito vengono mostrate tutte le recensioni tramite ngFor di this.recensioni
-    this.filterRecensioni();
-  }
-
   caricaAutori(): void {
     this.listaRecensioniService.getAutori()
     .subscribe(autori => {
       this.autori = autori;
     })
+  }
+
+  caricaVideogiochi(){
+    this.videogiochiService.getVideogiochi()
+      .subscribe(videogiochi => {
+        this.videogiochi = videogiochi;
+      });
   }
 
   prevPage(): void {
@@ -108,7 +114,6 @@ export class ListarecensioniComponent implements OnInit {
       var check = risposta as boolean;
       if(check){
         alert("Eliminazione avvenuta con successo")
-        // window.location.href = "/areadirigenti"
         var indice = this.recensioni?.findIndex(x => x.id === id)
         if(indice! > -1){
           this.recensioni?.splice(indice!, 1);
@@ -137,6 +142,7 @@ export class ListarecensioniComponent implements OnInit {
         data : "",
         punteggio: "",
         immagine: "",
+        immagine2: "",
         testo: "",
         autore : "",
         videogioco : ""
@@ -164,11 +170,11 @@ export class ListarecensioniComponent implements OnInit {
       var check = risposta as boolean;
       if(check){
         alert("Inserimento avvenuta con successo")
-        /* window.location.href = "/listarecensioni" */
-        var rew : Recensione = JSON.parse(body) as Recensione;
+        window.location.href = "/listarecensioni"
+        /* var rew : Recensione = JSON.parse(body) as Recensione;
 
         var index = this.recensioni.findIndex(x => x.id == rew.id)
-        this.recensioni.splice(index!, 1, rew);
+        this.recensioni.splice(index!, 1, rew); */
 
       }
       if(!check){

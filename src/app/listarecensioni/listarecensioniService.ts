@@ -18,6 +18,10 @@ getRecensione(): Observable<Recensione[]> {
     return this.http.get<Recensione[]>('http://localhost:8080/api/Recensione/get-all');
 }
 
+getRecensioneOrdered(): Observable<Recensione[]> {
+  return this.http.get<Recensione[]>('http://localhost:8080/api/Recensione/all-ordered');
+}
+
 getRecensioneById(id: number): Observable<Recensione> {
     const url = `http://localhost:8080/api/Recensione/${id}`;
     return this.http.get<Recensione>(url);

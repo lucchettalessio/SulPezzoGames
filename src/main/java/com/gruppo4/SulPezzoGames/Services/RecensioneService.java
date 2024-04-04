@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 // import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+
+import com.gruppo4.SulPezzoGames.DAO.DAONews;
 import com.gruppo4.SulPezzoGames.DAO.DAORecensione;
 import com.gruppo4.SulPezzoGames.DAO.DAOUtente;
 import com.gruppo4.SulPezzoGames.DAO.DAOVideogioco;
 import com.gruppo4.SulPezzoGames.Entities.Entity;
+import com.gruppo4.SulPezzoGames.Entities.News;
 import com.gruppo4.SulPezzoGames.Entities.Recensione;
 import com.gruppo4.SulPezzoGames.Entities.Utente;
 import com.gruppo4.SulPezzoGames.Entities.Videogioco;
@@ -57,6 +60,18 @@ public class RecensioneService {
             }
 
         return ris;        
+    }
+
+    public List<Recensione> findAllNewsOrderBy(){
+        List<Recensione> ris = new ArrayList<>();
+        Map<Integer,Entity> map = DAORecensione.readOrderBy();
+
+        for(Entity e : map.values())
+            if(e instanceof Recensione){
+                ris.add((Recensione)e);
+            }
+
+        return ris;  
     }
 
     public void updateRecensione(Map<String, String> params){
