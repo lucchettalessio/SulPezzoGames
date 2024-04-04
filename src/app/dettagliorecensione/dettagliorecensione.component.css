@@ -74,8 +74,8 @@ html, body{
     display: none;  /* solo per Safari e Chrome */
 }
 img {
-    width: 50%;
-    height: auto;
+    width: auto;
+    height: 350px;
     transition: transform 0.6s;
 }
 
@@ -248,4 +248,8 @@ a{
 }
 .bottone-annulla:active, .bottone-salva:active{
     box-shadow: none;
+}
+p{
+    font-family: "Kanit", sans-serif;
+
 }

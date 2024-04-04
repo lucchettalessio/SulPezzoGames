@@ -33,12 +33,13 @@
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                         </svg></button>
 
-                        <h2 style="background-image: url({{immagine}}); margin-top: 20px;height: 250px;color: rgb(255, 255, 255);text-shadow: 2px 2px rgb(0, 0, 0);">{{ recensione.titolo }}</h2>                        
+                        <!-- style="background-image: url({{immagine}}); -->
 
-                        <p>{{ recensione.testo }}</p>
-                        <p>{{recensione.autore.nome}} {{recensione.autore.cognome}}</p>
-                        <p>{{recensione.data}}</p>
-                        <p>{{recensione.videogioco.titolo}}</p>
+                        <h2 style="margin-top: 20px;color: rgb(0, 0, 0);text-shadow: 2px 2px rgb(186, 186, 186);">{{ recensione.titolo }}</h2>                        
+                        <img src="{{immagine}}">
+                        <p style="text-align: left;margin-left: 40px; font-weight: bold;font-size: 20px;">Scritto da {{recensione.autore.nome}} {{recensione.autore.cognome}} </p>
+                        <p style="text-align: right;margin-right: 40px;font-weight: bold;"> {{recensione.data}}</p>
+                        <p style="margin-left: 50px;margin-right: 50px;">{{ recensione.testo }}</p>
                     </div>
                     <div *ngIf="!recensione">
                         <p>Nessuna recensione disponibile</p>
