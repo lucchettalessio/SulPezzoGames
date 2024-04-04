@@ -36,6 +36,8 @@
                 <div class="screen">
                     <div #container class="contenitore">
                         <h2 style="font-size: 30px;">NOTIZIE</h2>
+                        <div style="height: 5px;width: 100%; margin-top: 5px;background-color: rgb(200, 200, 200);"></div>
+
                         <div *ngFor="let n of notizie.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage)">
                             <div class="schedaNews">
                                 <h3 style="margin-left: 50px;margin-right: 50px;" class="news" [routerLink]="['/dettaglionotizia', n.id]"> {{ n.titolo }} <p>{{ n.data }}</p>
@@ -56,7 +58,7 @@
                                     <button class="modal-button-S" (click)="confermaElimina(n.id)">Si</button>
                                     <button class="modal-button-N" (click)="annullaElimina()">No</button>
                             </div>
-                            <div style="background-color: black;height: 5px;width: 100%;margin-top: 20px;"></div>
+                            <div style="height: 5px;width: 100%; margin-top: 5px;background-color: rgb(200, 200, 200);"></div>
                         </div>
                     </div>
                 </div>
